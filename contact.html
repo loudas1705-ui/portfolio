@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Loudjani Amel Serine</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">Loudjani Amel Serine<span>.</span></a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html" class="nav-contact">Let's Talk <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero contact-hero">
+      <p class="eyebrow">CONTACT / COLLABORATION / IDEAS</p>
+      <h1>Let's make<br><span>something happen.</span></h1>
+      <p class="page-intro">
+        Have a project, a question, or an idea you'd like to explore?
+        Send a message and let's start a conversation.
+      </p>
+    </section>
+
+    <section class="contact-layout section-space">
+
+      <div class="contact-details">
+        <p class="eyebrow">GET IN TOUCH</p>
+        <h2>Good things start with a conversation.</h2>
+        <p>
+          Whether you need a website, want to improve an existing digital
+          experience, or simply want to discuss an idea, feel free to reach out.
+        </p>
+
+        <div class="contact-method">
+          <span>EMAIL</span>
+          <a href="mailto:lascorp1705@gmail.com">lascorp1705@gmail.com ↗</a>
+        </div>
+
+        <div class="contact-method">
+          <span>LOCATION</span>
+          <p>Algeria</p>
+        </div>
+
+        <div class="contact-method">
+          <span>PROFESSIONAL PROFILE</span>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+            LinkedIn ↗
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+
+        <p class="eyebrow">SEND A MESSAGE</p>
+
+        <label for="name">Your full name</label>
+        <input
+          type="text"
+          id="name"
+          name="Name"
+          placeholder="Enter your name"
+          required
+        >
+
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          id="email"
+          name="Email"
+          placeholder="you@example.com"
+          required
+        >
+
+        <label for="subject">What service are you interested in?</label>
+        <select id="subject" name="Subject" required>
+          <option value="" disabled selected>Select a subject</option>
+          <option value="Website creation">Website Design & Development</option>
+          <option value="Redesign">Website Redesign</option>
+          <option value="E-commerce">E-commerce Website</option>
+          <option value="Management">Management Systems Development</option>
+          <option value="Other">Other / Custom Project</option>
+        </select>
+
+        <label for="message">Project details</label>
+        <textarea
+          id="message"
+          name="Message"
+          rows="6"
+          placeholder="Tell me a little about your project..."
+          required
+        ></textarea>
+
+        <button type="submit" class="dark-button" id="submitButton">
+          Send message <span>↗</span>
+        </button>
+
+        <p class="form-note" id="formStatus" aria-live="polite">
+          Your message will be sent directly to my email.
+        </p>
+
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="index.html" class="logo">LAS<span>.</span></a>
+    <p>© 2026 Loudjani Amel Serine. All rights reserved.</p>
+    <a href="index.html">Back to home ↑</a>
+  </footer>
+
+</body>
+</html>
