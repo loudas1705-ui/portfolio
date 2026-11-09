@@ -1,0 +1,1180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYCO — Data Intelligence</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+:root {
+  --bg: #101014;
+  --surface: #18181f;
+  --surface-2: #202029;
+  --line: rgba(255,255,255,.09);
+  --text: #f4f3f7;
+  --muted: #858591;
+  --purple: #a78bfa;
+  --lime: #d5f36a;
+  --blue: #70b7ff;
+  --pink: #f38ac8;
+  --orange: #ffad72;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button { font: inherit; cursor: pointer; }
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: min(1440px, calc(100% - 80px));
+  margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font: 700 25px 'Space Grotesk';
+  letter-spacing: -1.5px;
+}
+
+.logo-mark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: var(--lime);
+  color: #111;
+  border-radius: 9px;
+  font-size: 19px;
+  transform: rotate(-8deg);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.nav-links a:hover { color: white; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.live-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font: 11px 'DM Mono';
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--lime);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--lime);
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: #38313f;
+  border: 1px solid #665078;
+  border-radius: 50%;
+  color: #e5c9ff;
+  font-size: 12px;
+}
+
+/* HERO */
+
+.hero {
+  padding: 64px 0 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.eyebrow {
+  color: var(--lime);
+  font: 11px 'DM Mono';
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 21px;
+}
+
+.hero h1 {
+  font: 600 clamp(42px, 6vw, 76px)/.98 'Space Grotesk';
+  letter-spacing: -5px;
+  max-width: 720px;
+}
+
+.hero h1 span { color: var(--purple); }
+
+.hero-description {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 410px;
+  margin-top: 22px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 5px;
+  flex-shrink: 0;
+}
+
+.period-select {
+  background: var(--surface);
+  color: white;
+  border: 1px solid var(--line);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  outline: none;
+}
+
+.export-btn {
+  background: var(--lime);
+  color: #111;
+  border: 0;
+  border-radius: 8px;
+  padding: 13px 18px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.export-btn:hover { background: #e5ff91; }
+
+/* METRICS */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  background: var(--surface);
+}
+
+.metric {
+  padding: 23px 25px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+
+.metric:last-child { border: 0; }
+
+.metric-label {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 17px;
+}
+
+.metric-value {
+  font: 600 34px 'Space Grotesk';
+  letter-spacing: -1.8px;
+}
+
+.metric-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 11px;
+}
+
+.growth { color: var(--lime); }
+.metric-note { color: var(--muted); }
+
+.metric-index {
+  position: absolute;
+  top: 23px;
+  right: 24px;
+  color: #555560;
+  font: 10px 'DM Mono';
+}
+
+/* MAIN ANALYTICS */
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 25px;
+  min-width: 0;
+}
+
+.panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+.panel-kicker {
+  color: var(--muted);
+  font: 10px 'DM Mono';
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+
+.panel h2 {
+  font: 500 20px 'Space Grotesk';
+  letter-spacing: -.5px;
+}
+
+.panel-subtitle {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 6px;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 17px;
+  color: var(--muted);
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legend-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.chart-wrap {
+  height: 285px;
+  position: relative;
+}
+
+/* GROWTH PANEL */
+
+.growth-panel {
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(167,139,250,.13), transparent 45%),
+    var(--surface);
+}
+
+.growth-number {
+  font: 600 44px 'Space Grotesk';
+  letter-spacing: -2px;
+  margin-top: 10px;
+}
+
+.growth-number span {
+  color: var(--lime);
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.growth-caption {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.growth-chart {
+  height: 155px;
+  margin-top: 22px;
+}
+
+.growth-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.growth-footer strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* INSIGHTS */
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 43px 0 19px;
+}
+
+.section-heading h2 {
+  font: 500 22px 'Space Grotesk';
+  letter-spacing: -.6px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.section-tag {
+  color: var(--purple);
+  font: 10px 'DM Mono';
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.insights {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.insight {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 22px;
+  background: var(--surface);
+  min-height: 190px;
+  position: relative;
+  overflow: hidden;
+}
+
+.insight.featured {
+  background: linear-gradient(135deg, #29233a, #1b1924);
+  border-color: rgba(167,139,250,.25);
+}
+
+.insight-icon {
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(167,139,250,.15);
+  color: var(--purple);
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.insight:nth-child(2) .insight-icon {
+  background: rgba(213,243,106,.12);
+  color: var(--lime);
+}
+
+.insight:nth-child(3) .insight-icon {
+  background: rgba(112,183,255,.12);
+  color: var(--blue);
+}
+
+.insight h3 {
+  font: 500 16px 'Space Grotesk';
+  margin-bottom: 9px;
+}
+
+.insight p {
+  color: #aaa9b5;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.insight strong { color: white; }
+
+.insight-label {
+  color: var(--muted);
+  font: 9px 'DM Mono';
+  letter-spacing: 1px;
+  margin-bottom: 9px;
+}
+
+/* LOWER GRID */
+
+.lower-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+/* REGIONAL MAP */
+
+.map-area {
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(112,183,255,.09), transparent 70%),
+    #14141a;
+}
+
+.map-area svg {
+  width: 100%;
+  height: 260px;
+}
+
+.map-grid {
+  stroke: rgba(255,255,255,.055);
+  stroke-width: 1;
+}
+
+.map-land {
+  fill: #292a35;
+  stroke: #454657;
+  stroke-width: 1;
+}
+
+.map-point {
+  fill: var(--lime);
+  stroke: rgba(213,243,106,.3);
+  stroke-width: 8;
+}
+
+.map-point.blue { fill: var(--blue); stroke: rgba(112,183,255,.3); }
+.map-point.purple { fill: var(--purple); stroke: rgba(167,139,250,.3); }
+
+.map-label {
+  fill: #d7d6df;
+  font: 10px 'DM Sans';
+}
+
+.map-caption {
+  position: absolute;
+  left: 17px;
+  bottom: 15px;
+  color: var(--muted);
+  font: 9px 'DM Mono';
+  letter-spacing: 1px;
+}
+
+/* CHANNELS */
+
+.channel-list { display: flex; flex-direction: column; gap: 23px; }
+
+.channel {
+  display: grid;
+  grid-template-columns: 95px 1fr 40px;
+  align-items: center;
+  gap: 13px;
+}
+
+.channel-name {
+  color: #c5c4ce;
+  font-size: 12px;
+}
+
+.channel-track {
+  height: 7px;
+  background: #2c2c35;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.channel-fill {
+  height: 100%;
+  border-radius: 10px;
+}
+
+.channel-percent {
+  text-align: right;
+  color: white;
+  font: 11px 'DM Mono';
+}
+
+/* TRENDS */
+
+.trends-panel {
+  margin-bottom: 50px;
+}
+
+.trend-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.trend {
+  padding: 18px;
+  background: var(--surface-2);
+  border-radius: 10px;
+}
+
+.trend-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.trend-number {
+  color: var(--muted);
+  font: 10px 'DM Mono';
+}
+
+.trend-change {
+  color: var(--lime);
+  font: 10px 'DM Mono';
+}
+
+.trend h3 {
+  font: 500 15px 'Space Grotesk';
+  margin-bottom: 5px;
+}
+
+.trend p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.trend-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 35px;
+  margin-top: 18px;
+}
+
+.trend-bar span {
+  flex: 1;
+  background: var(--purple);
+  opacity: .7;
+  border-radius: 3px 3px 0 0;
+}
+
+/* FOOTER */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 25px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.footer-brand {
+  color: white;
+  font: 600 17px 'Space Grotesk';
+  letter-spacing: -1px;
+}
+
+footer span { color: var(--lime); }
+
+/* RESPONSIVE */
+
+@media(max-width: 1000px) {
+  .container { width: calc(100% - 48px); }
+  .analytics-grid { grid-template-columns: 1fr; }
+  .insights { grid-template-columns: 1fr 1fr; }
+  .insight.featured { grid-column: span 2; }
+  .nav-links { gap: 17px; }
+}
+
+@media(max-width: 700px) {
+  .container { width: calc(100% - 32px); }
+  nav { height: 70px; }
+  .nav-links { display: none; }
+  .live-status { display: none; }
+  .hero { padding: 45px 0 30px; flex-direction: column; align-items: flex-start; }
+  .hero h1 { letter-spacing: -2.5px; }
+  .hero-actions { width: 100%; }
+  .period-select { flex: 1; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .metric { border-bottom: 1px solid var(--line); }
+  .metric:nth-child(2) { border-right: 0; }
+  .metric:nth-child(3), .metric:nth-child(4) { border-bottom: 0; }
+  .metric-value { font-size: 28px; }
+  .insights { grid-template-columns: 1fr; }
+  .insight.featured { grid-column: auto; }
+  .lower-grid { grid-template-columns: 1fr; }
+  .trend-list { grid-template-columns: 1fr; }
+  .panel { padding: 19px; }
+  .chart-wrap { height: 240px; }
+  .section-heading { margin-top: 32px; }
+  footer { gap: 15px; flex-wrap: wrap; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#" class="logo">
+      <span class="logo-mark">✳</span>
+      CYCO
+    </a>
+
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#insights">Intelligence</a>
+      <a href="#audience">Audience</a>
+      <a href="#trends">Trends</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="live-status">
+        <span class="live-dot"></span>
+        Live data
+      </div>
+      <div class="avatar">JD</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="overview">
+    <div>
+      <div class="eyebrow">✳ DATA INTELLIGENCE / 2026</div>
+      <h1>See the patterns.<br><span>Understand</span> the future.</h1>
+      <p class="hero-description">
+        Your business data, translated into meaningful insights.
+        Discover what's happening, understand why, and find your next opportunity.
+      </p>
+    </div>
+
+    <div class="hero-actions">
+      <select class="period-select" id="period">
+        <option value="7">Last 7 days</option>
+        <option value="30" selected>Last 30 days</option>
+        <option value="90">Last 90 days</option>
+      </select>
+      <button class="export-btn" onclick="exportReport()">↓ Export report</button>
+    </div>
+  </header>
+
+  <!-- METRICS -->
+  <section class="metrics">
+    <div class="metric">
+      <span class="metric-index">01 / 04</span>
+      <div class="metric-label">Total revenue</div>
+      <div class="metric-value" id="revenue">$284.6K</div>
+      <div class="metric-bottom">
+        <span class="growth">↗ 18.6%</span>
+        <span class="metric-note">vs previous period</span>
+      </div>
+    </div>
+
+    <div class="metric">
+      <span class="metric-index">02 / 04</span>
+      <div class="metric-label">Active customers</div>
+      <div class="metric-value" id="customers">12,840</div>
+      <div class="metric-bottom">
+        <span class="growth">↗ 12.3%</span>
+        <span class="metric-note">vs previous period</span>
+      </div>
+    </div>
+
+    <div class="metric">
+      <span class="metric-index">03 / 04</span>
+      <div class="metric-label">Conversion rate</div>
+      <div class="metric-value" id="conversion">4.82%</div>
+      <div class="metric-bottom">
+        <span class="growth">↗ 0.8%</span>
+        <span class="metric-note">vs previous period</span>
+      </div>
+    </div>
+
+    <div class="metric">
+      <span class="metric-index">04 / 04</span>
+      <div class="metric-label">Average order value</div>
+      <div class="metric-value" id="orderValue">$126.40</div>
+      <div class="metric-bottom">
+        <span class="growth">↗ 6.4%</span>
+        <span class="metric-note">vs previous period</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CHARTS -->
+  <section class="analytics-grid">
+
+    <div class="panel">
+      <div class="panel-top">
+        <div>
+          <div class="panel-kicker">Performance overview</div>
+          <h2>Revenue & customer activity</h2>
+          <div class="panel-subtitle">Track how your business evolves over time</div>
+        </div>
+
+        <div class="chart-legend">
+          <div class="legend-item">
+            <span class="legend-dot" style="background:#a78bfa"></span>
+            Revenue
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background:#d5f36a"></span>
+            Customers
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <canvas id="mainChart"></canvas>
+      </div>
+    </div>
+
+    <div class="panel growth-panel">
+      <div class="panel-kicker">Growth trajectory</div>
+      <h2>Your business is moving up.</h2>
+      <div class="growth-number">+28.4% <span>↗</span></div>
+      <div class="growth-caption">Revenue growth compared to last quarter</div>
+
+      <div class="growth-chart">
+        <canvas id="growthChart"></canvas>
+      </div>
+
+      <div class="growth-footer">
+        <span>Previous quarter</span>
+        <strong>$221,840</strong>
+      </div>
+      <div class="growth-footer" style="border:0;padding-top:9px;margin-top:0">
+        <span>Current quarter</span>
+        <strong style="color:var(--lime)">$284,600</strong>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- INTELLIGENCE -->
+  <div class="section-heading" id="insights">
+    <div>
+      <h2>Intelligence, not just information.</h2>
+      <p>Patterns detected across your latest business activity.</p>
+    </div>
+    <span class="section-tag">✳ AI-generated insights</span>
+  </div>
+
+  <section class="insights">
+
+    <article class="insight featured">
+      <div class="insight-label">01 / KEY OPPORTUNITY</div>
+      <div class="insight-icon">✳</div>
+      <h3>Weekend sales are accelerating.</h3>
+      <p>
+        Revenue on Saturdays has increased by <strong>34%</strong> over the last month.
+        Consider extending your weekend campaigns to capture this momentum.
+      </p>
+    </article>
+
+    <article class="insight">
+      <div class="insight-label">02 / CUSTOMER BEHAVIOR</div>
+      <div class="insight-icon">↗</div>
+      <h3>Returning customers spend more.</h3>
+      <p>
+        Repeat buyers generate <strong>2.4× more revenue</strong> than first-time
+        customers. Retention is becoming a major growth driver.
+      </p>
+    </article>
+
+    <article class="insight">
+      <div class="insight-label">03 / ATTENTION NEEDED</div>
+      <div class="insight-icon">◎</div>
+      <h3>Mobile conversion has room to grow.</h3>
+      <p>
+        Mobile traffic accounts for <strong>68%</strong> of visits, but converts
+        below desktop. Improving mobile checkout could unlock new revenue.
+      </p>
+    </article>
+
+  </section>
+
+  <!-- AUDIENCE + CHANNELS -->
+  <div class="section-heading" id="audience">
+    <div>
+      <h2>Where your growth comes from.</h2>
+      <p>Explore audience distribution and acquisition sources.</p>
+    </div>
+    <span class="section-tag">Audience intelligence / 02</span>
+  </div>
+
+  <section class="lower-grid">
+
+    <div class="panel">
+      <div class="panel-top">
+        <div>
+          <div class="panel-kicker">Geographic distribution</div>
+          <h2>Your audience, worldwide.</h2>
+          <div class="panel-subtitle">Customer activity by region · Illustrative visualization</div>
+        </div>
+      </div>
+
+      <div class="map-area">
+        <svg viewBox="0 0 600 280" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+              <path d="M30 0H0V30" fill="none" class="map-grid"/>
+            </pattern>
+          </defs>
+          <rect width="600" height="280" fill="url(#grid)"/>
+
+          <path class="map-land" d="M75 69 L98 49 132 45 150 61 176 58 196 81 181 105 160 115 147 140 119 145 105 127 84 117 65 91Z"/>
+          <path class="map-land" d="M159 148 L184 145 205 164 201 193 184 230 169 216 160 185Z"/>
+          <path class="map-land" d="M263 66 L291 51 323 58 343 75 366 74 379 95 359 111 338 108 326 125 302 119 287 103 266 99Z"/>
+          <path class="map-land" d="M300 127 L329 120 354 135 365 164 349 205 329 222 310 200 300 172 284 148Z"/>
+          <path class="map-land" d="M376 62 L410 45 448 53 474 75 510 83 520 111 495 131 461 124 438 145 408 128 385 104Z"/>
+          <path class="map-land" d="M472 166 L496 154 518 168 525 190 510 210 487 205 475 189Z"/>
+
+          <path d="M130 93 Q230 20 316 91 T465 91" stroke="rgba(167,139,250,.5)" stroke-width="1.5" fill="none" stroke-dasharray="4 5"/>
+          <path d="M130 93 Q215 190 325 160 T465 91" stroke="rgba(213,243,106,.5)" stroke-width="1.5" fill="none" stroke-dasharray="4 5"/>
+
+          <circle class="map-point" cx="130" cy="93" r="5"/>
+          <circle class="map-point blue" cx="316" cy="91" r="5"/>
+          <circle class="map-point purple" cx="325" cy="160" r="5"/>
+          <circle class="map-point" cx="465" cy="91" r="5"/>
+
+          <text class="map-label" x="104" y="77">N. America</text>
+          <text class="map-label" x="293" y="76">Europe</text>
+          <text class="map-label" x="330" y="181">Africa</text>
+          <text class="map-label" x="455" y="76">Asia</text>
+        </svg>
+        <div class="map-caption">GLOBAL ACTIVITY NETWORK / LIVE OVERVIEW</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-top">
+        <div>
+          <div class="panel-kicker">Acquisition channels</div>
+          <h2>How people find you.</h2>
+          <div class="panel-subtitle">Share of total website traffic</div>
+        </div>
+      </div>
+
+      <div class="channel-list">
+        <div class="channel">
+          <span class="channel-name">Organic search</span>
+          <div class="channel-track"><div class="channel-fill" style="width:78%;background:#a78bfa"></div></div>
+          <span class="channel-percent">38%</span>
+        </div>
+
+        <div class="channel">
+          <span class="channel-name">Social media</span>
+          <div class="channel-track"><div class="channel-fill" style="width:58%;background:#d5f36a"></div></div>
+          <span class="channel-percent">28%</span>
+        </div>
+
+        <div class="channel">
+          <span class="channel-name">Direct</span>
+          <div class="channel-track"><div class="channel-fill" style="width:36%;background:#70b7ff"></div></div>
+          <span class="channel-percent">17%</span>
+        </div>
+
+        <div class="channel">
+          <span class="channel-name">Referrals</span>
+          <div class="channel-track"><div class="channel-fill" style="width:23%;background:#f38ac8"></div></div>
+          <span class="channel-percent">11%</span>
+        </div>
+
+        <div class="channel">
+          <span class="channel-name">Paid ads</span>
+          <div class="channel-track"><div class="channel-fill" style="width:13%;background:#ffad72"></div></div>
+          <span class="channel-percent">6%</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- TRENDS -->
+  <div class="section-heading" id="trends">
+    <div>
+      <h2>Signals worth watching.</h2>
+      <p>Emerging patterns across your business categories.</p>
+    </div>
+    <span class="section-tag">Market signals / 03</span>
+  </div>
+
+  <section class="panel trends-panel">
+    <div class="trend-list">
+
+      <div class="trend">
+        <div class="trend-top">
+          <span class="trend-number">TREND / 001</span>
+          <span class="trend-change">↗ +24.8%</span>
+        </div>
+        <h3>Premium products</h3>
+        <p>Strongest revenue growth this month</p>
+        <div class="trend-bar">
+          <span style="height:30%"></span><span style="height:43%"></span>
+          <span style="height:38%"></span><span style="height:55%"></span>
+          <span style="height:48%"></span><span style="height:72%"></span>
+          <span style="height:63%"></span><span style="height:88%"></span>
+          <span style="height:100%"></span>
+        </div>
+      </div>
+
+      <div class="trend">
+        <div class="trend-top">
+          <span class="trend-number">TREND / 002</span>
+          <span class="trend-change">↗ +16.2%</span>
+        </div>
+        <h3>Subscription plans</h3>
+        <p>Increasing customer preference</p>
+        <div class="trend-bar">
+          <span style="height:35%"></span><span style="height:29%"></span>
+          <span style="height:47%"></span><span style="height:44%"></span>
+          <span style="height:58%"></span><span style="height:55%"></span>
+          <span style="height:72%"></span><span style="height:83%"></span>
+          <span style="height:95%"></span>
+        </div>
+      </div>
+
+      <div class="trend">
+        <div class="trend-top">
+          <span class="trend-number">TREND / 003</span>
+          <span class="trend-change">↗ +9.7%</span>
+        </div>
+        <h3>Mobile engagement</h3>
+        <p>More sessions from mobile devices</p>
+        <div class="trend-bar">
+          <span style="height:28%"></span><span style="height:42%"></span>
+          <span style="height:36%"></span><span style="height:53%"></span>
+          <span style="height:49%"></span><span style="height:65%"></span>
+          <span style="height:60%"></span><span style="height:79%"></span>
+          <span style="height:90%"></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">CYCO<span>✳</span></div>
+    <div>Clarity in every number.</div>
+    <div>© 2026 CYCO Analytics</div>
+  </footer>
+
+</div>
+
+<script>
+Chart.defaults.color = '#858591';
+Chart.defaults.font.family = 'DM Sans';
+Chart.defaults.font.size = 10;
+
+const labels = ['01','04','07','10','13','16','19','22','25','28','30'];
+
+const revenueData = [18,24,21,31,28,39,35,47,43,56,64];
+const customerData = [12,16,14,21,19,26,24,31,29,38,43];
+
+const mainCtx = document.getElementById('mainChart');
+
+const mainChart = new Chart(mainCtx, {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Revenue',
+        data: revenueData,
+        borderColor: '#a78bfa',
+        backgroundColor: 'rgba(167,139,250,.12)',
+        fill: true,
+        tension: .42,
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: '#a78bfa',
+        yAxisID: 'y'
+      },
+      {
+        label: 'Customers',
+        data: customerData,
+        borderColor: '#d5f36a',
+        backgroundColor: 'transparent',
+        tension: .42,
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: '#d5f36a',
+        yAxisID: 'y1'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { intersect: false, mode: 'index' },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#25252e',
+        borderColor: 'rgba(255,255,255,.1)',
+        borderWidth: 1,
+        padding: 12,
+        displayColors: true
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: { color: '#777783' }
+      },
+      y: {
+        position: 'left',
+        grid: { color: 'rgba(255,255,255,.055)' },
+        border: { display: false },
+        ticks: { callback: value => '$' + value + 'k' }
+      },
+      y1: {
+        position: 'right',
+        grid: { display: false },
+        border: { display: false },
+        ticks: { display: false }
+      }
+    }
+  }
+});
+
+// Growth chart
+
+new Chart(document.getElementById('growthChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+    datasets: [{
+      data: [28,35,31,48,57,76],
+      backgroundColor: [
+        '#393344','#49405c','#62547b',
+        '#7966a0','#9580c2','#d5f36a'
+      ],
+      borderRadius: 5,
+      barPercentage: .58
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { enabled: true } },
+    scales: {
+      x: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: { color: '#858591' }
+      },
+      y: {
+        display: false,
+        grid: { display: false }
+      }
+    }
+  }
+});
+
+// Period filter
+
+document.getElementById('period').addEventListener('change', function() {
+  const period = Number(this.value);
+
+  let nextRevenue;
+  let nextCustomers;
+
+  if (period === 7) {
+    nextRevenue = [12,18,16,24,21,31,36];
+    nextCustomers = [9,12,11,17,15,22,25];
+  } else if (period === 90) {
+    nextRevenue = [15,19,22,26,24,32,35,39,44,48,54];
+    nextCustomers = [10,13,15,18,17,23,25,28,32,35,39];
+  } else {
+    nextRevenue = revenueData;
+    nextCustomers = customerData;
+  }
+
+  const nextLabels = period === 7
+    ? ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+    : period === 90
+    ? ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11']
+    : labels;
+
+  mainChart.data.labels = nextLabels;
+  mainChart.data.datasets[0].data = nextRevenue;
+  mainChart.data.datasets[1].data = nextCustomers;
+  mainChart.update();
+
+  const revenue = period === 7 ? '$68.2K' : period === 90 ? '$792.4K' : '$284.6K';
+  const customers = period === 7 ? '3,240' : period === 90 ? '34,620' : '12,840';
+
+  document.getElementById('revenue').textContent = revenue;
+  document.getElementById('customers').textContent = customers;
+});
+
+// Export report
+
+function exportReport() {
+  const rows = [
+    ['Metric','Value'],
+    ['Total Revenue',document.getElementById('revenue').textContent],
+    ['Active Customers',document.getElementById('customers').textContent],
+    ['Conversion Rate',document.getElementById('conversion').textContent],
+    ['Average Order Value',document.getElementById('orderValue').textContent]
+  ];
+
+  const csv = rows.map(row => row.join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  link.href = url;
+  link.download = 'cyco-analytics-report.csv';
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>

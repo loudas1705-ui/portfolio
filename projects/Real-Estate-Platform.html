@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAISONÉ — Find a Place to Belong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --green: #26364B;
+      --green2: #354A60;
+      --ink: #242B33;
+      --muted: #777D83;
+      --cream: #F5F2EA;
+      --white: #FFFFFF;
+      --line: #E5E1D8;
+      --gold: #B99B78;
+
+      --serif: 'Playfair Display', serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--cream);
+      font-size: 16px
+    }
+
+    button,
+    input,
+    select {
+      font: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover
+    }
+
+    .container {
+      width: min(1280px, 90%);
+      margin: auto
+    }
+    header {
+      height: 86px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(0, 0, 0, .05)
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 29px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: var(--green)
+    }
+
+    .logo small {
+      font-family: var(--sans);
+      font-size: 8px;
+      letter-spacing: 4px;
+      display: block;
+      margin-top: -3px;
+      text-align: center;
+      color: #8a8b7d
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 35px;
+      align-items: center;
+      font-size: 13px;
+      color: #525a53
+    }
+
+    .navlinks a:hover {
+      color: var(--gold)
+    }
+
+    .navright {
+      display: flex;
+      gap: 20px;
+      align-items: center
+    }
+
+    .login {
+      font-size: 13px
+    }
+
+    .btn {
+      border: 0;
+      background: var(--green);
+      color: white;
+      padding: 15px 23px;
+      font-size: 12px;
+      letter-spacing: .5px;
+      transition: .25s
+    }
+
+    .btn:hover {
+      background: #315b4b;
+      transform: translateY(-2px)
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+      border: 1px solid var(--green)
+    }
+
+    .btn-outline:hover {
+      background: var(--green);
+      color: white
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      font-size: 24px;
+      color: var(--green)
+    }
+
+    .hero {
+      position: relative;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      background: #263d33;
+      overflow: hidden
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(25, 39, 55, .91) 0%,
+          rgba(25, 39, 55, .68) 43%,
+          rgba(25, 39, 55, .08) 100%
+        ),
+        url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=2200&q=90')
+        center 55% / cover;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      padding: 90px 0 150px;
+      max-width: 750px
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #d5c4a5;
+      margin-bottom: 24px
+    }
+
+    .hero h1 {
+      font: 500 clamp(48px, 6.5vw, 83px)/1.08 var(--serif);
+      letter-spacing: -1.5px;
+      margin-bottom: 23px
+    }
+
+    .hero h1 em {
+      font-weight: 400;
+      color: #d8c5a5
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #e1e7e0;
+      max-width: 440px;
+      margin-bottom: 35px
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 25px
+    }
+
+    .hero .btn {
+      background: #e8dfcf;
+      color: var(--green);
+      padding: 17px 27px
+    }
+
+    .hero .btn:hover {
+      background: white
+    }
+
+    .text-link {
+      font-size: 12px;
+      color: white;
+      border-bottom: 1px solid rgba(255, 255, 255, .5);
+      padding-bottom: 5px
+    }
+
+    .hero-note {
+      position: absolute;
+      right: 5%;
+      bottom: 50px;
+      color: white;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      display: flex;
+      gap: 14px;
+      align-items: center
+    }
+
+    .hero-note:before {
+      content: "";
+      height: 45px;
+      width: 1px;
+      background: #c8b18b
+    }
+
+    .search-wrap {
+      position: relative;
+      z-index: 3;
+      margin-top: -68px
+    }
+
+    .search-panel {
+      background: white;
+      padding: 25px 28px;
+      box-shadow: 0 18px 55px rgba(25, 40, 30, .12);
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr auto;
+      gap: 15px;
+      align-items: end
+    }
+
+    .field label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8a9088;
+      margin-bottom: 10px
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      height: 46px;
+      border: 0;
+      border-bottom: 1px solid #ddd;
+      background: transparent;
+      color: var(--ink);
+      outline: none;
+      font-size: 13px
+    }
+
+    .search-panel .btn {
+      height: 46px;
+      white-space: nowrap;
+      padding: 0 27px
+    }
+
+    .section {
+      padding: 105px 0
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 42px;
+      gap: 25px
+    }
+
+    .kicker {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      color: #9a8666;
+      text-transform: uppercase;
+      margin-bottom: 14px
+    }
+
+    .section-title {
+      font: 500 clamp(34px, 4vw, 51px)/1.15 var(--serif);
+      color: var(--green);
+      letter-spacing: -.7px
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 350px;
+      margin-top: 14px
+    }
+
+    .view-all {
+      font-size: 12px;
+      color: var(--green);
+      border-bottom: 1px solid #9d9d8c;
+      padding-bottom: 7px;
+      white-space: nowrap
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap
+    }
+
+    .filter-chip {
+      border: 1px solid #dcded5;
+      background: transparent;
+      padding: 10px 17px;
+      border-radius: 30px;
+      font-size: 11px;
+      color: #626a61;
+      transition: .2s
+    }
+
+    .filter-chip.active,
+    .filter-chip:hover {
+      background: var(--green);
+      border-color: var(--green);
+      color: white
+    }
+
+    .results-count {
+      margin-left: auto;
+      font-size: 11px;
+      color: #858b83
+    }
+
+    .property-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px
+    }
+
+    .property-card {
+      background: white;
+      min-width: 0;
+      transition: .3s;
+      position: relative
+    }
+
+    .property-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(31, 48, 37, .09)
+    }
+
+    .property-image {
+      height: 255px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .property-image img {
+      height: 100%;
+      transition: transform .6s
+    }
+
+    .property-card:hover .property-image img {
+      transform: scale(1.04)
+    }
+
+    .tag {
+      position: absolute;
+      left: 17px;
+      top: 17px;
+      background: #f6f4ed;
+      padding: 8px 11px;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green)
+    }
+
+    .heart {
+      position: absolute;
+      right: 16px;
+      top: 15px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .94);
+      font-size: 18px;
+      color: #576057
+    }
+
+    .heart.liked {
+      color: #b15c52
+    }
+
+    .property-info {
+      padding: 22px 22px 20px
+    }
+
+    .property-location {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      color: #92958a;
+      margin-bottom: 10px
+    }
+
+    .property-name {
+      font: 500 23px var(--serif);
+      color: var(--green);
+      margin-bottom: 10px
+    }
+
+    .property-specs {
+      display: flex;
+      gap: 17px;
+      color: #777e76;
+      font-size: 11px;
+      padding-bottom: 17px;
+      border-bottom: 1px solid #eeeee9
+    }
+
+    .property-specs span {
+      display: flex;
+      gap: 5px;
+      align-items: center
+    }
+
+    .property-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 17px
+    }
+
+    .price {
+      font: 600 21px var(--serif);
+      color: var(--green)
+    }
+
+    .price small {
+      font: 400 10px var(--sans);
+      color: #92958a
+    }
+
+    .details-link {
+      font-size: 11px;
+      color: #8e7959;
+      border-bottom: 1px solid #c7b89e;
+      padding-bottom: 4px
+    }
+
+    .empty {
+      grid-column: 1/-1;
+      padding: 50px;
+      text-align: center;
+      color: var(--muted);
+      background: white
+    }
+
+    .locations {
+      background: #ecece4
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 18px
+    }
+
+    .location-card {
+      height: 340px;
+      position: relative;
+      overflow: hidden;
+      color: white
+    }
+
+    .location-card:first-child {
+      height: 430px;
+      grid-row: span 2
+    }
+
+    .location-card img {
+      height: 100%;
+      transition: .5s
+    }
+
+    .location-card:hover img {
+      transform: scale(1.05)
+    }
+
+    .location-card:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(10, 25, 20, .78), transparent 65%)
+    }
+
+    .location-text {
+      position: absolute;
+      z-index: 1;
+      bottom: 25px;
+      left: 25px
+    }
+
+    .location-text small {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e1d1b5
+    }
+
+    .location-text h3 {
+      font: 500 32px var(--serif);
+      margin-top: 6px
+    }
+
+    .location-text span {
+      font-size: 11px;
+      color: #e0e4dc
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 85px
+    }
+
+    .story-image {
+      position: relative;
+      padding: 0 35px 35px 0
+    }
+
+    .story-image img {
+      height: 550px
+    }
+
+    .story-image:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 65%;
+      height: 65%;
+      border: 1px solid #b7a17e;
+      z-index: -1
+    }
+
+    .story-copy .section-title {
+      max-width: 490px
+    }
+
+    .story-copy p {
+      font-size: 14px;
+      color: #747c73;
+      line-height: 2;
+      margin: 25px 0 30px;
+      max-width: 460px
+    }
+
+    .story-stat {
+      display: flex;
+      gap: 35px;
+      margin-top: 45px;
+      padding-top: 25px;
+      border-top: 1px solid var(--line)
+    }
+
+    .stat strong {
+      display: block;
+      font: 500 30px var(--serif);
+      color: var(--green)
+    }
+
+    .stat span {
+      font-size: 10px;
+      color: #858b82;
+      letter-spacing: 1px;
+      text-transform: uppercase
+    }
+
+    .quote-section {
+      background: var(--green);
+      color: white;
+      padding: 85px 0
+    }
+
+    .quote-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 70px;
+      align-items: center
+    }
+
+    .quote-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #d4c19f;
+      text-transform: uppercase
+    }
+
+    .quote {
+      font: 400 clamp(25px, 3vw, 38px)/1.5 var(--serif);
+      color: #f5f2e9
+    }
+
+    .quote-author {
+      font-size: 11px;
+      color: #c8d0c8;
+      margin-top: 25px;
+      letter-spacing: 1px
+    }
+
+    .cta {
+      padding: 100px 0;
+      background: #e9e8df
+    }
+
+    .cta-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px
+    }
+
+    .cta h2 {
+      font: 500 clamp(36px, 4.5vw, 58px)/1.15 var(--serif);
+      color: var(--green);
+      max-width: 650px
+    }
+
+    .cta p {
+      font-size: 13px;
+      color: #7a8278;
+      margin-top: 16px
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    footer {
+      background: #1D2A3B;
+      color: #E8ECE5;
+      padding: 65px 0 25px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 55px
+    }
+
+    .footer-logo {
+      font: 500 32px var(--serif);
+      letter-spacing: 2px
+    }
+
+    .footer-brand p {
+      font-size: 12px;
+      line-height: 1.9;
+      color: #aebbb0;
+      max-width: 260px;
+      margin-top: 15px
+    }
+
+    .footer-col h4 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #c6b18c;
+      margin-bottom: 20px
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 12px;
+      color: #c5cec5;
+      margin: 12px 0
+    }
+
+    .footer-col a:hover {
+      color: white
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .14);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #a5b2a7;
+      letter-spacing: .5px
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 25, 20, .75);
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 25px
+    }
+
+    .modal.open {
+      display: flex
+    }
+
+    .modal-box {
+      background: var(--cream);
+      width: min(950px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      position: relative
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      z-index: 2;
+      background: white;
+      border: 0;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      font-size: 22px
+    }
+
+    .modal-image {
+      height: 360px
+    }
+
+    .modal-image img {
+      height: 100%
+    }
+
+    .modal-content {
+      padding: 30px
+    }
+
+    .modal-content h2 {
+      font: 500 35px var(--serif);
+      color: var(--green);
+      margin: 8px 0
+    }
+
+    .modal-content p {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #747c73;
+      margin: 15px 0
+    }
+
+    .modal-meta {
+      display: flex;
+      gap: 25px;
+      font-size: 12px;
+      color: #6f796e;
+      margin: 18px 0
+    }
+
+    .modal-price {
+      font: 500 26px var(--serif);
+      color: var(--green)
+    }
+
+    @media(max-width:900px) {
+      .navlinks {
+        gap: 17px
+      }
+
+      .search-panel {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .search-panel .btn {
+        width: 100%
+      }
+
+      .property-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .location-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .location-card:first-child {
+        grid-row: auto;
+        height: 340px
+      }
+
+      .story {
+        gap: 40px
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:650px) {
+      .topbar {
+        font-size: 9px
+      }
+
+      .nav {
+        height: 75px
+      }
+
+      .navlinks {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: var(--cream);
+        padding: 25px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        border-top: 1px solid var(--line)
+      }
+
+      .navlinks.show {
+        display: flex
+      }
+
+      .navright .login {
+        display: none
+      }
+
+      .navright .btn {
+        padding: 12px 14px
+      }
+
+      .menu-btn {
+        display: block
+      }
+
+      .hero {
+        min-height: 610px
+      }
+
+      .hero-content {
+        padding: 75px 0 125px
+      }
+
+      .hero-bg {
+        background-position: 60% center
+      }
+
+      .hero h1 {
+        font-size: 52px
+      }
+
+      .hero-note {
+        display: none
+      }
+
+      .search-wrap {
+        margin-top: -75px
+      }
+
+      .search-panel {
+        grid-template-columns: 1fr 1fr;
+        padding: 20px;
+        gap: 13px
+      }
+
+      .search-panel .field:first-child {
+        grid-column: span 2
+      }
+
+      .search-panel .btn {
+        grid-column: span 2
+      }
+
+      .section {
+        padding: 75px 0
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .property-grid {
+        grid-template-columns: 1fr
+      }
+
+      .property-image {
+        height: 260px
+      }
+
+      .results-count {
+        margin-left: 0;
+        width: 100%
+      }
+
+      .location-grid {
+        grid-template-columns: 1fr
+      }
+
+      .location-card,
+      .location-card:first-child {
+        height: 300px
+      }
+
+      .story {
+        grid-template-columns: 1fr;
+        gap: 35px
+      }
+
+      .story-image img {
+        height: 380px
+      }
+
+      .story-stat {
+        gap: 20px
+      }
+
+      .quote-inner {
+        grid-template-columns: 1fr;
+        gap: 25px
+      }
+
+      .cta-inner {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px
+      }
+
+      .footer-brand {
+        grid-column: span 2
+      }
+
+      .footer-bottom {
+        gap: 15px;
+        flex-direction: column
+      }
+
+      .modal-image {
+        height: 230px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">MAISONÉ<small>REAL ESTATE</small></a>
+      <nav class="navlinks" id="navlinks">
+        <a href="#home">Home</a>
+        <a href="#properties">Properties</a>
+        <a href="#locations">Locations</a>
+        <a href="#about">Our Story</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="navright">
+        <a href="#properties" class="login">Explore homes</a>
+        <a href="#contact" class="btn">List your property ↗</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">A place to call your own</div>
+        <h1>Find a place<br>to <em>belong.</em></h1>
+        <p class="hero-desc">Thoughtfully selected homes, exceptional spaces, and a more personal way to discover where
+          life happens next.</p>
+        <div class="hero-actions">
+          <a href="#properties" class="btn">Explore properties ↗</a>
+          <a href="#about" class="text-link">Discover MAISONÉ</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-note">Scroll to discover</div>
+  </section>
+
+  <div class="container search-wrap">
+    <form class="search-panel" id="searchForm">
+      <div class="field">
+        <label>Location</label>
+        <input id="locationInput" type="text" placeholder="City, neighborhood...">
+      </div>
+      <div class="field">
+        <label>Property type</label>
+        <select id="typeFilter">
+          <option value="">Any type</option>
+          <option value="Villa">Villa</option>
+          <option value="Apartment">Apartment</option>
+          <option value="House">House</option>
+          <option value="Penthouse">Penthouse</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Bedrooms</label>
+        <select id="bedFilter">
+          <option value="">Any</option>
+          <option value="2">2+ beds</option>
+          <option value="3">3+ beds</option>
+          <option value="4">4+ beds</option>
+          <option value="5">5+ beds</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Maximum price</label>
+        <select id="priceFilter">
+          <option value="">No limit</option>
+          <option value="500000">$500,000</option>
+          <option value="750000">$750,000</option>
+          <option value="1000000">$1,000,000</option>
+          <option value="1500000">$1,500,000</option>
+        </select>
+      </div>
+      <button class="btn" type="submit">Find a home ↗</button>
+    </form>
+  </div>
+
+  <section class="section" id="properties">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">A curated collection</div>
+          <h2 class="section-title">Spaces worth<br>coming home to.</h2>
+          <p class="section-sub">Explore a collection of distinctive homes, selected for their character, design, and
+            sense of place.</p>
+        </div>
+        <a href="#properties" class="view-all">Explore all properties ↗</a>
+      </div>
+
+      <div class="filters">
+        <button class="filter-chip active" data-status="All">All properties</button>
+        <button class="filter-chip" data-status="For Sale">For sale</button>
+        <button class="filter-chip" data-status="For Rent">For rent</button>
+        <span class="results-count" id="resultsCount">06 properties</span>
+      </div>
+
+      <div class="property-grid" id="propertyGrid">
+        <article class="property-card" data-name="The Olive Residence" data-location="Marrakech Morocco"
+          data-type="Villa" data-beds="4" data-price="895000" data-status="For Sale" data-area="320"
+          data-image="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=85"
+          data-description="A tranquil contemporary villa where warm natural materials meet thoughtful architecture. The residence opens onto a private garden and a beautiful swimming pool.">
+          <div class="property-image"><img
+              src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1000&q=85"
+              alt="Modern luxury villa"><span class="tag">Featured · For sale</span><button class="heart"
+              aria-label="Add to favorites">♡</button></div>
+          <div class="property-info">
+            <div class="property-location">Marrakech, Morocco</div>
+            <h3 class="property-name">The Olive Residence</h3>
+            <div class="property-specs"><span>⌂ Villa</span><span>♧ 4 Beds</span><span>▱ 320 m²</span></div>
+            <div class="property-bottom">
+              <div class="price">$895,000</div><button class="details-link" data-details>View property ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="property-card" data-name="Casa Serena" data-location="Lisbon Portugal" data-type="Apartment"
+          data-beds="3" data-price="620000" data-status="For Sale" data-area="185"
+          data-image="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"
+          data-description="A bright, refined city apartment with generous living spaces, curated finishes, and a beautiful connection to the surrounding neighborhood.">
+          <div class="property-image"><img
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85"
+              alt="Contemporary apartment interior"><span class="tag">For sale</span><button class="heart"
+              aria-label="Add to favorites">♡</button></div>
+          <div class="property-info">
+            <div class="property-location">Lisbon, Portugal</div>
+            <h3 class="property-name">Casa Serena</h3>
+            <div class="property-specs"><span>⌂ Apartment</span><span>♧ 3 Beds</span><span>▱ 185 m²</span></div>
+            <div class="property-bottom">
+              <div class="price">$620,000</div><button class="details-link" data-details>View property ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="property-card" data-name="The Palm House" data-location="Dubai UAE" data-type="House"
+          data-beds="5" data-price="1450000" data-status="For Sale" data-area="410"
+          data-image="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=85"
+          data-description="A generous family home with a calm architectural language, sun-filled rooms, and a private outdoor setting designed for relaxed living.">
+          <div class="property-image"><img
+              src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1000&q=85"
+              alt="Modern family home"><span class="tag">New listing</span><button class="heart"
+              aria-label="Add to favorites">♡</button></div>
+          <div class="property-info">
+            <div class="property-location">Dubai, UAE</div>
+            <h3 class="property-name">The Palm House</h3>
+            <div class="property-specs"><span>⌂ House</span><span>♧ 5 Beds</span><span>▱ 410 m²</span></div>
+            <div class="property-bottom">
+              <div class="price">$1,450,000</div><button class="details-link" data-details>View property ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="property-card" data-name="Maison Lumière" data-location="Paris France" data-type="Apartment"
+          data-beds="2" data-price="420000" data-status="For Rent" data-area="120"
+          data-image="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=1200&q=85"
+          data-description="An elegant Parisian apartment with warm textures, beautiful proportions, and a welcoming atmosphere. A special city home for everyday living.">
+          <div class="property-image"><img
+              src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=1000&q=85"
+              alt="Elegant apartment"><span class="tag">For rent</span><button class="heart"
+              aria-label="Add to favorites">♡</button></div>
+          <div class="property-info">
+            <div class="property-location">Paris, France</div>
+            <h3 class="property-name">Maison Lumière</h3>
+            <div class="property-specs"><span>⌂ Apartment</span><span>♧ 2 Beds</span><span>▱ 120 m²</span></div>
+            <div class="property-bottom">
+              <div class="price">$3,200 <small>/ month</small></div><button class="details-link" data-details>View
+                property ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="property-card" data-name="Casa del Mar" data-location="Mallorca Spain" data-type="Villa"
+          data-beds="4" data-price="1100000" data-status="For Sale" data-area="275"
+          data-image="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85"
+          data-description="A Mediterranean retreat with natural stone, sunlit terraces, and a seamless relationship between indoor and outdoor living.">
+          <div class="property-image"><img
+              src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=85"
+              alt="Mediterranean villa"><span class="tag">For sale</span><button class="heart"
+              aria-label="Add to favorites">♡</button></div>
+          <div class="property-info">
+            <div class="property-location">Mallorca, Spain</div>
+            <h3 class="property-name">Casa del Mar</h3>
+            <div class="property-specs"><span>⌂ Villa</span><span>♧ 4 Beds</span><span>▱ 275 m²</span></div>
+            <div class="property-bottom">
+              <div class="price">$1,100,000</div><button class="details-link" data-details>View property ↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="property-card" data-name="The Atelier Penthouse" data-location="New York USA"
+          data-type="Penthouse" data-beds="3" data-price="1350000" data-status="For Rent" data-area="210"
+          data-image="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
+          data-description="A contemporary penthouse with a sophisticated interior, expansive windows, and a sense of privacy above the city.">
+          <div class="property-image"><img
+              src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85"
+              alt="Luxury penthouse"><span class="tag">For rent</span><button class="heart"
+              aria-label="Add to favorites">♡</button></div>
+          <div class="property-info">
+            <div class="property-location">New York, USA</div>
+            <h3 class="property-name">The Atelier Penthouse</h3>
+            <div class="property-specs"><span>⌂ Penthouse</span><span>♧ 3 Beds</span><span>▱ 210 m²</span></div>
+            <div class="property-bottom">
+              <div class="price">$8,500 <small>/ month</small></div><button class="details-link" data-details>View
+                property ↗</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section locations" id="locations">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Find your setting</div>
+          <h2 class="section-title">A world of<br>possibilities.</h2>
+          <p class="section-sub">From vibrant city living to quiet coastal escapes, discover places that feel like you.
+          </p>
+        </div>
+        <a href="#properties" class="view-all">Browse destinations ↗</a>
+      </div>
+      <div class="location-grid">
+        <a href="#properties" class="location-card"><img
+            src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1100&q=85"
+            alt="Paris city">
+          <div class="location-text"><small>France</small>
+            <h3>Paris</h3><span>Explore the city of light ↗</span>
+          </div>
+        </a>
+        <a href="#properties" class="location-card"><img
+            src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=85"
+            alt="Modern Dubai architecture">
+          <div class="location-text"><small>United Arab Emirates</small>
+            <h3>Dubai</h3><span>Discover the extraordinary ↗</span>
+          </div>
+        </a>
+        <a href="#properties" class="location-card"><img
+            src="https://images.unsplash.com/photo-1513735492246-483525079686?auto=format&fit=crop&w=900&q=85"
+            alt="Mediterranean coast">
+          <div class="location-text"><small>Spain</small>
+            <h3>Mallorca</h3><span>Find your coastal escape ↗</span>
+          </div>
+        </a>
+        <a href="#properties" class="location-card"><img
+            src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=900&q=85"
+            alt="Lisbon streets">
+          <div class="location-text"><small>Portugal</small>
+            <h3>Lisbon</h3><span>Explore a new perspective ↗</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container story">
+      <div class="story-image"><img
+          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85"
+          alt="Beautiful architectural interior"></div>
+      <div class="story-copy">
+        <div class="kicker">The MAISONÉ approach</div>
+        <h2 class="section-title">Real estate is more than a place. It's a feeling.</h2>
+        <p>We believe finding a home should feel as special as living in one. MAISONÉ brings together considered spaces,
+          meaningful locations, and a thoughtful experience from the first search to the final key.</p>
+        <a href="#contact" class="btn">Get to know us ↗</a>
+        <div class="story-stat">
+          <div class="stat"><strong>12+</strong><span>Years of insight</span></div>
+          <div class="stat"><strong>850+</strong><span>Homes discovered</span></div>
+          <div class="stat"><strong>18</strong><span>Global locations</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <div class="container quote-inner">
+      <div class="quote-label">A note on finding home</div>
+      <div>
+        <div class="quote">“The best spaces don't just look beautiful. They make you feel that you are exactly where you
+          should be.”</div>
+        <div class="quote-author">THE MAISONÉ PHILOSOPHY</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="container cta-inner">
+      <div>
+        <div class="kicker">Your next chapter starts here</div>
+        <h2>Somewhere out there is a place with your name on it.</h2>
+        <p>Let's find it together. Tell us what you're looking for.</p>
+      </div>
+      <div class="cta-actions"><a href="mailto:hello@maisone.example" class="btn">Get in touch ↗</a><a
+          href="#properties" class="btn btn-outline">Explore homes</a></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">MAISONÉ</div>
+          <p>A more thoughtful way to discover exceptional homes and places worth belonging to.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Discover</h4><a href="#properties">All properties</a><a href="#properties">For sale</a><a
+            href="#properties">For rent</a><a href="#locations">Locations</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4><a href="#about">Our story</a><a href="#contact">Contact us</a><a href="#contact">List a
+            property</a><a href="#about">Our approach</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4><a href="#contact">Instagram ↗</a><a href="#contact">Pinterest ↗</a><a
+            href="mailto:hello@maisone.example">Email us ↗</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MAISONÉ REAL ESTATE. ALL RIGHTS RESERVED.</span><span>MADE FOR THE ART OF
+          LIVING.</span></div>
+    </div>
+  </footer>
+
+  <div class="modal" id="propertyModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="modal-image"><img id="modalImage" src="" alt="Property photograph"></div>
+      <div class="modal-content">
+        <div class="kicker" id="modalLocation"></div>
+        <h2 id="modalName"></h2>
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-meta" id="modalMeta"></div>
+        <p id="modalDescription"></p>
+        <a href="mailto:hello@maisone.example" class="btn">Enquire about this property ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const cards = [...document.querySelectorAll('.property-card')];
+    const grid = document.getElementById('propertyGrid');
+    const count = document.getElementById('resultsCount');
+    let activeStatus = 'All';
+
+    function filterProperties() {
+      const location = document.getElementById('locationInput').value.trim().toLowerCase();
+      const type = document.getElementById('typeFilter').value;
+      const beds = Number(document.getElementById('bedFilter').value || 0);
+      const price = Number(document.getElementById('priceFilter').value || Infinity);
+      let visible = 0;
+
+      cards.forEach(card => {
+        const matchLocation = card.dataset.location.toLowerCase().includes(location);
+        const matchType = !type || card.dataset.type === type;
+        const matchBeds = Number(card.dataset.beds) >= beds;
+        const matchPrice = Number(card.dataset.price) <= price;
+        const matchStatus = activeStatus === 'All' || card.dataset.status === activeStatus;
+        const show = matchLocation && matchType && matchBeds && matchPrice && matchStatus;
+        card.style.display = show ? 'block' : 'none';
+        if (show) visible++;
+      });
+
+      count.textContent = visible + ' propert' + (visible === 1 ? 'y' : 'ies');
+      let empty = document.getElementById('emptyState');
+      if (!visible) {
+        if (!empty) {
+          empty = document.createElement('div');
+          empty.id = 'emptyState';
+          empty.className = 'empty';
+          empty.textContent = 'No properties match your search. Try adjusting your filters.';
+          grid.appendChild(empty);
+        }
+      } else if (empty) empty.remove();
+    }
+
+    document.getElementById('searchForm').addEventListener('submit', e => {
+      e.preventDefault();
+      filterProperties();
+      document.getElementById('properties').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    ['locationInput', 'typeFilter', 'bedFilter', 'priceFilter'].forEach(id => {
+      document.getElementById(id).addEventListener('input', filterProperties);
+    });
+
+    document.querySelectorAll('.filter-chip').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        activeStatus = button.dataset.status;
+        filterProperties();
+      });
+    });
+
+    document.querySelectorAll('.heart').forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('liked');
+        button.textContent = button.classList.contains('liked') ? '♥' : '♡';
+      });
+    });
+
+    const modal = document.getElementById('propertyModal');
+    function openDetails(card) {
+      const data = card.dataset;
+      document.getElementById('modalImage').src = data.image;
+      document.getElementById('modalLocation').textContent = data.location + ' · ' + data.type;
+      document.getElementById('modalName').textContent = data.name;
+      document.getElementById('modalPrice').textContent = data.status === 'For Rent' ? 'Rental from $' + Number(data.price).toLocaleString() + ' / month' : '$' + Number(data.price).toLocaleString();
+      document.getElementById('modalMeta').innerHTML = `<span>⌂ ${data.type}</span><span>♧ ${data.beds} Bedrooms</span><span>▱ ${data.area} m²</span>`;
+      document.getElementById('modalDescription').textContent = data.description;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    document.querySelectorAll('[data-details]').forEach(button => {
+      button.addEventListener('click', () => openDetails(button.closest('.property-card')));
+    });
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal() });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal() });
+
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('navlinks').classList.toggle('show');
+    });
+    document.querySelectorAll('.navlinks a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navlinks').classList.remove('show'));
+    });
+  </script>
+</body>
+
+</html>

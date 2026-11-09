@@ -1,0 +1,1951 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="OLIVAIRE — A modern Mediterranean dining experience. Seasonal ingredients, honest cooking and unforgettable moments.">
+<title>OLIVAIRE — Mediterranean Dining</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #263d2d;
+  --green-dark: #182a20;
+  --green-light: #3c5942;
+  --olive: #a5a66a;
+  --cream: #f4f1e8;
+  --cream-dark: #e9e5d8;
+  --white: #fffefa;
+  --ink: #252b24;
+  --muted: #777b6e;
+  --line: rgba(38,61,45,.17);
+  --serif: "Italiana", serif;
+  --sans: "DM Sans", sans-serif;
+  --shadow: 0 25px 65px rgba(22,39,27,.12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:85px;
+}
+
+body {
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--sans);
+  overflow-x:hidden;
+}
+
+button, input, textarea, select { font:inherit; }
+button, a { -webkit-tap-highlight-color:transparent; }
+button { cursor:pointer; }
+a { text-decoration:none; color:inherit; }
+img { display:block; width:100%; object-fit:cover; }
+
+::selection { background:var(--olive); color:white; }
+
+.container {
+  width:min(1200px, calc(100% - 100px));
+  margin:auto;
+}
+
+.eyebrow {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--green-light);
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:2.5px;
+}
+
+.eyebrow::before {
+  content:"";
+  width:25px;
+  height:1px;
+  background:var(--olive);
+}
+
+.section-heading {
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(40px,5vw,65px);
+  line-height:1.05;
+  letter-spacing:-1px;
+}
+
+.section-description {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+  max-width:470px;
+  margin-top:15px;
+}
+
+.primary-btn, .secondary-btn {
+  min-height:49px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  padding:0 23px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.5px;
+  transition:.3s;
+}
+
+.primary-btn {
+  background:var(--green);
+  color:white;
+  border:1px solid var(--green);
+}
+
+.primary-btn:hover {
+  background:var(--green-dark);
+  transform:translateY(-3px);
+}
+
+.secondary-btn {
+  border:1px solid var(--line);
+  color:var(--green);
+  background:transparent;
+}
+
+.secondary-btn:hover {
+  background:var(--green);
+  color:white;
+}
+
+.arrow { font-size:17px; }
+
+/* HEADER */
+
+.header {
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:78px;
+  padding:0 6%;
+  background:rgba(244,241,232,.96);
+  backdrop-filter:blur(15px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-symbol {
+  width:37px;
+  height:37px;
+  border:1px solid var(--green);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:21px;
+  color:var(--green);
+}
+
+.brand-name {
+  font-family:var(--serif);
+  font-size:27px;
+  letter-spacing:2px;
+  color:var(--green);
+}
+
+.brand-name span { color:var(--olive); }
+
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:34px;
+  list-style:none;
+}
+
+.nav-links a {
+  font-size:11px;
+  font-weight:600;
+  color:#62685e;
+  transition:.25s;
+}
+
+.nav-links a:hover { color:var(--green); }
+
+.header-right {
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.cart-button {
+  position:relative;
+  border:0;
+  background:transparent;
+  color:var(--green);
+  font-size:21px;
+}
+
+.cart-count {
+  position:absolute;
+  top:-7px;
+  right:-10px;
+  width:17px;
+  height:17px;
+  background:var(--olive);
+  color:white;
+  border-radius:50%;
+  font-size:9px;
+  display:grid;
+  place-items:center;
+}
+
+.header-book {
+  background:var(--green);
+  color:white;
+  padding:13px 19px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.menu-toggle {
+  display:none;
+  border:0;
+  background:none;
+  font-size:25px;
+  color:var(--green);
+}
+
+/* HERO */
+
+.hero {
+  min-height:660px;
+  background:var(--green-dark);
+  color:white;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-copy {
+  padding:100px 0 85px 11%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  z-index:2;
+}
+
+.hero .eyebrow { color:#c4c69a; }
+
+.hero h1 {
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(65px,7.5vw,105px);
+  line-height:.94;
+  letter-spacing:-2px;
+  margin:30px 0;
+}
+
+.hero h1 em {
+  color:#b7b986;
+  font-weight:400;
+}
+
+.hero-description {
+  color:#c3c9bd;
+  font-size:13px;
+  line-height:2;
+  max-width:390px;
+}
+
+.hero-actions {
+  display:flex;
+  align-items:center;
+  gap:17px;
+  flex-wrap:wrap;
+  margin-top:35px;
+}
+
+.hero .primary-btn {
+  background:#a5a66a;
+  border-color:#a5a66a;
+  color:var(--green-dark);
+}
+
+.hero .primary-btn:hover {
+  background:#c1c28b;
+}
+
+.hero-link {
+  font-size:11px;
+  color:white;
+  border-bottom:1px solid #a5a66a;
+  padding-bottom:5px;
+}
+
+.hero-note {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:65px;
+  color:#c3c9bd;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.hero-note span {
+  color:#b7b986;
+  font-size:18px;
+}
+
+.hero-image {
+  position:relative;
+  min-height:660px;
+  overflow:hidden;
+}
+
+.hero-image img {
+  position:absolute;
+  inset:0;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+
+.hero-image::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(24,42,32,.15),transparent 40%);
+}
+
+.hero-image-caption {
+  position:absolute;
+  bottom:45px;
+  right:40px;
+  z-index:2;
+  color:white;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* MARQUEE */
+
+.marquee {
+  overflow:hidden;
+  background:var(--olive);
+  color:white;
+  padding:18px 0;
+}
+
+.marquee-track {
+  display:flex;
+  width:max-content;
+  animation:marquee 28s linear infinite;
+}
+
+.marquee-item {
+  padding:0 35px;
+  font-family:var(--serif);
+  font-size:22px;
+  white-space:nowrap;
+}
+
+.marquee-item span {
+  padding-left:65px;
+  color:#e0dfbd;
+}
+
+@keyframes marquee {
+  to { transform:translateX(-50%); }
+}
+
+/* INTRO */
+
+.intro {
+  padding:120px 0;
+  background:var(--cream);
+}
+
+.intro-layout {
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  align-items:center;
+  gap:100px;
+}
+
+.intro-image {
+  height:490px;
+  position:relative;
+}
+
+.intro-image img {
+  height:100%;
+}
+
+.intro-image::before {
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  border:1px solid var(--olive);
+  left:-18px;
+  top:-18px;
+  z-index:0;
+}
+
+.intro-image img { position:relative; z-index:1; }
+
+.intro-copy h2 {
+  margin:22px 0;
+}
+
+.intro-copy h2 em { color:var(--olive); }
+
+.intro-copy .primary-btn { margin-top:27px; }
+
+.intro-stat {
+  display:flex;
+  gap:35px;
+  margin-top:45px;
+  padding-top:25px;
+  border-top:1px solid var(--line);
+}
+
+.stat strong {
+  display:block;
+  font-family:var(--serif);
+  font-size:28px;
+  color:var(--green);
+  font-weight:400;
+}
+
+.stat span {
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:5px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* SIGNATURE MENU */
+
+.menu-section {
+  padding:110px 0;
+  background:var(--green);
+  color:white;
+}
+
+.menu-section .eyebrow { color:#c3c58c; }
+
+.menu-section .section-description { color:#c0c7bc; }
+
+.menu-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:50px;
+}
+
+.menu-section .secondary-btn {
+  border-color:#89977f;
+  color:white;
+}
+
+.menu-section .secondary-btn:hover {
+  background:white;
+  color:var(--green);
+}
+
+.category-tabs {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:35px;
+}
+
+.category-tabs button {
+  background:transparent;
+  border:1px solid #657667;
+  color:#d1d7cd;
+  padding:11px 20px;
+  font-size:10px;
+  transition:.3s;
+}
+
+.category-tabs button.active,
+.category-tabs button:hover {
+  background:var(--olive);
+  border-color:var(--olive);
+  color:white;
+}
+
+.menu-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:35px 22px;
+}
+
+.menu-card {
+  min-width:0;
+  animation:fadeUp .5s ease both;
+}
+
+.menu-card-image {
+  height:250px;
+  overflow:hidden;
+  position:relative;
+  background:#344b39;
+}
+
+.menu-card-image img {
+  height:100%;
+  transition:transform .7s;
+}
+
+.menu-card:hover .menu-card-image img {
+  transform:scale(1.06);
+}
+
+.menu-card-category {
+  position:absolute;
+  top:15px;
+  left:15px;
+  padding:7px 11px;
+  background:var(--cream);
+  color:var(--green);
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.menu-card-info { padding:18px 0; }
+
+.menu-card-top {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.menu-card h3 {
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:23px;
+}
+
+.menu-card-price {
+  color:#c0c28c;
+  font-size:14px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.menu-card p {
+  color:#c0c7bc;
+  font-size:11px;
+  line-height:1.8;
+  margin:9px 0 17px;
+  min-height:40px;
+}
+
+.menu-card .add-btn {
+  border:0;
+  border-bottom:1px solid #8e9b83;
+  background:transparent;
+  color:white;
+  padding:0 0 5px;
+  font-size:10px;
+  letter-spacing:1px;
+  transition:.3s;
+}
+
+.menu-card .add-btn:hover { color:#c1c28b; }
+
+/* CHEF FEATURE */
+
+.chef-section {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:520px;
+  background:var(--cream-dark);
+}
+
+.chef-image { min-height:520px; }
+.chef-image img { height:100%; }
+
+.chef-copy {
+  padding:80px 12%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.chef-copy h2 {
+  margin:23px 0;
+}
+
+.chef-copy h2 em { color:var(--olive); }
+
+.chef-copy p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:2;
+  margin-bottom:15px;
+}
+
+.chef-signature {
+  margin-top:15px;
+  font-family:var(--serif);
+  font-size:24px;
+  font-style:italic;
+  color:var(--green);
+}
+
+/* EXPERIENCE */
+
+.experience {
+  padding:110px 0;
+  text-align:center;
+}
+
+.experience .eyebrow { justify-content:center; }
+
+.experience .section-heading {
+  max-width:750px;
+  margin:20px auto;
+}
+
+.experience-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:55px;
+  text-align:left;
+}
+
+.experience-card {
+  border:1px solid var(--line);
+  padding:35px 28px;
+  transition:.3s;
+}
+
+.experience-card:hover {
+  background:var(--green);
+  color:white;
+  transform:translateY(-5px);
+}
+
+.experience-icon {
+  font-size:29px;
+  color:var(--olive);
+  margin-bottom:25px;
+}
+
+.experience-card h3 {
+  font-family:var(--serif);
+  font-size:25px;
+  font-weight:400;
+}
+
+.experience-card p {
+  font-size:11px;
+  line-height:1.9;
+  color:var(--muted);
+  margin-top:12px;
+}
+
+.experience-card:hover p { color:#d0d6ca; }
+
+/* TESTIMONIALS */
+
+.testimonials {
+  padding:100px 20px;
+  background:#e8e8d9;
+  text-align:center;
+}
+
+.testimonials .eyebrow { justify-content:center; }
+
+.testimonial-card {
+  max-width:720px;
+  margin:40px auto 0;
+}
+
+.stars {
+  color:#929354;
+  letter-spacing:5px;
+  font-size:16px;
+}
+
+.testimonial-text {
+  font-family:var(--serif);
+  font-size:clamp(25px,4vw,39px);
+  line-height:1.45;
+  margin:25px 0;
+  color:var(--green);
+}
+
+.testimonial-name {
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.testimonial-role {
+  display:block;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
+.testimonial-controls {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:30px;
+}
+
+.testimonial-controls button {
+  width:38px;
+  height:38px;
+  border:1px solid var(--green);
+  background:transparent;
+  color:var(--green);
+  font-size:20px;
+  transition:.3s;
+}
+
+.testimonial-controls button:hover {
+  background:var(--green);
+  color:white;
+}
+
+/* RESERVATION */
+
+.reservation {
+  padding:110px 0;
+  background:var(--green-dark);
+  color:white;
+}
+
+.reservation-layout {
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:90px;
+  align-items:start;
+}
+
+.reservation-copy .eyebrow { color:#c0c28c; }
+
+.reservation-copy h2 {
+  margin:23px 0;
+}
+
+.reservation-copy p {
+  color:#c0c7bc;
+  font-size:12px;
+  line-height:2;
+  margin-bottom:18px;
+}
+
+.contact-detail {
+  display:flex;
+  gap:13px;
+  align-items:center;
+  margin-top:20px;
+  color:#d9ddcf;
+  font-size:11px;
+}
+
+.contact-detail span { color:#c0c28c; font-size:17px; }
+
+.booking-form {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.form-group {
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.form-group.full { grid-column:1/-1; }
+
+.form-group label {
+  font-size:10px;
+  color:#d5dccf;
+  letter-spacing:.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width:100%;
+  background:rgba(255,255,255,.07);
+  border:1px solid #506353;
+  padding:15px;
+  color:white;
+  outline:none;
+  font-size:11px;
+  border-radius:0;
+}
+
+.form-group select option { color:var(--ink); }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color:#b4b681;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color:#a6b0a2; }
+
+.booking-form .primary-btn {
+  grid-column:1/-1;
+  background:#a5a66a;
+  border-color:#a5a66a;
+  color:var(--green-dark);
+  margin-top:8px;
+}
+
+.booking-form .primary-btn:hover { background:#c2c38d; }
+
+/* FOOTER */
+
+.footer {
+  background:#13231a;
+  color:white;
+  padding:70px 0 25px;
+}
+
+.footer-top {
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:50px;
+  padding-bottom:60px;
+}
+
+.footer .brand-name { color:white; }
+
+.footer-brand p {
+  max-width:270px;
+  font-size:11px;
+  line-height:2;
+  color:#aab6a9;
+  margin-top:20px;
+}
+
+.footer-column h4 {
+  font-size:11px;
+  letter-spacing:1px;
+  margin-bottom:22px;
+  color:#c2c48e;
+}
+
+.footer-column a {
+  display:block;
+  color:#aab6a9;
+  font-size:10px;
+  margin-bottom:14px;
+  transition:.2s;
+}
+
+.footer-column a:hover { color:white; }
+
+.footer-bottom {
+  border-top:1px solid #354638;
+  padding-top:23px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#89998b;
+  font-size:9px;
+}
+
+/* CART */
+
+.cart-overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:200;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+}
+
+.cart-overlay.open {
+  opacity:1;
+  visibility:visible;
+}
+
+.cart-drawer {
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  width:min(420px,92%);
+  padding:30px;
+  background:var(--cream);
+  transform:translateX(100%);
+  transition:.35s;
+  overflow-y:auto;
+}
+
+.cart-overlay.open .cart-drawer { transform:translateX(0); }
+
+.cart-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+
+.cart-head h3 {
+  font-family:var(--serif);
+  font-size:30px;
+  font-weight:400;
+}
+
+.close-cart {
+  border:0;
+  background:none;
+  color:var(--green);
+  font-size:27px;
+}
+
+.cart-items { margin:20px 0; }
+
+.cart-line {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:17px 0;
+  border-bottom:1px solid var(--line);
+  font-size:11px;
+}
+
+.cart-line small {
+  display:block;
+  color:var(--muted);
+  margin-top:7px;
+}
+
+.remove-btn {
+  border:0;
+  background:none;
+  color:#9b5545;
+  font-size:10px;
+  margin-top:7px;
+}
+
+.cart-total {
+  display:flex;
+  justify-content:space-between;
+  padding:20px 0;
+  font-size:15px;
+  font-weight:700;
+}
+
+.cart-empty {
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.cart-drawer .primary-btn { width:100%; }
+
+.cart-note {
+  font-size:9px;
+  line-height:1.8;
+  color:var(--muted);
+  margin-top:15px;
+}
+
+/* TOAST */
+
+.toast {
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,20px);
+  background:var(--green-dark);
+  color:white;
+  padding:14px 22px;
+  font-size:11px;
+  opacity:0;
+  visibility:hidden;
+  z-index:300;
+  transition:.3s;
+}
+
+.toast.show {
+  opacity:1;
+  visibility:visible;
+  transform:translate(-50%,0);
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+  .container { width:calc(100% - 60px); }
+  .nav-links { gap:18px; }
+  .header-book { display:none; }
+  .hero-copy { padding-left:8%; }
+  .intro-layout { gap:50px; }
+  .reservation-layout { gap:45px; }
+}
+
+@media(max-width:760px) {
+  .container { width:calc(100% - 40px); }
+
+  .header { padding:0 20px; height:70px; }
+  .menu-toggle { display:block; }
+  .header-right { gap:18px; }
+
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:70px;
+    left:0;
+    right:0;
+    padding:25px;
+    background:var(--cream);
+    border-bottom:1px solid var(--line);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:22px;
+  }
+
+  .nav-links.open { display:flex; }
+
+  .hero { grid-template-columns:1fr; }
+  .hero-copy { padding:75px 25px 55px; }
+  .hero h1 { font-size:75px; }
+  .hero-image { min-height:430px; }
+
+  .intro { padding:80px 0; }
+  .intro-layout { grid-template-columns:1fr; gap:45px; }
+  .intro-image { height:380px; }
+
+  .menu-section { padding:80px 0; }
+  .menu-heading { align-items:flex-start; flex-direction:column; }
+  .menu-grid { grid-template-columns:repeat(2,1fr); gap:30px 15px; }
+  .menu-card-image { height:190px; }
+  .menu-card h3 { font-size:20px; }
+
+  .chef-section { grid-template-columns:1fr; }
+  .chef-image { min-height:350px; }
+  .chef-copy { padding:65px 30px; }
+
+  .experience { padding:80px 0; }
+  .experience-grid { grid-template-columns:1fr; }
+
+  .reservation { padding:80px 0; }
+  .reservation-layout { grid-template-columns:1fr; gap:40px; }
+
+  .footer-top { grid-template-columns:1fr 1fr; gap:40px 25px; }
+}
+
+@media(max-width:480px) {
+  .hero h1 { font-size:59px; }
+  .hero-image { min-height:330px; }
+
+  .section-heading { font-size:43px; }
+
+  .intro-stat { gap:20px; }
+  .stat strong { font-size:23px; }
+
+  .menu-grid { grid-template-columns:1fr; }
+  .menu-card-image { height:260px; }
+  .menu-card h3 { font-size:25px; }
+
+  .category-tabs { gap:8px; }
+  .category-tabs button { padding:9px 13px; }
+
+  .booking-form { grid-template-columns:1fr; }
+  .form-group.full,
+  .booking-form .primary-btn { grid-column:1; }
+
+  .footer-top { grid-template-columns:1fr 1fr; }
+  .footer-brand { grid-column:1/-1; }
+  .footer-bottom { flex-direction:column; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+  <a href="#home" class="brand">
+    <span class="brand-symbol">✳</span>
+    <span class="brand-name">OLIVAIRE<span>.</span></span>
+  </a>
+
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#menu">The Menu</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#reservation">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-right">
+    <button class="cart-button" id="openCart" aria-label="Open cart">
+      ♧ <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <a href="#reservation" class="header-book">RESERVE A TABLE ↗</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <span class="eyebrow">A modern Mediterranean table</span>
+
+    <h1>
+      Rooted in<br>
+      <em>Nature.</em><br>
+      Made to<br>
+      Be Shared.
+    </h1>
+
+    <p class="hero-description">
+      A celebration of seasonal ingredients, Mediterranean
+      traditions and the simple pleasure of eating well.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#menu" class="primary-btn">EXPLORE OUR MENU <span class="arrow">↗</span></a>
+      <a href="#about" class="hero-link">Discover our story</a>
+    </div>
+
+    <div class="hero-note">
+      <span>✳</span>
+      FRESH INGREDIENTS · HONEST COOKING · GOOD COMPANY
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img
+      src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200"
+      alt="Elegant Mediterranean restaurant interior">
+    <span class="hero-image-caption">A place to slow down · Est. 2026</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">Mediterranean Soul <span>✳</span></div>
+    <div class="marquee-item">Seasonal Ingredients <span>✳</span></div>
+    <div class="marquee-item">Made With Intention <span>✳</span></div>
+    <div class="marquee-item">Food Worth Sharing <span>✳</span></div>
+    <div class="marquee-item">Mediterranean Soul <span>✳</span></div>
+    <div class="marquee-item">Seasonal Ingredients <span>✳</span></div>
+    <div class="marquee-item">Made With Intention <span>✳</span></div>
+    <div class="marquee-item">Food Worth Sharing <span>✳</span></div>
+  </div>
+</div>
+
+<!-- INTRO / ABOUT -->
+
+<section class="intro" id="about">
+  <div class="container intro-layout">
+
+    <div class="intro-image reveal">
+      <img
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900"
+        alt="Beautifully arranged Mediterranean dining table">
+    </div>
+
+    <div class="intro-copy reveal">
+      <span class="eyebrow">The philosophy of OLIVAIRE</span>
+
+      <h2 class="section-heading">
+        Good food.<br>
+        <em>Good moments.</em><br>
+        Nothing more.
+      </h2>
+
+      <p class="section-description">
+        We believe the best dining experiences begin with
+        something simple: ingredients that speak for themselves.
+        Inspired by Mediterranean culture, OLIVAIRE brings
+        together seasonal produce, thoughtful recipes and
+        a welcoming atmosphere.
+      </p>
+
+      <p class="section-description">
+        From the first bite to the last conversation,
+        every detail is designed to make you feel at home.
+      </p>
+
+      <a href="#menu" class="primary-btn">GET TO KNOW OUR MENU ↗</a>
+
+      <div class="intro-stat">
+        <div class="stat">
+          <strong>100%</strong>
+          <span>Fresh philosophy</span>
+        </div>
+        <div class="stat">
+          <strong>Seasonal</strong>
+          <span>Inspired cuisine</span>
+        </div>
+        <div class="stat">
+          <strong>Made</strong>
+          <span>With intention</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MENU -->
+
+<section class="menu-section" id="menu">
+  <div class="container">
+
+    <div class="menu-heading">
+      <div>
+        <span class="eyebrow">From our kitchen</span>
+        <h2 class="section-heading">A Taste of<br>the Mediterranean.</h2>
+        <p class="section-description">
+          Thoughtfully prepared dishes, familiar flavours
+          and a few unexpected favourites.
+        </p>
+      </div>
+
+      <a href="#reservation" class="secondary-btn">PLAN YOUR VISIT ↗</a>
+    </div>
+
+    <div class="category-tabs" id="categoryTabs">
+      <button class="active" data-category="All">All dishes</button>
+      <button data-category="Pasta">Pasta</button>
+      <button data-category="Italian">Italian</button>
+      <button data-category="Seafood">Seafood</button>
+      <button data-category="Salads">Salads</button>
+      <button data-category="Desserts">Desserts</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+
+  </div>
+</section>
+
+<!-- CHEF / KITCHEN -->
+
+<section class="chef-section">
+  <div class="chef-image">
+    <img
+      src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=1100"
+      alt="Fresh ingredients prepared in a restaurant kitchen">
+  </div>
+
+  <div class="chef-copy reveal">
+    <span class="eyebrow">From garden to table</span>
+
+    <h2 class="section-heading">
+      Simplicity is<br>
+      the ultimate<br>
+      <em>ingredient.</em>
+    </h2>
+
+    <p>
+      We don't believe in overcomplicating good food.
+      Our approach celebrates fresh produce, carefully
+      selected ingredients and the beauty of authentic
+      Mediterranean flavours.
+    </p>
+
+    <p>
+      Every recipe has a purpose. Every ingredient
+      has a place. And every plate tells a little story.
+    </p>
+
+    <span class="chef-signature">The OLIVAIRE philosophy.</span>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section class="experience" id="experience">
+  <div class="container">
+
+    <span class="eyebrow">More than a meal</span>
+
+    <h2 class="section-heading">
+      Made for the moments<br>
+      that matter.
+    </h2>
+
+    <p class="section-description" style="margin:15px auto 0">
+      Whether it is a quiet lunch, a gathering with friends
+      or a special evening, there is always a place for you.
+    </p>
+
+    <div class="experience-grid">
+
+      <article class="experience-card reveal">
+        <div class="experience-icon">✳</div>
+        <h3>Thoughtful Dining</h3>
+        <p>
+          Carefully prepared dishes, seasonal ingredients
+          and a menu inspired by Mediterranean traditions.
+        </p>
+      </article>
+
+      <article class="experience-card reveal">
+        <div class="experience-icon">⌂</div>
+        <h3>A Welcoming Space</h3>
+        <p>
+          Natural textures, warm lighting and an atmosphere
+          made for relaxing and connecting.
+        </p>
+      </article>
+
+      <article class="experience-card reveal">
+        <div class="experience-icon">♡</div>
+        <h3>Shared Moments</h3>
+        <p>
+          Good food is better together. Bring your favourite
+          people and make every visit memorable.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+
+<section class="testimonials" id="reviews">
+  <div class="container">
+
+    <span class="eyebrow">Kind words</span>
+    <h2 class="section-heading" style="margin-top:20px">
+      The experience<br>speaks for itself.
+    </h2>
+
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+
+      <blockquote class="testimonial-text" id="reviewText">
+        “Beautiful food, a lovely atmosphere and
+        the kind of place that makes you want to stay longer.”
+      </blockquote>
+
+      <strong class="testimonial-name" id="reviewName">Sarah M.</strong>
+      <span class="testimonial-role">A valued guest</span>
+    </div>
+
+    <div class="testimonial-controls">
+      <button id="prevReview" aria-label="Previous review">←</button>
+      <button id="nextReview" aria-label="Next review">→</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESERVATION -->
+
+<section class="reservation" id="reservation">
+  <div class="container reservation-layout">
+
+    <div class="reservation-copy">
+      <span class="eyebrow">Your table is waiting</span>
+
+      <h2 class="section-heading">
+        Let's make<br>
+        it a special<br>
+        <em>occasion.</em>
+      </h2>
+
+      <p>
+        A dinner for two, a family gathering or simply
+        a reason to enjoy good food. We would love to
+        welcome you to OLIVAIRE.
+      </p>
+
+      <div class="contact-detail">
+        <span>✆</span>
+        +213 00 000 000
+      </div>
+
+      <div class="contact-detail">
+        <span>✉</span>
+        hello@olivaire.com
+      </div>
+
+      <div class="contact-detail">
+        <span>⌖</span>
+        Mediterranean Dining
+      </div>
+    </div>
+
+    <form class="booking-form" id="bookingForm">
+
+      <div class="form-group">
+        <label for="guestName">YOUR NAME</label>
+        <input id="guestName" name="name" type="text"
+          placeholder="Full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="guestEmail">EMAIL ADDRESS</label>
+        <input id="guestEmail" name="email" type="email"
+          placeholder="Your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="bookingDate">DATE</label>
+        <input id="bookingDate" name="date" type="date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="bookingTime">TIME</label>
+        <select id="bookingTime" name="time" required>
+          <option value="">Choose a time</option>
+          <option>12:00 PM</option>
+          <option>01:00 PM</option>
+          <option>02:00 PM</option>
+          <option>06:00 PM</option>
+          <option>07:00 PM</option>
+          <option>08:00 PM</option>
+          <option>09:00 PM</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label for="guestNumber">NUMBER OF GUESTS</label>
+        <select id="guestNumber" name="guests" required>
+          <option value="">Select guests</option>
+          <option>1 Guest</option>
+          <option>2 Guests</option>
+          <option>3 Guests</option>
+          <option>4 Guests</option>
+          <option>5 Guests</option>
+          <option>6 Guests</option>
+          <option>7+ Guests</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label for="bookingNote">SPECIAL REQUESTS</label>
+        <textarea id="bookingNote" name="message"
+          rows="3" placeholder="Tell us anything we should know..."></textarea>
+      </div>
+
+      <button type="submit" class="primary-btn">
+        REQUEST A RESERVATION ↗
+      </button>
+
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="#home" class="brand">
+          <span class="brand-symbol" style="color:#fff;border-color:#a5a66a">✳</span>
+          <span class="brand-name">OLIVAIRE<span>.</span></span>
+        </a>
+
+        <p>
+          Rooted in nature, inspired by the Mediterranean.
+          Good food, thoughtful moments and a table for everyone.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>EXPLORE</h4>
+        <a href="#home">Home</a>
+        <a href="#about">Our Story</a>
+        <a href="#menu">Our Menu</a>
+        <a href="#experience">Experience</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>INFORMATION</h4>
+        <a href="#reservation">Reservations</a>
+        <a href="#reviews">Guest Reviews</a>
+        <a href="#reservation">Contact Us</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>FOLLOW ALONG</h4>
+        <a href="#" target="_blank">Instagram ↗</a>
+        <a href="#" target="_blank">Facebook ↗</a>
+        <a href="#" target="_blank">TikTok ↗</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> OLIVAIRE. All rights reserved.</span>
+      <span>Made with intention · Mediterranean soul.</span>
+    </div>
+
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+
+<div class="cart-overlay" id="cartOverlay">
+  <aside class="cart-drawer">
+
+    <div class="cart-head">
+      <h3>Your Selection</h3>
+      <button class="close-cart" id="closeCart">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your selection is currently empty.</p>
+    </div>
+
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+
+    <button class="primary-btn" id="checkoutBtn">
+      CONTINUE TO ORDER ↗
+    </button>
+
+    <p class="cart-note">
+      Demonstration cart. Connect an ordering service
+      to accept real customer orders.
+    </p>
+
+  </aside>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* MENU DATA */
+
+const dishes = [
+  {
+    name:"Spaghetti Carbonara",
+    description:"Classic Roman pasta, silky egg sauce and parmesan.",
+    price:12.99,
+    category:"Pasta",
+    image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=700"
+  },
+  {
+    name:"Chicken Parmigiana",
+    description:"Golden chicken, tomato sauce and melted mozzarella.",
+    price:14.99,
+    category:"Italian",
+    image:"https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=700"
+  },
+  {
+    name:"Seafood Linguine",
+    description:"Fresh seafood, garlic, herbs and delicate olive oil.",
+    price:16.99,
+    category:"Seafood",
+    image:"https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=700&auto=format&fit=crop"
+  },
+  {
+    name:"Beef Bolognese",
+    description:"Slow-cooked beef and tomato sauce with fresh pasta.",
+    price:13.99,
+    category:"Pasta",
+    image:"https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=700"
+  },
+  {
+    name:"Lasagna al Forno",
+    description:"Layers of pasta, rich meat sauce and béchamel.",
+    price:14.50,
+    category:"Italian",
+    image:"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=700"
+  },
+  {
+    name:"Gnocchi al Pesto",
+    description:"Soft potato gnocchi and fresh basil pesto.",
+    price:13.50,
+    category:"Italian",
+    image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=700"
+  },
+  {
+    name:"Lemon Herb Salmon",
+    description:"Grilled salmon, seasonal vegetables and fresh lemon.",
+    price:18.99,
+    category:"Seafood",
+    image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=700"
+  },
+  {
+    name:"Garden Fresh Salad",
+    description:"Crisp greens, tomatoes, herbs and house dressing.",
+    price:9.99,
+    category:"Salads",
+    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700"
+  },
+  {
+    name:"Chocolate Fondant",
+    description:"Warm chocolate cake with a rich molten centre.",
+    price:7.50,
+    category:"Desserts",
+    image:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=700"
+  }
+];
+
+/* MENU RENDERING */
+
+const menuGrid = document.getElementById("menuGrid");
+const cart = [];
+
+function dishCard(dish) {
+  return `
+    <article class="menu-card">
+      <div class="menu-card-image">
+        <img src="${dish.image}" alt="${dish.name}" loading="lazy">
+        <span class="menu-card-category">${dish.category}</span>
+      </div>
+
+      <div class="menu-card-info">
+        <div class="menu-card-top">
+          <h3>${dish.name}</h3>
+          <span class="menu-card-price">$${dish.price.toFixed(2)}</span>
+        </div>
+
+        <p>${dish.description}</p>
+
+        <button class="add-btn" data-add="${dish.name}">
+          ADD TO SELECTION +
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+function renderMenu(category = "All") {
+  const filtered = category === "All"
+    ? dishes
+    : dishes.filter(dish => dish.category === category);
+
+  menuGrid.innerHTML = filtered.map(dishCard).join("");
+}
+
+renderMenu();
+
+/* CATEGORY FILTER */
+
+document.getElementById("categoryTabs").addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+  if (!button) return;
+
+  document.querySelectorAll(".category-tabs button").forEach(btn =>
+    btn.classList.remove("active")
+  );
+
+  button.classList.add("active");
+  renderMenu(button.dataset.category);
+});
+
+/* CART */
+
+function addToCart(name) {
+  const dish = dishes.find(item => item.name === name);
+  if (!dish) return;
+
+  const existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({...dish, quantity:1});
+  }
+
+  updateCart();
+  showToast(`${name} added to your selection.`);
+}
+
+function updateCart() {
+  const count = cart.reduce((sum,item) => sum + item.quantity,0);
+
+  const total = cart.reduce(
+    (sum,item) => sum + item.price * item.quantity,0
+  );
+
+  document.getElementById("cartCount").textContent = count;
+  document.getElementById("cartTotal").textContent = `$${total.toFixed(2)}`;
+
+  const cartItems = document.getElementById("cartItems");
+
+  if (!cart.length) {
+    cartItems.innerHTML =
+      '<p class="cart-empty">Your selection is currently empty.</p>';
+    return;
+  }
+
+  cartItems.innerHTML = cart.map(item => `
+    <div class="cart-line">
+      <div>
+        <strong>${item.name}</strong>
+        <small>$${item.price.toFixed(2)} × ${item.quantity}</small>
+      </div>
+
+      <div>
+        <strong>$${(item.price * item.quantity).toFixed(2)}</strong>
+        <button class="remove-btn" data-remove="${item.name}">
+          REMOVE
+        </button>
+      </div>
+    </div>
+  `).join("");
+}
+
+document.addEventListener("click", event => {
+  const add = event.target.closest("[data-add]");
+  const remove = event.target.closest("[data-remove]");
+
+  if (add) addToCart(add.dataset.add);
+
+  if (remove) {
+    const index = cart.findIndex(item =>
+      item.name === remove.dataset.remove
+    );
+
+    if (index !== -1) {
+      cart.splice(index,1);
+      updateCart();
+    }
+  }
+});
+
+/* CART DRAWER */
+
+const cartOverlay = document.getElementById("cartOverlay");
+
+document.getElementById("openCart").addEventListener("click", () => {
+  cartOverlay.classList.add("open");
+});
+
+document.getElementById("closeCart").addEventListener("click", () => {
+  cartOverlay.classList.remove("open");
+});
+
+cartOverlay.addEventListener("click", event => {
+  if (event.target === cartOverlay) {
+    cartOverlay.classList.remove("open");
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    cartOverlay.classList.remove("open");
+  }
+});
+
+document.getElementById("checkoutBtn").addEventListener("click", () => {
+  if (!cart.length) {
+    showToast("Add a dish before continuing.");
+    return;
+  }
+
+  showToast("Connect an ordering service to complete your order.");
+});
+
+/* MOBILE NAVIGATION */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+
+  menuToggle.textContent = isOpen ? "×" : "☰";
+  menuToggle.setAttribute("aria-expanded",isOpen);
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-expanded","false");
+  });
+});
+
+/* TESTIMONIALS */
+
+const reviews = [
+  {
+    text:"“Beautiful food, a lovely atmosphere and the kind of place that makes you want to stay longer.”",
+    name:"Sarah M."
+  },
+  {
+    text:"“Everything felt thoughtful, from the presentation to the service. A wonderful dining experience.”",
+    name:"Daniel R."
+  },
+  {
+    text:"“Fresh flavours, welcoming people and an atmosphere that makes every meal special.”",
+    name:"Amira B."
+  }
+];
+
+let reviewIndex = 0;
+
+function showReview() {
+  document.getElementById("reviewText").textContent =
+    reviews[reviewIndex].text;
+
+  document.getElementById("reviewName").textContent =
+    reviews[reviewIndex].name;
+}
+
+document.getElementById("nextReview").addEventListener("click", () => {
+  reviewIndex = (reviewIndex + 1) % reviews.length;
+  showReview();
+});
+
+document.getElementById("prevReview").addEventListener("click", () => {
+  reviewIndex = (reviewIndex - 1 + reviews.length) % reviews.length;
+  showReview();
+});
+
+/* RESERVATION */
+
+const bookingDate = document.getElementById("bookingDate");
+
+const today = new Date();
+
+const localToday = new Date(
+  today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+bookingDate.min = localToday;
+
+document.getElementById("bookingForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const formData = new FormData(event.currentTarget);
+  const details = Object.fromEntries(formData.entries());
+
+  const message =
+`Hello OLIVAIRE,
+
+I would like to request a table reservation.
+
+Name: ${details.name}
+Email: ${details.email}
+Date: ${details.date}
+Time: ${details.time}
+Guests: ${details.guests}
+Special requests: ${details.message || "None"}`;
+
+  const email = "hello@olivaire.com";
+
+  const mailto =
+    `mailto:${email}?subject=${encodeURIComponent("OLIVAIRE Table Reservation")}&body=${encodeURIComponent(message)}`;
+
+  window.location.href = mailto;
+});
+
+/* TOAST */
+
+let toastTimer;
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  },2500);
+}
+
+/* SCROLL REVEAL */
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+
+document.querySelectorAll(
+  ".reveal, .menu-card, .experience-card"
+).forEach(element => {
+  observer.observe(element);
+});
+
+/* FOOTER YEAR */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+</script>
+
+</body>
+</html>

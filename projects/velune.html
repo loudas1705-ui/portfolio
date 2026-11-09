@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VÉLUNÉ — a fictional Mediterranean kitchen and neighbourhood café.">
+    <meta name="theme-color" content="#f4f0e7">
+    <title>VÉLUNÉ — A little taste of the Mediterranean</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --paper: #f4f0e7;
+            --paper-deep: #e9e3d6;
+            --ink: #20251d;
+            --muted: #74766b;
+            --olive: #59634a;
+            --olive-dark: #343d2e;
+            --tomato: #c65d43;
+            --line: rgba(32, 37, 29, .17);
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", Arial, sans-serif;
+            --wrap: 1240px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .wrap {
+            width: min(var(--wrap), calc(100% - 64px));
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--olive);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .19em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 25px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .serif {
+            font-family: var(--serif);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(244, 240, 231, .94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 190px;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--olive);
+            border-radius: 50%;
+            color: var(--olive);
+            font-family: var(--serif);
+            font-size: 20px;
+        }
+
+        .brand-name {
+            font-family: var(--serif);
+            font-size: 18px;
+            line-height: 1;
+            letter-spacing: .04em;
+        }
+
+        .brand-name small {
+            display: block;
+            margin-top: 5px;
+            font-family: var(--sans);
+            font-size: 7px;
+            letter-spacing: .25em;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 11px;
+            font-weight: 600;
+            color: #55594f;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--tomato);
+        }
+
+        .nav-cta,
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: white;
+            padding: 14px 19px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            transition: .25s;
+        }
+
+        .nav-cta:hover,
+        .button:hover {
+            background: var(--tomato);
+            border-color: var(--tomato);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 0;
+            background: none;
+            font-size: 24px;
+            color: var(--ink);
+        }
+
+        .hero {
+            padding: 28px 0 78px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: .88fr 1.12fr;
+            min-height: 590px;
+            gap: 42px;
+            align-items: center;
+        }
+
+        .hero-copy {
+            padding: 30px 0 30px 4.5%;
+        }
+
+        .hero h1 {
+            max-width: 540px;
+            margin: 25px 0 22px;
+            font-family: var(--serif);
+            font-size: clamp(58px, 7.2vw, 100px);
+            font-weight: 500;
+            line-height: .94;
+            letter-spacing: -.065em;
+        }
+
+        .hero h1 em {
+            color: var(--tomato);
+            font-weight: 500;
+        }
+
+        .hero-text {
+            max-width: 370px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--olive);
+            padding-bottom: 7px;
+        }
+
+        .hero-note {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 55px;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: .06em;
+        }
+
+        .hero-note strong {
+            color: var(--ink);
+            font-size: 11px;
+        }
+
+        .hero-image {
+            position: relative;
+            min-height: 590px;
+        }
+
+        .hero-image img {
+            height: 590px;
+            border-radius: 48% 48% 4px 4px;
+        }
+
+        .image-stamp {
+            position: absolute;
+            left: -33px;
+            bottom: 43px;
+            width: 112px;
+            height: 112px;
+            display: grid;
+            place-items: center;
+            padding: 15px;
+            border-radius: 50%;
+            background: var(--tomato);
+            color: white;
+            text-align: center;
+            font-family: var(--serif);
+            font-size: 17px;
+            line-height: 1.15;
+            transform: rotate(-10deg);
+        }
+
+        .image-caption {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            padding: 10px 13px;
+            background: rgba(244, 240, 231, .9);
+            font-size: 9px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .ticker {
+            overflow: hidden;
+            background: var(--olive);
+            color: #f6f0e5;
+            padding: 17px 0;
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            align-items: center;
+            gap: 32px;
+            animation: drift 32s linear infinite;
+        }
+
+        .ticker span {
+            font-family: var(--serif);
+            font-size: 19px;
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        .ticker b {
+            color: #d9a18a;
+            font-size: 13px;
+        }
+
+        @keyframes drift {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        section {
+            padding: 105px 0;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 42px;
+        }
+
+        .section-head h2 {
+            max-width: 570px;
+            margin: 15px 0 0;
+            font-family: var(--serif);
+            font-size: clamp(42px, 5vw, 66px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        .section-head p {
+            max-width: 300px;
+            margin: 0 0 5px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .menu-section {
+            background: var(--paper-deep);
+        }
+
+        .menu-tabs {
+            display: flex;
+            gap: 8px;
+            margin: 0 0 28px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 17px;
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            background: transparent;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .tab.active,
+        .tab:hover {
+            background: var(--olive-dark);
+            border-color: var(--olive-dark);
+            color: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .dish {
+            background: var(--paper);
+            padding: 12px 12px 20px;
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .dish:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(35, 39, 29, .09);
+        }
+
+        .dish[hidden] {
+            display: none;
+        }
+
+        .dish-image {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+
+        .dish-image img {
+            height: 100%;
+            transition: transform .6s;
+        }
+
+        .dish:hover .dish-image img {
+            transform: scale(1.06);
+        }
+
+        .dish-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--paper);
+            padding: 7px 9px;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .dish-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            align-items: baseline;
+            margin: 18px 3px 8px;
+        }
+
+        .dish h3 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: 21px;
+            font-weight: 500;
+        }
+
+        .price {
+            color: var(--tomato);
+            font-family: var(--serif);
+            font-size: 19px;
+            white-space: nowrap;
+        }
+
+        .dish p {
+            margin: 0 3px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .menu-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 34px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9%;
+            align-items: center;
+        }
+
+        .story-visual {
+            position: relative;
+            padding: 0 40px 40px 0;
+        }
+
+        .story-visual img {
+            height: 520px;
+        }
+
+        .story-visual::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 57%;
+            height: 55%;
+            border: 1px solid var(--tomato);
+            z-index: -1;
+        }
+
+        .story-sticker {
+            position: absolute;
+            right: -23px;
+            top: 32px;
+            background: var(--olive);
+            color: white;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 15px;
+            line-height: 1.15;
+            transform: rotate(8deg);
+        }
+
+        .story-copy h2 {
+            margin: 18px 0 22px;
+            font-family: var(--serif);
+            font-size: clamp(43px, 5vw, 65px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        .story-copy h2 em {
+            color: var(--tomato);
+        }
+
+        .story-copy p {
+            max-width: 440px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        .story-stats {
+            display: flex;
+            gap: 42px;
+            margin: 34px 0;
+        }
+
+        .stat strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: 500;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 9px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .experience {
+            background: var(--olive-dark);
+            color: #f5f0e6;
+        }
+
+        .experience .eyebrow {
+            color: #d9a18a;
+        }
+
+        .experience .section-head p {
+            color: #c1c3b8;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 22px;
+        }
+
+        .experience-main {
+            position: relative;
+            min-height: 440px;
+            overflow: hidden;
+        }
+
+        .experience-main img {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            filter: brightness(.68);
+        }
+
+        .experience-main-content {
+            position: absolute;
+            left: 35px;
+            bottom: 35px;
+            max-width: 420px;
+        }
+
+        .experience-main h3 {
+            margin: 0 0 10px;
+            font-family: var(--serif);
+            font-size: 43px;
+            font-weight: 500;
+        }
+
+        .experience-main p {
+            color: #e0dfd5;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .experience-side {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .experience-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 22px;
+            border: 1px solid rgba(255, 255, 255, .22);
+        }
+
+        .experience-card img {
+            width: 112px;
+            height: 112px;
+            flex: 0 0 112px;
+        }
+
+        .experience-card h3 {
+            margin: 0 0 8px;
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .experience-card p {
+            margin: 0;
+            color: #c1c3b8;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .quote-section {
+            text-align: center;
+            padding: 110px 20px;
+        }
+
+        .quote-mark {
+            color: var(--tomato);
+            font-family: var(--serif);
+            font-size: 70px;
+            line-height: .7;
+        }
+
+        blockquote {
+            max-width: 820px;
+            margin: 20px auto 25px;
+            font-family: var(--serif);
+            font-size: clamp(30px, 4.3vw, 52px);
+            line-height: 1.2;
+            letter-spacing: -.035em;
+        }
+
+        .quote-author {
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .17em;
+            text-transform: uppercase;
+        }
+
+        .visit {
+            background: var(--paper-deep);
+        }
+
+        .visit-grid {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 8%;
+        }
+
+        .visit-copy h2 {
+            margin: 16px 0 20px;
+            font-family: var(--serif);
+            font-size: clamp(44px, 5vw, 65px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        .visit-copy>p {
+            max-width: 350px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .details {
+            margin-top: 35px;
+            border-top: 1px solid var(--line);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 10px;
+        }
+
+        .detail-row span:first-child {
+            color: var(--muted);
+        }
+
+        .detail-row strong {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .reservation {
+            padding: 34px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+        }
+
+        .reservation h3 {
+            margin: 0 0 8px;
+            font-family: var(--serif);
+            font-size: 31px;
+            font-weight: 500;
+        }
+
+        .reservation>p {
+            margin: 0 0 25px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 13px 12px;
+            border: 1px solid var(--line);
+            border-radius: 0;
+            outline: none;
+            background: transparent;
+            color: var(--ink);
+            font-size: 11px;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--olive);
+        }
+
+        .reservation .button {
+            width: 100%;
+            margin-top: 22px;
+        }
+
+        .form-note {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: #20251d;
+            color: #f5f0e6;
+            padding: 55px 0 25px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 40px;
+            padding-bottom: 45px;
+        }
+
+        .footer-brand .brand-name {
+            font-size: 24px;
+        }
+
+        .footer-brand p {
+            max-width: 260px;
+            color: #b9bbae;
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 55px;
+        }
+
+        .footer-col strong {
+            display: block;
+            margin-bottom: 16px;
+            color: #d9a18a;
+            font-size: 9px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+
+        .footer-col a,
+        .footer-col span {
+            display: block;
+            margin: 10px 0;
+            color: #c7c8bd;
+            font-size: 10px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, .16);
+            color: #999d90;
+            font-size: 9px;
+        }
+
+        .toast {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 50;
+            max-width: 340px;
+            padding: 16px 20px;
+            background: var(--olive-dark);
+            color: white;
+            font-size: 12px;
+            line-height: 1.6;
+            box-shadow: 0 10px 30px #0002;
+            transform: translateY(150%);
+            opacity: 0;
+            transition: .35s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 900px) {
+            .wrap {
+                width: min(100% - 40px, var(--wrap));
+            }
+
+            .nav-links {
+                gap: 17px;
+            }
+
+            .hero-grid {
+                gap: 25px;
+                min-height: 500px;
+            }
+
+            .hero-image,
+            .hero-image img {
+                min-height: 500px;
+                height: 500px;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .story-grid,
+            .visit-grid {
+                gap: 5%;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-side {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+
+            .experience-card {
+                align-items: start;
+                flex-direction: column;
+            }
+
+            .experience-card img {
+                width: 100%;
+                height: 145px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .wrap {
+                width: calc(100% - 36px);
+            }
+
+            .nav {
+                height: 66px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 66px;
+                left: 0;
+                right: 0;
+                padding: 20px;
+                background: var(--paper);
+                border-bottom: 1px solid var(--line);
+                flex-direction: column;
+                align-items: start;
+                gap: 20px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hero {
+                padding: 28px 0 55px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .hero-copy {
+                padding: 20px 0 0;
+            }
+
+            .hero h1 {
+                font-size: clamp(58px, 17vw, 82px);
+            }
+
+            .hero-note {
+                margin-top: 32px;
+            }
+
+            .hero-image,
+            .hero-image img {
+                min-height: 430px;
+                height: 430px;
+            }
+
+            .hero-image {
+                margin-left: 18px;
+            }
+
+            .image-stamp {
+                left: -20px;
+                width: 88px;
+                height: 88px;
+                font-size: 14px;
+            }
+
+            section {
+                padding: 75px 0;
+            }
+
+            .section-head {
+                display: block;
+            }
+
+            .section-head p {
+                margin-top: 20px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 17px;
+            }
+
+            .dish-image {
+                height: 240px;
+            }
+
+            .menu-foot {
+                align-items: start;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .story-grid,
+            .visit-grid {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .story-visual {
+                padding-right: 22px;
+            }
+
+            .story-visual img {
+                height: 400px;
+            }
+
+            .story-sticker {
+                right: -7px;
+                width: 85px;
+                height: 85px;
+                font-size: 13px;
+            }
+
+            .story-stats {
+                gap: 25px;
+            }
+
+            .experience-main {
+                min-height: 390px;
+            }
+
+            .experience-main-content {
+                left: 22px;
+                right: 20px;
+                bottom: 22px;
+            }
+
+            .experience-main h3 {
+                font-size: 35px;
+            }
+
+            .experience-side {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-card {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .experience-card img {
+                width: 100px;
+                height: 100px;
+                flex-basis: 100px;
+            }
+
+            .quote-section {
+                padding: 80px 18px;
+            }
+
+            .reservation {
+                padding: 23px 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 35px;
+                flex-wrap: wrap;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap nav">
+            <a class="brand" href="#home" aria-label="Sol and Sage home">
+                <span class="brand-mark">V</span>
+                <span class="brand-name">VÉLUNÉ<small>KITCHEN · CAFÉ</small></span>
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#menu">THE MENU</a>
+                <a href="#story">OUR STORY</a>
+                <a href="#experience">THE EXPERIENCE</a>
+                <a href="#visit">FIND US</a>
+            </nav>
+            <a class="nav-cta" href="#visit">BOOK A TABLE <span>↗</span></a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="wrap hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">A neighbourhood kind of place</div>
+                    <h1>A little taste of <em>the sun.</em></h1>
+                    <p class="hero-text">Slow mornings, long lunches and plates made for sharing. Welcome to your new
+                        favourite corner of the Mediterranean.</p>
+                    <div class="hero-actions">
+                        <a class="button" href="#menu">EXPLORE THE MENU <span>↗</span></a>
+                        <a class="text-link" href="#story">OUR STORY <span>→</span></a>
+                    </div>
+                    <div class="hero-note"><strong>OPEN DAILY</strong><span>08:00 — 22:00</span><span>·</span><span>GOOD
+                            FOOD, GOOD MOOD</span></div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=88"
+                        alt="Warm, sunlit restaurant interior with tables set for guests">
+                    <div class="image-stamp">Fresh<br>from our<br>kitchen ✳</div>
+                    <div class="image-caption">A place to slow down · Est. 2024</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ticker" aria-label="Our philosophy">
+            <div class="ticker-track">
+                <span>Good food, no fuss</span><b>✳</b><span>Made for sharing</span><b>✳</b><span>Local when
+                    possible</span><b>✳</b><span>Stay for one more coffee</span><b>✳</b>
+                <span>Good food, no fuss</span><b>✳</b><span>Made for sharing</span><b>✳</b><span>Local when
+                    possible</span><b>✳</b><span>Stay for one more coffee</span><b>✳</b>
+            </div>
+        </div>
+
+        <section class="menu-section" id="menu">
+            <div class="wrap">
+                <div class="section-head">
+                    <div>
+                        <div class="eyebrow">A few house favourites</div>
+                        <h2>Fresh from our<br><em class="serif">little kitchen.</em></h2>
+                    </div>
+                    <p>Seasonal plates, familiar flavours and a few unexpected twists. Made fresh, served generously.
+                    </p>
+                </div>
+                <div class="menu-tabs" role="group" aria-label="Filter menu">
+                    <button class="tab active" data-filter="all">All favourites</button>
+                    <button class="tab" data-filter="brunch">Brunch</button>
+                    <button class="tab" data-filter="plates">Main plates</button>
+                    <button class="tab" data-filter="sweet">Something sweet</button>
+                </div>
+                <div class="menu-grid">
+                    <article class="dish" data-category="brunch">
+                        <div class="dish-image"><img
+                                src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=85"
+                                alt="Avocado toast with eggs"><span class="dish-tag">Guest favourite</span></div>
+                        <div class="dish-info">
+                            <h3>Garden Toast</h3><span class="price">850 DA</span>
+                        </div>
+                        <p>Sourdough, smashed avocado, soft eggs, garden herbs and a little chilli oil.</p>
+                    </article>
+                    <article class="dish" data-category="plates">
+                        <div class="dish-image"><img
+                                src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85"
+                                alt="Fresh pasta with tomato sauce"><span class="dish-tag">Made in-house</span></div>
+                        <div class="dish-info">
+                            <h3>Sunday Pasta</h3><span class="price">1,450 DA</span>
+                        </div>
+                        <p>Handmade pasta, slow tomato sauce, parmesan and fresh basil.</p>
+                    </article>
+                    <article class="dish" data-category="sweet">
+                        <div class="dish-image"><img
+                                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+                                alt="Chocolate layer cake"><span class="dish-tag">A little indulgence</span></div>
+                        <div class="dish-info">
+                            <h3>Chocolate Cloud</h3><span class="price">650 DA</span>
+                        </div>
+                        <p>Dark chocolate cake, whipped vanilla cream and a pinch of sea salt.</p>
+                    </article>
+                    <article class="dish" data-category="plates">
+                        <div class="dish-image"><img
+                                src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
+                                alt="Colourful fresh Mediterranean salad"></div>
+                        <div class="dish-info">
+                            <h3>Market Bowl</h3><span class="price">1,200 DA</span>
+                        </div>
+                        <p>Whatever looks lovely at the market, with grains, greens and lemon dressing.</p>
+                    </article>
+                    <article class="dish" data-category="brunch">
+                        <div class="dish-image"><img
+                                src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=900&q=85"
+                                alt="Pancakes with berries and syrup"></div>
+                        <div class="dish-info">
+                            <h3>Sunday Pancakes</h3><span class="price">950 DA</span>
+                        </div>
+                        <p>Fluffy buttermilk pancakes, seasonal fruit and warm maple syrup.</p>
+                    </article>
+                    <article class="dish" data-category="sweet">
+                        <div class="dish-image"><img
+                                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85"
+                                alt="Freshly baked pastries"></div>
+                        <div class="dish-info">
+                            <h3>Little Morning Bun</h3><span class="price">480 DA</span>
+                        </div>
+                        <p>Golden, buttery layers with cinnamon sugar. Best enjoyed warm.</p>
+                    </article>
+                </div>
+                <div class="menu-foot"><span>Our menu changes with the seasons and the market.</span><a
+                        class="text-link" href="#visit">COME TASTE IT <span>→</span></a></div>
+            </div>
+        </section>
+
+        <section id="story">
+            <div class="wrap story-grid">
+                <div class="story-visual">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=88"
+                        alt="Chef preparing a fresh dish in the kitchen">
+                    <div class="story-sticker">Made with<br>heart & herbs</div>
+                </div>
+                <div class="story-copy">
+                    <div class="eyebrow">A little about us</div>
+                    <h2>Rooted in good food. <em>Made for good days.</em></h2>
+                    <p>VÉLUNÉ started with a simple idea: food tastes better when you take your time. We bring
+                        together the warmth of Mediterranean cooking, ingredients we believe in, and the kind of
+                        hospitality that makes you want to stay a little longer.</p>
+                    <p>No complicated rules. No rushed meals. Just honest plates, thoughtful coffee and a table with
+                        room for everyone.</p>
+                    <div class="story-stats">
+                        <div class="stat"><strong>01</strong><span>Seasonal kitchen</span></div>
+                        <div class="stat"><strong>100%</strong><span>Made with care</span></div>
+                        <div class="stat"><strong>∞</strong><span>Good conversations</span></div>
+                    </div>
+                    <a class="text-link" href="#visit">PULL UP A CHAIR <span>→</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience" id="experience">
+            <div class="wrap">
+                <div class="section-head">
+                    <div>
+                        <div class="eyebrow">More than a meal</div>
+                        <h2>Come for the food.<br><em class="serif">Stay for the feeling.</em></h2>
+                    </div>
+                    <p>Your morning coffee spot, your long-lunch place, your little celebration corner. There's always a
+                        seat for you.</p>
+                </div>
+                <div class="experience-grid">
+                    <div class="experience-main">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=85"
+                            alt="Cosy café interior with warm lighting">
+                        <div class="experience-main-content">
+                            <div class="eyebrow">The everyday ritual</div>
+                            <h3>Your table is waiting.</h3>
+                            <p>Bring a book, bring your people, or just bring yourself. We'll take care of the rest.</p>
+                        </div>
+                    </div>
+                    <div class="experience-side">
+                        <div class="experience-card">
+                            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=85"
+                                alt="Freshly made coffee">
+                            <div>
+                                <h3>Slow coffee mornings</h3>
+                                <p>Beautiful coffee, fresh pastries and absolutely nowhere else you need to be.</p>
+                            </div>
+                        </div>
+                        <div class="experience-card">
+                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=500&q=85"
+                                alt="Beautifully arranged dinner table">
+                            <div>
+                                <h3>Little celebrations</h3>
+                                <p>Birthdays, catch-ups and just-because dinners. Make an occasion out of it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <div class="quote-mark">“</div>
+            <blockquote>The best moments happen around a table, with something delicious in the middle.</blockquote>
+            <div class="quote-author">The VÉLUNÉ way</div>
+        </section>
+
+        <section class="visit" id="visit">
+            <div class="wrap visit-grid">
+                <div class="visit-copy">
+                    <div class="eyebrow">Come on in</div>
+                    <h2>Let's make<br><em class="serif">a date.</em></h2>
+                    <p>Whether it's your first visit or your fiftieth, we'd love to save you a seat.</p>
+                    <div class="details">
+                        <div class="detail-row"><span>Find us</span><strong>12 Olive Lane, Your City</strong></div>
+                        <div class="detail-row"><span>Opening hours</span><strong>Every day · 08:00–22:00</strong></div>
+                        <div class="detail-row"><span>Call us</span><strong>+213 555 000 000</strong></div>
+                        <div class="detail-row"><span>Say hello</span><strong>hello@solandsage.demo</strong></div>
+                    </div>
+                </div>
+                <form class="reservation" id="reservationForm">
+                    <h3>Save your seat.</h3>
+                    <p>Tell us a little about your visit. This is a demo booking form.</p>
+                    <div class="form-grid">
+                        <div class="field"><label for="guestName">Your name</label><input id="guestName" name="name"
+                                placeholder="Name" required></div>
+                        <div class="field"><label for="guestEmail">Email address</label><input id="guestEmail"
+                                name="email" type="email" placeholder="you@example.com" required></div>
+                        <div class="field"><label for="guestDate">Date</label><input id="guestDate" name="date"
+                                type="date" required></div>
+                        <div class="field"><label for="guestTime">Time</label><select id="guestTime" name="time"
+                                required>
+                                <option value="">Choose a time</option>
+                                <option>09:00</option>
+                                <option>11:00</option>
+                                <option>13:00</option>
+                                <option>15:00</option>
+                                <option>18:00</option>
+                                <option>20:00</option>
+                            </select></div>
+                        <div class="field full"><label for="guestCount">Number of guests</label><select id="guestCount"
+                                name="guests">
+                                <option>1 guest</option>
+                                <option selected>2 guests</option>
+                                <option>3 guests</option>
+                                <option>4 guests</option>
+                                <option>5 guests</option>
+                                <option>6+ guests</option>
+                            </select></div>
+                    </div>
+                    <button class="button" type="submit">REQUEST A TABLE <span>↗</span></button>
+                    <div class="form-note">Demo only — no booking is sent or stored. Connect this form to your booking
+                        service for a real website.</div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a class="brand" href="#home"><span class="brand-mark"
+                            style="color:#e7b09a;border-color:#e7b09a">S</span><span class="brand-name">VÉLUNÉ<small
+                                style="color:#b9bbae">KITCHEN · CAFÉ</small></span></a>
+                    <p>A little Mediterranean sunshine, served daily. Good food, good people, good things.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col"><strong>Explore</strong><a href="#menu">The menu</a><a href="#story">Our
+                            story</a><a href="#experience">The experience</a></div>
+                    <div class="footer-col"><strong>Visit</strong><span>12 Olive Lane</span><span>Your City,
+                            Algeria</span><span>08:00 — 22:00</span></div>
+                    <div class="footer-col"><strong>Follow along</strong><a href="#visit">Instagram ↗</a><a
+                            href="#visit">Facebook ↗</a><a href="#visit">Get in touch ↗</a></div>
+                </div>
+            </div>
+            <div class="footer-bottom"><span>© 2026 VÉLUNÉ. A fictional concept created for
+                    demonstration.</span><span>MADE WITH CARE, SERVED WITH SUNSHINE ✳</span></div>
+        </div>
+    </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', String(open));
+            menuToggle.textContent = open ? '×' : '☰';
+        });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.textContent = '☰';
+        }));
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(item => item.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.dataset.filter;
+                document.querySelectorAll('.dish').forEach(dish => {
+                    dish.hidden = filter !== 'all' && dish.dataset.category !== filter;
+                });
+            });
+        });
+
+        const dateInput = document.getElementById('guestDate');
+        const today = new Date();
+        const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+        dateInput.min = localToday;
+
+        const form = document.getElementById('reservationForm');
+        const toast = document.getElementById('toast');
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            const name = document.getElementById('guestName').value.trim();
+            toast.textContent = `Thanks, ${name}! Your demo request is ready. Connect a booking backend to receive real reservations.`;
+            toast.classList.add('show');
+            form.reset();
+            dateInput.min = localToday;
+            window.setTimeout(() => toast.classList.remove('show'), 5200);
+        });
+    </script>
+</body>
+
+</html>

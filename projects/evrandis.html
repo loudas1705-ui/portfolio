@@ -1,0 +1,2101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="EVRANDIS Solutions — Strategy, innovation and growth for modern businesses.">
+<title>EVRANDIS Solutions — Beyond Business</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+  /* =====================================
+     GREY GRADIENT COLOR SYSTEM
+  ===================================== */
+
+  --ink: #181a1d;
+  --ink-soft: #25282d;
+  --wine: #555b64;
+  --wine-dark: #30343a;
+  --copper: #969da6;
+  --copper-light: #c4c9cf;
+  --cream: #e9eaec;
+  --paper: #f7f8f9;
+  --white: #fff;
+  --muted: #858b93;
+
+  --line: rgba(35,39,44,.12);
+  --light-line: rgba(255,255,255,.14);
+
+  --container: 1240px;
+
+  --gradient-dark: linear-gradient(135deg,#181a1d 0%,#30343a 50%,#454b53 100%);
+  --gradient-grey: linear-gradient(135deg,#555b64 0%,#858d97 50%,#b7bdc4 100%);
+  --gradient-light: linear-gradient(135deg,#f7f8f9 0%,#e5e7ea 50%,#d3d6da 100%);
+  --gradient-accent: linear-gradient(135deg,#555b64 0%,#969da6 100%);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:90px;
+}
+
+body {
+  font-family:"DM Sans",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+}
+
+body, button, input, textarea, select {
+  font-family:"DM Sans",sans-serif;
+}
+
+a { text-decoration:none; color:inherit; }
+button { cursor:pointer; }
+img { display:block; max-width:100%; }
+
+.container {
+  width:min(var(--container),calc(100% - 100px));
+  margin:auto;
+}
+
+.serif { font-family:"Playfair Display",serif; }
+
+/* =====================================
+   HEADER
+===================================== */
+
+.header {
+  position:absolute;
+  z-index:100;
+  top:0;
+  left:0;
+  width:100%;
+  height:90px;
+  border-bottom:1px solid rgba(255,255,255,.16);
+  transition:.35s;
+}
+
+.header.scrolled {
+  position:fixed;
+  height:75px;
+  background:rgba(24,26,29,.96);
+  backdrop-filter:blur(15px);
+  border-color:rgba(255,255,255,.08);
+}
+
+.header-inner {
+  width:min(var(--container),calc(100% - 100px));
+  height:100%;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:white;
+}
+
+.brand-mark {
+  width:42px;
+  height:42px;
+  border:1px solid var(--copper-light);
+  display:grid;
+  place-items:center;
+  color:var(--copper-light);
+  font-family:"Playfair Display",serif;
+  font-size:23px;
+  transform:rotate(-45deg);
+}
+
+.brand-mark span { transform:rotate(45deg); }
+
+.brand-name strong {
+  display:block;
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:3px;
+}
+
+.brand-name small {
+  display:block;
+  font-size:8px;
+  letter-spacing:4px;
+  color:#b7bdc4;
+}
+
+.nav {
+  display:flex;
+  align-items:center;
+  gap:29px;
+}
+
+.nav a {
+  color:rgba(255,255,255,.75);
+  font-size:11px;
+  font-weight:500;
+  position:relative;
+  transition:.3s;
+}
+
+.nav a::after {
+  content:"";
+  position:absolute;
+  bottom:-9px;
+  left:0;
+  width:0;
+  height:1px;
+  background:var(--copper-light);
+  transition:.3s;
+}
+
+.nav a:hover,
+.nav a.active { color:white; }
+
+.nav a:hover::after,
+.nav a.active::after { width:100%; }
+
+.header-cta {
+  color:white;
+  font-size:10px;
+  letter-spacing:.5px;
+  border:1px solid rgba(255,255,255,.45);
+  padding:12px 18px;
+  transition:.3s;
+}
+
+.header-cta:hover {
+  background:var(--wine);
+  border-color:var(--wine);
+}
+
+.menu-toggle {
+  display:none;
+  color:white;
+  border:0;
+  background:none;
+  font-size:22px;
+}
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero {
+  min-height:820px;
+  background:var(--ink);
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  color:white;
+}
+
+.hero-image {
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(20,22,25,.97) 0%,rgba(25,27,31,.88) 40%,rgba(35,38,43,.34) 100%),
+    linear-gradient(0deg,rgba(20,22,25,.7),transparent 60%),
+    url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2000&q=90") center/cover;
+  transform:scale(1.02);
+}
+
+.hero-image::after {
+  content:"";
+  position:absolute;
+  right:9%;
+  top:19%;
+  width:430px;
+  height:560px;
+  border:1px solid rgba(196,201,207,.25);
+}
+
+.hero-content {
+  position:relative;
+  z-index:2;
+  padding-top:100px;
+}
+
+.hero-kicker,
+.section-kicker {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  color:var(--copper-light);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.hero-kicker::before,
+.section-kicker::before {
+  content:"";
+  width:32px;
+  height:1px;
+  background:var(--copper);
+}
+
+.hero h1 {
+  max-width:800px;
+  margin:28px 0 23px;
+  font-family:"Playfair Display",serif;
+  font-size:clamp(55px,7.5vw,100px);
+  font-weight:400;
+  letter-spacing:-3px;
+  line-height:1.03;
+}
+
+.hero h1 em {
+  display:block;
+  color:var(--copper-light);
+  font-weight:400;
+}
+
+.hero-description {
+  max-width:480px;
+  color:rgba(255,255,255,.7);
+  font-size:13px;
+  line-height:2;
+}
+
+.hero-actions {
+  display:flex;
+  align-items:center;
+  gap:27px;
+  margin-top:35px;
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  padding:15px 23px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.5px;
+  transition:.3s;
+  border:1px solid transparent;
+}
+
+.btn-primary {
+  color:white;
+  background:var(--wine);
+  border-color:var(--wine);
+}
+
+.btn-primary:hover {
+  background:var(--copper);
+  border-color:var(--copper);
+  transform:translateY(-3px);
+}
+
+.btn-light {
+  color:white;
+  border-color:rgba(255,255,255,.4);
+}
+
+.btn-light:hover {
+  background:white;
+  color:var(--ink);
+}
+
+.text-link {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.text-link i { transition:.3s; }
+.text-link:hover i { transform:translateX(5px); }
+
+.hero-bottom {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  z-index:3;
+  border-top:1px solid rgba(255,255,255,.18);
+}
+
+.hero-bottom-inner {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+}
+
+.hero-bottom-item {
+  padding:23px 30px;
+  border-right:1px solid rgba(255,255,255,.16);
+}
+
+.hero-bottom-item:first-child { padding-left:0; }
+.hero-bottom-item:last-child { border:0; }
+
+.hero-bottom-item span {
+  display:block;
+  color:var(--copper-light);
+  font-size:9px;
+  letter-spacing:2px;
+  margin-bottom:5px;
+}
+
+.hero-bottom-item strong {
+  font-size:12px;
+  font-weight:500;
+}
+
+/* =====================================
+   TRUSTED BY
+===================================== */
+
+.trusted {
+  background:var(--cream);
+  padding:32px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.trusted-inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.trusted-label {
+  max-width:145px;
+  font-size:8px;
+  font-weight:700;
+  line-height:1.8;
+  letter-spacing:1.7px;
+  color:var(--muted);
+}
+
+.partner-list {
+  flex:1;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  gap:25px;
+}
+
+.partner {
+  color:#737981;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:1px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.partner i { font-size:20px; color:#9ba1a9; }
+.partner span { font-size:7px; display:block; letter-spacing:2px; }
+
+/* =====================================
+   STATS
+===================================== */
+
+.stats {
+  padding:65px 0;
+  background:var(--paper);
+}
+
+.stats-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.stat {
+  padding:10px 28px;
+  border-right:1px solid var(--line);
+}
+
+.stat:first-child { padding-left:0; }
+.stat:last-child { border:0; }
+
+.stat-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.stat-number {
+  font-family:"Playfair Display",serif;
+  font-size:43px;
+  line-height:1.1;
+  color:var(--wine);
+}
+
+.stat-top i { color:var(--copper); font-size:18px; }
+
+.stat-label {
+  margin-top:12px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.stat-description {
+  color:var(--muted);
+  font-size:9px;
+  margin-top:5px;
+}
+
+/* =====================================
+   SHARED SECTION STYLES
+===================================== */
+
+.section { padding:115px 0; }
+
+.dark-section {
+  background:var(--gradient-dark);
+  color:white;
+}
+
+.cream-section {
+  background:var(--cream);
+  color:var(--ink);
+}
+
+.paper-section {
+  background:var(--paper);
+  color:var(--ink);
+}
+
+.section-heading {
+  max-width:620px;
+  margin-bottom:55px;
+}
+
+.section-heading.center {
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.section-heading.center .section-kicker { justify-content:center; }
+
+.section-heading h2 {
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+  font-size:clamp(37px,5vw,57px);
+  line-height:1.15;
+  letter-spacing:-1.5px;
+  margin:19px 0;
+}
+
+.section-heading h2 em { color:var(--copper); }
+
+.section-heading p {
+  max-width:490px;
+  font-size:12px;
+  line-height:2;
+  color:var(--muted);
+}
+
+.dark-section .section-heading p { color:#b0b4bb; }
+
+/* =====================================
+   ABOUT
+===================================== */
+
+.about-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:95px;
+}
+
+.about-visual {
+  position:relative;
+  padding:0 35px 35px 0;
+}
+
+.about-visual img {
+  width:100%;
+  height:520px;
+  object-fit:cover;
+}
+
+.about-visual::after {
+  content:"";
+  position:absolute;
+  z-index:0;
+  right:0;
+  bottom:0;
+  width:70%;
+  height:70%;
+  border:1px solid var(--copper);
+}
+
+.about-visual img { position:relative; z-index:1; }
+
+.about-stamp {
+  position:absolute;
+  z-index:2;
+  left:-28px;
+  bottom:70px;
+  width:125px;
+  height:125px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  background:var(--gradient-accent);
+  color:white;
+  text-align:center;
+}
+
+.about-stamp strong {
+  font-family:"Playfair Display",serif;
+  font-size:35px;
+  line-height:1;
+}
+
+.about-stamp span {
+  font-size:8px;
+  letter-spacing:1.5px;
+  margin-top:7px;
+}
+
+.about-copy h2 {
+  font-family:"Playfair Display",serif;
+  font-size:clamp(36px,4vw,52px);
+  font-weight:400;
+  line-height:1.15;
+  margin:18px 0;
+}
+
+.about-copy h2 em { color:var(--copper); }
+
+.about-copy p {
+  color:#b2b6bd;
+  font-size:12px;
+  line-height:2.1;
+  margin-bottom:15px;
+}
+
+.about-points {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:17px;
+  margin:30px 0;
+}
+
+.about-point {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:10px;
+  color:#eeeef0;
+}
+
+.about-point i { color:var(--copper-light); }
+
+/* =====================================
+   SERVICES
+===================================== */
+
+.services-top {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:50px;
+}
+
+.services-top .section-heading { margin:0; }
+
+.services-top > p {
+  max-width:280px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.9;
+  padding-bottom:7px;
+}
+
+.services-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+
+.service-card {
+  min-height:280px;
+  padding:35px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  position:relative;
+  transition:.35s;
+}
+
+.service-card:hover {
+  background:white;
+  box-shadow:0 15px 45px rgba(24,26,29,.07);
+  transform:translateY(-4px);
+  z-index:2;
+}
+
+.service-card .card-number {
+  position:absolute;
+  top:25px;
+  right:28px;
+  font-family:"Playfair Display",serif;
+  font-size:13px;
+  color:#a6abb2;
+}
+
+.service-card .card-icon {
+  width:50px;
+  height:50px;
+  display:grid;
+  place-items:center;
+  color:var(--wine);
+  border:1px solid #c7cbd0;
+  font-size:19px;
+  margin-bottom:30px;
+  transition:.3s;
+}
+
+.service-card:hover .card-icon {
+  background:var(--gradient-accent);
+  border-color:var(--wine);
+  color:white;
+}
+
+.service-card h3 {
+  font-family:"Playfair Display",serif;
+  font-size:22px;
+  font-weight:500;
+  margin-bottom:12px;
+}
+
+.service-card p {
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.9;
+  max-width:280px;
+}
+
+.service-card a {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-top:20px;
+  font-size:9px;
+  font-weight:700;
+  color:var(--wine);
+}
+
+/* =====================================
+   INDUSTRIES
+===================================== */
+
+.industries-layout {
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:85px;
+}
+
+.industries-intro { position:sticky; top:120px; align-self:start; }
+
+.industries-intro h2 {
+  font-family:"Playfair Display",serif;
+  font-size:52px;
+  line-height:1.12;
+  font-weight:400;
+  margin:20px 0;
+}
+
+.industries-intro h2 em { color:var(--copper-light); }
+
+.industries-intro p {
+  font-size:11px;
+  line-height:2;
+  color:#b0b4bb;
+  max-width:330px;
+  margin-bottom:30px;
+}
+
+.industry-list {
+  border-top:1px solid var(--light-line);
+}
+
+.industry-item {
+  display:grid;
+  grid-template-columns:50px 1fr 35px;
+  align-items:center;
+  gap:20px;
+  padding:25px 0;
+  border-bottom:1px solid var(--light-line);
+  transition:.3s;
+}
+
+.industry-item:hover { padding-left:12px; }
+
+.industry-item > span {
+  color:var(--copper-light);
+  font-family:"Playfair Display",serif;
+  font-size:15px;
+}
+
+.industry-item h3 {
+  font-family:"Playfair Display",serif;
+  font-size:20px;
+  font-weight:400;
+}
+
+.industry-item p {
+  font-size:9px;
+  color:#aeb2b9;
+  margin-top:5px;
+}
+
+.industry-item i {
+  color:var(--copper-light);
+  font-size:13px;
+}
+
+/* =====================================
+   PROCESS
+===================================== */
+
+.process-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:35px;
+}
+
+.process-step {
+  padding-top:23px;
+  border-top:1px solid #c5c9ce;
+  position:relative;
+}
+
+.process-step::before {
+  content:"";
+  position:absolute;
+  top:-4px;
+  left:0;
+  width:7px;
+  height:7px;
+  background:var(--wine);
+  border-radius:50%;
+}
+
+.process-number {
+  font-size:9px;
+  font-weight:700;
+  color:var(--copper);
+  letter-spacing:2px;
+}
+
+.process-step h3 {
+  font-family:"Playfair Display",serif;
+  font-size:25px;
+  font-weight:500;
+  margin:20px 0 10px;
+}
+
+.process-step p {
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.9;
+}
+
+/* =====================================
+   FEATURED CTA
+===================================== */
+
+.cta-section {
+  background:var(--gradient-grey);
+  color:white;
+  padding:85px 0;
+  position:relative;
+  overflow:hidden;
+}
+
+.cta-section::after {
+  content:"N";
+  position:absolute;
+  right:5%;
+  top:-140px;
+  font-family:"Playfair Display",serif;
+  font-size:450px;
+  color:rgba(255,255,255,.07);
+  line-height:1;
+}
+
+.cta-inner {
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.cta-inner h2 {
+  font-family:"Playfair Display",serif;
+  font-size:clamp(35px,4vw,50px);
+  font-weight:400;
+  line-height:1.15;
+  max-width:650px;
+}
+
+.cta-inner p {
+  font-size:11px;
+  color:#e0e3e7;
+  margin-top:13px;
+}
+
+.cta-inner .btn {
+  background:var(--cream);
+  color:var(--ink);
+  white-space:nowrap;
+}
+
+.cta-inner .btn:hover {
+  background:white;
+  transform:translateY(-3px);
+}
+
+/* =====================================
+   INSIGHTS
+===================================== */
+
+.insights-grid {
+  display:grid;
+  grid-template-columns:1.15fr 1fr 1fr;
+  gap:23px;
+}
+
+.insight-card {
+  background:white;
+  border:1px solid var(--line);
+  transition:.3s;
+}
+
+.insight-card:hover { transform:translateY(-6px); }
+
+.insight-card:first-child .insight-image { height:260px; }
+
+.insight-image {
+  height:205px;
+  overflow:hidden;
+  position:relative;
+}
+
+.insight-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.6s;
+}
+
+.insight-card:hover .insight-image img { transform:scale(1.06); }
+
+.insight-content { padding:24px; }
+
+.insight-category {
+  font-size:8px;
+  font-weight:700;
+  color:var(--wine);
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.insight-content h3 {
+  font-family:"Playfair Display",serif;
+  font-size:21px;
+  font-weight:500;
+  line-height:1.35;
+  margin:12px 0;
+}
+
+.insight-content p {
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.9;
+}
+
+.insight-content a {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-top:22px;
+  color:var(--wine);
+  font-size:9px;
+  font-weight:700;
+}
+
+/* =====================================
+   CONTACT
+===================================== */
+
+.contact-layout {
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:100px;
+}
+
+.contact-info h2 {
+  font-family:"Playfair Display",serif;
+  font-size:clamp(38px,4vw,53px);
+  font-weight:400;
+  line-height:1.15;
+  margin:20px 0;
+}
+
+.contact-info h2 em { color:var(--copper-light); }
+
+.contact-info > p {
+  font-size:11px;
+  color:#b0b4bb;
+  line-height:2;
+  max-width:370px;
+}
+
+.contact-details {
+  margin-top:35px;
+}
+
+.contact-detail {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-top:22px;
+  font-size:11px;
+}
+
+.contact-detail i {
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  color:var(--copper-light);
+  border:1px solid rgba(196,201,207,.35);
+}
+
+.contact-form {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.form-field {
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.form-field.full { grid-column:1/-1; }
+
+.form-field label {
+  color:#e0e2e5;
+  font-size:9px;
+  font-weight:600;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width:100%;
+  background:#30343a;
+  color:white;
+  border:1px solid rgba(255,255,255,.13);
+  outline:none;
+  padding:15px;
+  font-size:10px;
+  transition:.3s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color:var(--copper-light);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder { color:#a0a5ac; }
+
+.form-field select option { background:#30343a; }
+
+.form-field textarea {
+  resize:vertical;
+  min-height:130px;
+}
+
+.contact-form button { grid-column:1/-1; justify-self:start; }
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.footer {
+  background:#15171a;
+  color:white;
+  padding:65px 0 22px;
+}
+
+.footer-top {
+  display:flex;
+  justify-content:space-between;
+  gap:50px;
+  padding-bottom:50px;
+}
+
+.footer-description {
+  max-width:310px;
+  color:#a1a5ab;
+  font-size:10px;
+  line-height:2;
+  margin-top:20px;
+}
+
+.footer-links {
+  display:flex;
+  gap:90px;
+}
+
+.footer-column h4 {
+  font-size:10px;
+  letter-spacing:1px;
+  margin-bottom:20px;
+}
+
+.footer-column a {
+  display:block;
+  color:#aeb2b8;
+  font-size:9px;
+  margin-top:13px;
+  transition:.3s;
+}
+
+.footer-column a:hover { color:var(--copper-light); }
+
+.footer-bottom {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:20px;
+  color:#8e939a;
+  font-size:9px;
+}
+
+/* =====================================
+   ANIMATIONS
+===================================== */
+
+.reveal {
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .75s ease,transform .75s ease;
+}
+
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+.back-to-top {
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  width:43px;
+  height:43px;
+  display:grid;
+  place-items:center;
+  background:var(--gradient-accent);
+  color:white;
+  border:0;
+  z-index:50;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+}
+
+.back-to-top.show {
+  opacity:1;
+  visibility:visible;
+}
+
+.back-to-top:hover { background:var(--ink); }
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:1050px) {
+  .container,.header-inner { width:calc(100% - 60px); }
+  .nav { gap:17px; }
+  .nav a { font-size:10px; }
+  .header-cta { padding:10px 12px; font-size:9px; }
+  .about-grid { gap:50px; }
+  .industries-layout { gap:45px; }
+  .contact-layout { gap:50px; }
+  .footer-links { gap:50px; }
+}
+
+@media(max-width:800px) {
+  .menu-toggle { display:block; }
+  .header-cta { display:none; }
+
+  .nav {
+    display:none;
+    position:absolute;
+    top:75px;
+    left:0;
+    width:100%;
+    padding:25px 30px;
+    background:var(--ink);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:22px;
+    border-top:1px solid var(--light-line);
+  }
+
+  .nav.open { display:flex; }
+  .nav a { font-size:12px; }
+
+  .hero { min-height:850px; }
+  .hero h1 { font-size:70px; }
+
+  .hero-image::after { right:4%; width:280px; }
+
+  .trusted-inner { flex-direction:column; align-items:flex-start; }
+  .partner-list { width:100%; flex-wrap:wrap; justify-content:flex-start; }
+
+  .stats-grid { grid-template-columns:1fr 1fr; gap:35px 0; }
+  .stat:nth-child(2) { border:0; }
+  .stat:nth-child(3) { padding-left:0; }
+
+  .about-grid { grid-template-columns:1fr; gap:55px; }
+  .about-visual { max-width:550px; }
+
+  .services-top { flex-direction:column; align-items:flex-start; }
+  .services-grid { grid-template-columns:1fr 1fr; }
+
+  .industries-layout { grid-template-columns:1fr; }
+  .industries-intro { position:static; }
+  .industries-intro h2 { max-width:600px; }
+
+  .process-grid { grid-template-columns:1fr 1fr; row-gap:45px; }
+
+  .insights-grid { grid-template-columns:1fr 1fr; }
+  .insight-card:first-child { grid-column:1/-1; }
+  .insight-card:first-child .insight-image { height:250px; }
+
+  .contact-layout { grid-template-columns:1fr; gap:45px; }
+
+  .cta-inner { align-items:flex-start; flex-direction:column; }
+  .footer-top { flex-direction:column; }
+}
+
+@media(max-width:550px) {
+  .container,.header-inner { width:calc(100% - 38px); }
+  .header { height:75px; }
+
+  .hero {
+    min-height:870px;
+    align-items:flex-start;
+    padding-top:170px;
+  }
+
+  .hero h1 {
+    font-size:53px;
+    letter-spacing:-2px;
+  }
+
+  .hero-description { font-size:11px; }
+  .hero-actions { align-items:flex-start; flex-direction:column; gap:18px; }
+
+  .hero-bottom-inner { grid-template-columns:1fr; }
+  .hero-bottom-item {
+    padding:12px 0;
+    border-right:0;
+    border-bottom:1px solid rgba(255,255,255,.15);
+  }
+  .hero-bottom-item:last-child { border:0; }
+
+  .partner-list { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .partner { font-size:10px; }
+
+  .stats { padding:45px 0; }
+  .stat { padding:0 12px; }
+  .stat-number { font-size:35px; }
+
+  .section { padding:75px 0; }
+  .section-heading h2 { font-size:39px; }
+
+  .about-visual { padding:0 20px 20px 0; }
+  .about-visual img { height:350px; }
+  .about-stamp { left:-10px; width:100px; height:100px; }
+  .about-stamp strong { font-size:29px; }
+
+  .about-copy h2 { font-size:39px; }
+  .about-points { grid-template-columns:1fr; }
+
+  .services-grid { grid-template-columns:1fr; }
+  .service-card { min-height:240px; }
+
+  .industries-intro h2 { font-size:43px; }
+  .industry-item { grid-template-columns:35px 1fr 20px; gap:12px; }
+  .industry-item h3 { font-size:17px; }
+
+  .process-grid { grid-template-columns:1fr 1fr; gap:35px 20px; }
+  .process-step h3 { font-size:21px; }
+
+  .cta-section { padding:65px 0; }
+  .cta-inner h2 { font-size:37px; }
+
+  .insights-grid { grid-template-columns:1fr; }
+  .insight-card:first-child { grid-column:auto; }
+
+  .contact-form { grid-template-columns:1fr; }
+  .form-field.full,.contact-form button { grid-column:auto; }
+
+  .footer-links { gap:40px; }
+  .footer-bottom { flex-direction:column; align-items:flex-start; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important;
+  }
+
+  .reveal { opacity:1; transform:none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+
+    <a href="#home" class="brand">
+      <span class="brand-mark"><span>E</span></span>
+      <span class="brand-name">
+        <strong>EVRANDIS</strong>
+        <small>SOLUTIONS</small>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a href="#contact" class="header-cta">
+      Get in Touch <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <div class="hero-image"></div>
+
+  <div class="container hero-content">
+
+    <div class="hero-kicker">Strategy · Innovation · Growth</div>
+
+    <h1>
+      Think Beyond.
+      <em>Build What's Next.</em>
+    </h1>
+
+    <p class="hero-description">
+      We partner with ambitious organizations to transform complex
+      challenges into meaningful opportunities through strategy,
+      technology, and intelligent business solutions.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-primary">
+        Explore Our Services <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+      <a href="#about" class="text-link">
+        Discover EVRANDIS <i class="fa-solid fa-arrow-down"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="hero-bottom">
+    <div class="container hero-bottom-inner">
+
+      <div class="hero-bottom-item">
+        <span>01 / OUR PURPOSE</span>
+        <strong>Make complexity simple.</strong>
+      </div>
+
+      <div class="hero-bottom-item">
+        <span>02 / OUR APPROACH</span>
+        <strong>Think strategically. Act intelligently.</strong>
+      </div>
+
+      <div class="hero-bottom-item">
+        <span>03 / OUR AMBITION</span>
+        <strong>Create lasting business value.</strong>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- TRUSTED BY -->
+<section class="trusted">
+  <div class="container trusted-inner">
+
+    <div class="trusted-label">
+      TRUSTED BY FORWARD-THINKING ORGANIZATIONS
+    </div>
+
+    <div class="partner-list">
+      <div class="partner"><i class="fa-solid fa-mountain-sun"></i> VERTEX</div>
+      <div class="partner"><i class="fa-solid fa-mountain"></i> SUMMIT</div>
+      <div class="partner"><i class="fa-solid fa-globe"></i> PIONEER</div>
+      <div class="partner"><i class="fa-solid fa-compass-drafting"></i> INNOVATEK</div>
+      <div class="partner"><i class="fa-solid fa-earth-europe"></i> GLOBAL</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATISTICS -->
+<section class="stats">
+  <div class="container stats-grid">
+
+    <div class="stat">
+      <div class="stat-top">
+        <div class="stat-number" data-count="250" data-suffix="+">0</div>
+        <i class="fa-solid fa-users"></i>
+      </div>
+      <div class="stat-label">Clients Served</div>
+      <p class="stat-description">Across diverse industries.</p>
+    </div>
+
+    <div class="stat">
+      <div class="stat-top">
+        <div class="stat-number" data-count="1200" data-suffix="+">0</div>
+        <i class="fa-solid fa-diagram-project"></i>
+      </div>
+      <div class="stat-label">Projects Delivered</div>
+      <p class="stat-description">Ideas transformed into impact.</p>
+    </div>
+
+    <div class="stat">
+      <div class="stat-top">
+        <div class="stat-number" data-count="98" data-suffix="%">0</div>
+        <i class="fa-solid fa-award"></i>
+      </div>
+      <div class="stat-label">Client Satisfaction</div>
+      <p class="stat-description">Built on trust and results.</p>
+    </div>
+
+    <div class="stat">
+      <div class="stat-top">
+        <div class="stat-number" data-count="30" data-suffix="+">0</div>
+        <i class="fa-solid fa-earth-africa"></i>
+      </div>
+      <div class="stat-label">Countries Reached</div>
+      <p class="stat-description">Global vision, local understanding.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section dark-section" id="about">
+  <div class="container about-grid">
+
+    <div class="about-visual reveal">
+      <img
+        src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1100&q=85"
+        alt="Contemporary business workspace"
+        loading="lazy"
+      >
+
+      <div class="about-stamp">
+        <strong>01</strong>
+        <span>OUR VISION</span>
+      </div>
+    </div>
+
+    <div class="about-copy reveal">
+
+      <div class="section-kicker">Who we are</div>
+
+      <h2>
+        Business is changing.
+        <em>So should the way we think.</em>
+      </h2>
+
+      <p>
+        EVRANDIS Solutions is a forward-thinking consulting company
+        helping organizations navigate change, discover opportunities,
+        and build stronger business foundations.
+      </p>
+
+      <p>
+        We bring together strategic thinking, digital expertise,
+        and data-driven perspectives to help businesses move
+        from uncertainty to informed action.
+      </p>
+
+      <div class="about-points">
+        <div class="about-point"><i class="fa-solid fa-check"></i> Strategic thinking</div>
+        <div class="about-point"><i class="fa-solid fa-check"></i> Tailored solutions</div>
+        <div class="about-point"><i class="fa-solid fa-check"></i> Measurable outcomes</div>
+        <div class="about-point"><i class="fa-solid fa-check"></i> Lasting partnerships</div>
+      </div>
+
+      <a href="#contact" class="btn btn-primary">
+        Get to Know Us <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section cream-section" id="services">
+  <div class="container">
+
+    <div class="services-top">
+
+      <div class="section-heading reveal">
+        <div class="section-kicker">What we do</div>
+        <h2>Expertise that moves <em>business forward.</em></h2>
+      </div>
+
+      <p class="reveal">
+        We combine practical expertise and fresh perspectives
+        to create solutions that respond to your business ambitions.
+      </p>
+
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card reveal">
+        <span class="card-number">01</span>
+        <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
+        <h3>Business Strategy</h3>
+        <p>Define your direction, identify opportunities, and develop a roadmap for sustainable growth.</p>
+        <a href="#contact">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+
+      <article class="service-card reveal">
+        <span class="card-number">02</span>
+        <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>Digital Transformation</h3>
+        <p>Modernize your organization through digital tools, connected systems, and smarter workflows.</p>
+        <a href="#contact">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+
+      <article class="service-card reveal">
+        <span class="card-number">03</span>
+        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Data & Analytics</h3>
+        <p>Transform information into meaningful insights and make decisions with greater confidence.</p>
+        <a href="#contact">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+
+      <article class="service-card reveal">
+        <span class="card-number">04</span>
+        <div class="card-icon"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3>Process Optimization</h3>
+        <p>Reduce operational complexity, improve workflows, and strengthen organizational efficiency.</p>
+        <a href="#contact">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+
+      <article class="service-card reveal">
+        <span class="card-number">05</span>
+        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Technology Advisory</h3>
+        <p>Make informed technology decisions that support your long-term business objectives.</p>
+        <a href="#contact">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+
+      <article class="service-card reveal">
+        <span class="card-number">06</span>
+        <div class="card-icon"><i class="fa-solid fa-people-group"></i></div>
+        <h3>Business Development</h3>
+        <p>Discover new markets, build strategic partnerships, and unlock new growth opportunities.</p>
+        <a href="#contact">Explore service <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section dark-section" id="industries">
+  <div class="container industries-layout">
+
+    <div class="industries-intro reveal">
+      <div class="section-kicker">Industries we serve</div>
+
+      <h2>
+        Different industries.
+        <em>One vision for progress.</em>
+      </h2>
+
+      <p>
+        Every industry has its own challenges. Our approach adapts
+        to the environment, objectives, and opportunities of each
+        organization we work with.
+      </p>
+
+      <a href="#contact" class="text-link">
+        Discuss your industry <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="industry-list">
+
+      <article class="industry-item reveal">
+        <span>01</span>
+        <div>
+          <h3>Corporate & Enterprise</h3>
+          <p>Strategy, organizational performance, and operational efficiency.</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </article>
+
+      <article class="industry-item reveal">
+        <span>02</span>
+        <div>
+          <h3>Finance & Banking</h3>
+          <p>Data intelligence, digital financial services, and smarter operations.</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </article>
+
+      <article class="industry-item reveal">
+        <span>03</span>
+        <div>
+          <h3>Healthcare</h3>
+          <p>Connected services, improved workflows, and informed decisions.</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </article>
+
+      <article class="industry-item reveal">
+        <span>04</span>
+        <div>
+          <h3>Manufacturing</h3>
+          <p>Production optimization, visibility, and business performance.</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </article>
+
+      <article class="industry-item reveal">
+        <span>05</span>
+        <div>
+          <h3>Retail & Commerce</h3>
+          <p>Customer experience and more efficient commercial operations.</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </article>
+
+      <article class="industry-item reveal">
+        <span>06</span>
+        <div>
+          <h3>Education</h3>
+          <p>Digital learning, knowledge management, and development.</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section paper-section">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <div class="section-kicker">Our methodology</div>
+      <h2>From the first question <em>to real progress.</em></h2>
+      <p>
+        A thoughtful process that keeps your objectives at the center
+        of every decision.
+      </p>
+    </div>
+
+    <div class="process-grid">
+
+      <article class="process-step reveal">
+        <span class="process-number">01 / DISCOVER</span>
+        <h3>Understand</h3>
+        <p>We listen, explore your challenges, and define what success means for your organization.</p>
+      </article>
+
+      <article class="process-step reveal">
+        <span class="process-number">02 / STRATEGIZE</span>
+        <h3>Envision</h3>
+        <p>We identify opportunities and build a practical strategy aligned with your goals.</p>
+      </article>
+
+      <article class="process-step reveal">
+        <span class="process-number">03 / IMPLEMENT</span>
+        <h3>Transform</h3>
+        <p>We translate ideas into action through focused execution and collaboration.</p>
+      </article>
+
+      <article class="process-step reveal">
+        <span class="process-number">04 / EVOLVE</span>
+        <h3>Advance</h3>
+        <p>We evaluate outcomes, learn from progress, and continuously improve.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container cta-inner reveal">
+
+    <div>
+      <h2>Every great transformation starts with a conversation.</h2>
+      <p>Let's explore what your business could become.</p>
+    </div>
+
+    <a href="#contact" class="btn">
+      Start a Conversation <i class="fa-solid fa-arrow-right"></i>
+    </a>
+
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="section cream-section" id="insights">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <div class="section-kicker">Ideas & perspectives</div>
+      <h2>Thinking about <em>what comes next.</em></h2>
+      <p>
+        Perspectives on business strategy, digital innovation,
+        and the ideas shaping tomorrow's organizations.
+      </p>
+    </div>
+
+    <div class="insights-grid">
+
+      <article class="insight-card reveal">
+        <div class="insight-image">
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=85"
+            alt="Business strategy meeting"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="insight-content">
+          <span class="insight-category">Business Strategy</span>
+          <h3>Building a Strategy That Adapts to Change</h3>
+          <p>Why modern organizations need flexible strategies and continuous evaluation.</p>
+          <a href="#contact">Explore perspective <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="insight-card reveal">
+        <div class="insight-image">
+          <img
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=85"
+            alt="Digital technology and innovation"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="insight-content">
+          <span class="insight-category">Digital Innovation</span>
+          <h3>Technology as a Driver of Business Growth</h3>
+          <p>How digital tools can improve collaboration and create new value.</p>
+          <a href="#contact">Explore perspective <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="insight-card reveal">
+        <div class="insight-image">
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=85"
+            alt="Data analytics dashboard"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="insight-content">
+          <span class="insight-category">Data & Analytics</span>
+          <h3>Making Better Decisions Through Data</h3>
+          <p>Turning business information into insights that support confident decisions.</p>
+          <a href="#contact">Explore perspective <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section dark-section" id="contact">
+  <div class="container contact-layout">
+
+    <div class="contact-info reveal">
+
+      <div class="section-kicker">Let's connect</div>
+
+      <h2>
+        Have a challenge?
+        <em>Let's think it through.</em>
+      </h2>
+
+      <p>
+        Whether you are exploring a new opportunity or looking
+        to transform an existing process, we would love to hear
+        about your ambitions.
+      </p>
+
+      <div class="contact-details">
+
+        <div class="contact-detail">
+          <i class="fa-regular fa-envelope"></i>
+          <span>hello@evrandissolutions.com</span>
+        </div>
+
+        <div class="contact-detail">
+          <i class="fa-solid fa-phone"></i>
+          <span>+213 00 000 000</span>
+        </div>
+
+        <div class="contact-detail">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Algeria · Available worldwide</span>
+        </div>
+
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm">
+
+      <div class="form-field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" placeholder="Full name" required>
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="form-field full">
+        <label for="company">Company / Organization</label>
+        <input type="text" id="company" name="company" placeholder="Your organization">
+      </div>
+
+      <div class="form-field full">
+        <label for="service">Area of interest</label>
+        <select id="service" name="service" required>
+          <option value="">Select an area</option>
+          <option>Business Strategy</option>
+          <option>Digital Transformation</option>
+          <option>Data & Analytics</option>
+          <option>Process Optimization</option>
+          <option>Technology Advisory</option>
+          <option>Business Development</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-field full">
+        <label for="message">Tell us about your project</label>
+        <textarea id="message" name="message" placeholder="What would you like to achieve?" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Send Your Message <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-top">
+
+      <div>
+        <a href="#home" class="brand">
+          <span class="brand-mark"><span>N</span></span>
+          <span class="brand-name">
+            <strong>EVRANDIS</strong>
+            <small>SOLUTIONS</small>
+          </span>
+        </a>
+
+        <p class="footer-description">
+          Strategy, innovation, and technology working together
+          to help organizations think differently, adapt confidently,
+          and build what comes next.
+        </p>
+      </div>
+
+      <div class="footer-links">
+
+        <div class="footer-column">
+          <h4>EXPLORE</h4>
+          <a href="#about">About Us</a>
+          <a href="#services">Our Services</a>
+          <a href="#industries">Industries</a>
+          <a href="#insights">Insights</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>CONNECT</h4>
+          <a href="#contact">Contact Us</a>
+          <a href="#contact">Partnerships</a>
+          <a href="#contact">Start a Project</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="currentYear"></span> EVRANDIS Solutions. All rights reserved.</span>
+      <span>Think Beyond. Build What's Next.</span>
+    </div>
+
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+// =====================================
+// MOBILE NAVIGATION
+// =====================================
+
+const menuToggle = document.getElementById("menuToggle");
+const nav = document.getElementById("nav");
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("open");
+
+  menuToggle.setAttribute("aria-expanded", isOpen);
+
+  menuToggle.innerHTML = isOpen
+    ? '<i class="fa-solid fa-xmark"></i>'
+    : '<i class="fa-solid fa-bars"></i>';
+});
+
+nav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  });
+});
+
+// =====================================
+// STICKY HEADER
+// =====================================
+
+const header = document.getElementById("header");
+
+function updateHeader() {
+  header.classList.toggle("scrolled", window.scrollY > 60);
+}
+
+window.addEventListener("scroll", updateHeader, { passive:true });
+updateHeader();
+
+// =====================================
+// ACTIVE NAVIGATION
+// =====================================
+
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll(".nav a");
+
+const activeObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === `#${entry.target.id}`
+        );
+      });
+    }
+  });
+}, {
+  rootMargin:"-35% 0px -55% 0px"
+});
+
+sections.forEach(section => activeObserver.observe(section));
+
+// =====================================
+// SCROLL REVEAL
+// =====================================
+
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold:0.12
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+  revealObserver.observe(element);
+});
+
+// =====================================
+// ANIMATED STATISTICS
+// =====================================
+
+const statObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    const element = entry.target;
+    const target = Number(element.dataset.count);
+    const suffix = element.dataset.suffix || "";
+    const duration = 1600;
+    const startTime = performance.now();
+
+    function animate(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(target * eased);
+
+      element.textContent = current.toLocaleString() + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    }
+
+    requestAnimationFrame(animate);
+    statObserver.unobserve(element);
+  });
+}, {
+  threshold:0.5
+});
+
+document.querySelectorAll(".stat-number").forEach(element => {
+  statObserver.observe(element);
+});
+
+// =====================================
+// BACK TO TOP
+// =====================================
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  backToTop.classList.toggle("show", window.scrollY > 500);
+}, { passive:true });
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+});
+
+// =====================================
+// CONTACT FORM
+// =====================================
+
+document.getElementById("contactForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const data = new FormData(form);
+
+  const name = data.get("name");
+  const email = data.get("email");
+  const company = data.get("company") || "Not provided";
+  const service = data.get("service");
+  const message = data.get("message");
+
+  const subject = encodeURIComponent(`Business inquiry — ${service}`);
+
+  const body = encodeURIComponent(
+`Hello EVRANDIS Solutions,
+
+Name: ${name}
+Email: ${email}
+Company: ${company}
+Area of interest: ${service}
+
+Message:
+${message}`
+  );
+
+  window.location.href =
+    `mailto:hello@evrandissolutions.com?subject=${subject}&body=${body}`;
+});
+
+// =====================================
+// FOOTER YEAR
+// =====================================
+
+document.getElementById("currentYear").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>

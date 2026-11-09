@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VYTRON — Engineering Tomorrow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#080a0f;
+  --panel:#10141d;
+  --panel2:#151b27;
+  --line:rgba(255,255,255,.1);
+  --text:#f4f6fa;
+  --muted:#929aaa;
+  --blue:#4778ff;
+  --cyan:#61e6ff;
+  --lime:#c5ff72;
+  --font:'DM Sans',sans-serif;
+  --display:'Space Grotesk',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+.container{width:min(1240px,90%);margin:auto}
+.mono{font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:2px;font-size:10px;color:var(--cyan)}
+.section{padding:125px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:55px}
+.section-head h2{font:500 clamp(40px,5vw,66px)/1.04 var(--display);letter-spacing:-3px;max-width:650px}
+.section-head p{color:var(--muted);line-height:1.8;max-width:330px;font-size:13px}
+.accent{color:var(--cyan)}
+/* NAV */
+header{position:absolute;z-index:20;top:0;width:100%;border-bottom:1px solid rgba(255,255,255,.09)}
+.nav{height:88px;display:flex;align-items:center;justify-content:space-between}
+.logo{font:700 23px var(--display);letter-spacing:3px}
+.logo span{color:var(--cyan)}
+.logo small{display:block;font:9px 'DM Mono',monospace;letter-spacing:3px;color:#778092;margin-top:3px}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-size:12px;color:#b5bdca;transition:.25s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{border:1px solid rgba(97,230,255,.55);padding:13px 19px;font-size:11px;letter-spacing:1px;text-transform:uppercase;transition:.3s}
+.nav-cta:hover{background:var(--cyan);color:#071016}
+.menu-btn{display:none;background:none;border:0;color:white;font-size:25px}
+/* HERO */
+.hero{min-height:850px;height:100vh;max-height:1050px;position:relative;display:flex;align-items:center;overflow:hidden;background:#090d16}
+.hero-bg{position:absolute;inset:0;background:
+linear-gradient(90deg,#080a0f 0%,rgba(8,10,15,.97) 27%,rgba(8,10,15,.5) 65%,rgba(8,10,15,.2) 100%),
+linear-gradient(0deg,#080a0f 0%,transparent 30%),
+url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=90') center/cover}
+.hero-grid{position:absolute;inset:0;opacity:.13;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);background-size:75px 75px;mask-image:linear-gradient(90deg,black,transparent 85%)}
+.hero-content{position:relative;z-index:2;padding-top:70px}
+.hero-kicker{display:flex;align-items:center;gap:13px;margin-bottom:30px}
+.pulse{width:7px;height:7px;background:var(--lime);border-radius:50%;box-shadow:0 0 15px var(--lime)}
+.hero h1{font:500 clamp(60px,9.3vw,126px)/.91 var(--display);letter-spacing:-7px;max-width:900px}
+.hero h1 .outline{-webkit-text-stroke:1px rgba(255,255,255,.7);color:transparent}
+.hero-description{margin-top:34px;color:#a9b1bf;line-height:1.9;font-size:14px;max-width:445px}
+.hero-actions{display:flex;gap:15px;margin-top:36px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:20px;padding:16px 23px;background:var(--cyan);color:#071016;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;border:1px solid var(--cyan);transition:.3s;cursor:pointer}
+.btn:hover{background:transparent;color:var(--cyan)}
+.btn-dark{background:transparent;color:white;border-color:rgba(255,255,255,.3)}
+.btn-dark:hover{background:white;color:#080a0f;border-color:white}
+.hero-side{position:absolute;right:5%;bottom:110px;z-index:2;writing-mode:vertical-rl;color:#748092;font:10px 'DM Mono';letter-spacing:3px}
+.hero-bottom{position:absolute;bottom:0;left:0;width:100%;border-top:1px solid var(--line);padding:22px 0;z-index:2}
+.hero-bottom-inner{display:flex;justify-content:space-between;align-items:center}
+.hero-bottom p{font:10px 'DM Mono';color:#929aaa;letter-spacing:1.5px}
+.scroll-mark{display:flex;align-items:center;gap:12px;color:#aeb6c4;font-size:10px;text-transform:uppercase;letter-spacing:2px}
+/* INTRO STRIP */
+.trust{padding:35px 0;border-bottom:1px solid var(--line);background:#0c1018}
+.trust-inner{display:flex;justify-content:space-between;align-items:center;gap:25px}
+.trust-label{font:10px 'DM Mono';letter-spacing:1.5px;color:#747f91}
+.trust-logos{display:flex;gap:55px;align-items:center;color:#aab2c0;font:600 15px var(--display);letter-spacing:1px;opacity:.75}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}
+.about-visual{height:540px;position:relative;background:#111925;overflow:hidden}
+.about-visual img{width:100%;height:100%;object-fit:cover;filter:brightness(.68) saturate(.7)}
+.about-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(71,120,255,.2),transparent 60%)}
+.visual-label{position:absolute;z-index:2;bottom:25px;left:25px;font:10px 'DM Mono';letter-spacing:2px}
+.visual-number{position:absolute;z-index:2;top:25px;right:25px;font:12px 'DM Mono';color:var(--cyan)}
+.about-copy h2{font:500 clamp(42px,5vw,65px)/1.04 var(--display);letter-spacing:-3px;margin:22px 0}
+.about-copy>p{color:var(--muted);font-size:14px;line-height:1.9;max-width:490px}
+.about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:25px;margin-top:45px;padding-top:30px;border-top:1px solid var(--line)}
+.stat strong{display:block;font:500 43px var(--display);color:var(--cyan)}
+.stat span{font:10px 'DM Mono';color:#858e9e;letter-spacing:1px;text-transform:uppercase}
+/* SERVICES */
+.services{background:#0d111a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.service-list{border-top:1px solid var(--line)}
+.service{display:grid;grid-template-columns:75px 1fr 1.1fr 50px;align-items:center;gap:25px;padding:29px 12px;border-bottom:1px solid var(--line);transition:.3s}
+.service:hover{background:rgba(71,120,255,.07);padding-left:25px}
+.service-num{font:11px 'DM Mono';color:var(--cyan)}
+.service h3{font:500 24px var(--display)}
+.service p{color:var(--muted);font-size:12px;line-height:1.8;max-width:390px}
+.service-arrow{font-size:23px;color:#7e8ba0;transition:.3s}
+.service:hover .service-arrow{color:var(--cyan);transform:translate(4px,-4px)}
+/* FEATURE */
+.feature{padding:125px 0}
+.feature-card{position:relative;min-height:570px;overflow:hidden;background:#101723}
+.feature-card img{position:absolute;width:100%;height:100%;object-fit:cover;filter:brightness(.52) saturate(.7);transition:transform 1s}
+.feature-card:hover img{transform:scale(1.04)}
+.feature-card:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,15,.94),rgba(8,10,15,.2)),linear-gradient(0deg,rgba(8,10,15,.55),transparent 65%)}
+.feature-content{position:relative;z-index:2;padding:75px;max-width:670px}
+.feature-content h2{font:500 clamp(43px,6vw,72px)/1 var(--display);letter-spacing:-3px;margin:22px 0}
+.feature-content p{font-size:13px;line-height:1.9;color:#c0c6d1;max-width:410px;margin-bottom:30px}
+.feature-tag{display:inline-block;border:1px solid rgba(97,230,255,.5);color:var(--cyan);font:10px 'DM Mono';letter-spacing:1.5px;padding:10px 13px}
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:25px}
+.project{position:relative;overflow:hidden;background:var(--panel);min-height:420px}
+.project:nth-child(2){margin-top:90px}
+.project-img{height:330px;overflow:hidden}
+.project-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.75) saturate(.7);transition:transform .7s}
+.project:hover img{transform:scale(1.06)}
+.project-info{padding:22px 25px;display:flex;justify-content:space-between;align-items:center}
+.project-info h3{font:500 22px var(--display)}
+.project-info p{font:10px 'DM Mono';color:#8893a5;margin-top:7px}
+.project-info span{font-size:20px;color:var(--cyan)}
+/* METRICS */
+.metrics{background:var(--blue);padding:70px 0}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.metric{border-left:1px solid rgba(255,255,255,.3);padding-left:25px}
+.metric strong{font:500 55px var(--display);display:block}
+.metric span{font:10px 'DM Mono';letter-spacing:1.5px;text-transform:uppercase;opacity:.8}
+/* INSIGHTS */
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.insight{border-top:1px solid var(--line);padding-top:23px}
+.insight .mono{font-size:9px}
+.insight h3{font:500 23px/1.3 var(--display);margin:20px 0;color:#e9edf5}
+.insight p{font-size:12px;color:var(--muted);line-height:1.8}
+.insight a{display:inline-block;margin-top:25px;font:10px 'DM Mono';color:var(--cyan);letter-spacing:1px}
+/* CONTACT */
+.contact{background:#0d111a;border-top:1px solid var(--line);padding:110px 0}
+.contact-grid{display:grid;grid-template-columns:1fr .8fr;gap:90px}
+.contact h2{font:500 clamp(48px,7vw,85px)/.98 var(--display);letter-spacing:-5px;margin:22px 0}
+.contact-intro{color:var(--muted);font-size:13px;line-height:1.9;max-width:400px}
+.contact-details{margin-top:45px}
+.contact-details p{font:11px 'DM Mono';color:#aab3c1;margin:13px 0}
+.contact-details span{color:var(--cyan);margin-right:12px}
+.contact-form{display:flex;flex-direction:column;gap:22px;padding-top:20px}
+.field label{display:block;font:10px 'DM Mono';color:#8b96a8;letter-spacing:1px;margin-bottom:10px}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #303846;padding:13px 0;color:white;outline:none;font-size:13px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--cyan)}
+.field textarea{min-height:90px}
+/* FOOTER */
+footer{padding:35px 0;background:#080a0f}
+.footer-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:30px;border-bottom:1px solid var(--line)}
+.footer-links{display:flex;gap:25px}
+.footer-links a{font-size:11px;color:#9aa3b1}
+.footer-bottom{display:flex;justify-content:space-between;padding-top:25px;color:#697486;font:9px 'DM Mono';letter-spacing:1px}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:850px){
+ .nav-links{display:none;position:absolute;top:88px;left:0;width:100%;background:#0d111a;padding:30px 5%;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
+ .nav-links.open{display:flex}.menu-btn{display:block}
+ .nav-cta{display:none}.hero h1{letter-spacing:-4px}
+ .about-grid,.contact-grid{grid-template-columns:1fr;gap:45px}
+ .about-visual{height:420px}
+ .section-head{align-items:flex-start;flex-direction:column}
+ .projects-grid{grid-template-columns:1fr}
+ .project:nth-child(2){margin-top:0}
+ .metrics-grid{grid-template-columns:repeat(2,1fr);row-gap:40px}
+ .feature-content{padding:50px 35px}
+ .insights-grid{grid-template-columns:1fr;gap:40px}
+ .trust-inner{flex-direction:column;align-items:flex-start}
+ .trust-logos{flex-wrap:wrap;gap:22px}
+ .service{grid-template-columns:35px 1fr 30px}
+ .service p{grid-column:2;grid-row:2}
+ .service-arrow{grid-column:3;grid-row:1}
+}
+@media(max-width:520px){
+ .section{padding:85px 0}
+ .hero{min-height:760px}
+ .hero h1{font-size:61px}
+ .hero-description{font-size:13px}
+ .hero-bottom-inner{align-items:flex-start;gap:15px}
+ .hero-bottom p{font-size:8px}
+ .about-stats{gap:20px}
+ .stat strong{font-size:35px}
+ .metrics-grid{grid-template-columns:1fr 1fr}
+ .metric strong{font-size:40px}
+ .feature-card{min-height:540px}
+ .feature-content{padding:45px 25px}
+ .footer-top,.footer-bottom{align-items:flex-start;flex-direction:column;gap:25px}
+ .footer-links{flex-wrap:wrap;gap:15px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="container nav">
+  <a href="#" class="logo">VYTRON<span>.</span><small>TECHNOLOGY GROUP</small></a>
+  <nav class="nav-links" id="navLinks">
+   <a href="#about">Company</a>
+   <a href="#services">Capabilities</a>
+   <a href="#work">Projects</a>
+   <a href="#insights">Insights</a>
+   <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="nav-cta">Start a conversation ↗</a>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+ </div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="hero-bg"></div><div class="hero-grid"></div>
+ <div class="container hero-content">
+  <div class="hero-kicker mono"><span class="pulse"></span> INDEPENDENT TECHNOLOGY GROUP · EST. 2018</div>
+  <h1>BUILDING<br>WHAT'S <span class="outline">NEXT.</span></h1>
+  <p class="hero-description">We engineer intelligent digital ecosystems that help ambitious organizations move beyond what's possible today.</p>
+  <div class="hero-actions">
+   <a href="#services" class="btn">Explore our capabilities <span>↗</span></a>
+   <a href="#about" class="btn btn-dark">Discover VYTRON</a>
+  </div>
+ </div>
+ <div class="hero-side">INNOVATION IS A MOVING TARGET — 01 / 04</div>
+ <div class="hero-bottom">
+  <div class="container hero-bottom-inner">
+   <p>ENGINEERING THE DIGITAL FRONTIER</p>
+   <div class="scroll-mark">SCROLL TO EXPLORE ↓</div>
+   <p>36° 45' N — GLOBAL OPERATIONS</p>
+  </div>
+ </div>
+</section>
+
+<div class="trust">
+ <div class="container trust-inner">
+  <div class="trust-label">POWERING PROGRESS WITH</div>
+  <div class="trust-logos"><span>◈ ORBITAL</span><span>◉ NEXUS</span><span>⌘ QUANTUM</span><span>△ MONOLITH</span><span>⬡ STRATOS</span></div>
+ </div>
+</div>
+
+<section class="section" id="about">
+ <div class="container about-grid">
+  <div class="about-visual reveal">
+   <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85" alt="Advanced technology circuit board">
+   <span class="visual-number">FIG. 001 / SYSTEMS IN MOTION</span>
+   <span class="visual-label">THE FUTURE IS AN ENGINEERING CHALLENGE.</span>
+  </div>
+  <div class="about-copy reveal">
+   <div class="mono">01 — WHO WE ARE</div>
+   <h2>Complexity is our <span class="accent">starting point.</span></h2>
+   <p>VYTRON is a technology and digital transformation company working at the intersection of strategy, engineering and emerging technologies. We partner with organizations to turn complex challenges into meaningful progress.</p>
+   <p style="margin-top:18px">From intelligent platforms to connected infrastructure, we build systems designed to evolve with the world around them.</p>
+   <div class="about-stats">
+    <div class="stat"><strong>08<span style="font-size:23px">+</span></strong><span>Years of innovation</span></div>
+    <div class="stat"><strong>24</strong><span>Markets reached</span></div>
+    <div class="stat"><strong>120<span style="font-size:23px">+</span></strong><span>Projects delivered</span></div>
+    <div class="stat"><strong>98<span style="font-size:23px">%</span></strong><span>Client retention</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section services" id="services">
+ <div class="container">
+  <div class="section-head reveal">
+   <div><div class="mono">02 — WHAT WE DO</div><h2>Capabilities for a <span class="accent">new era.</span></h2></div>
+   <p>We bring together the right people, technologies and perspectives to create lasting digital advantage.</p>
+  </div>
+  <div class="service-list">
+   <div class="service reveal"><span class="service-num">01</span><h3>Digital Strategy</h3><p>Technology roadmaps, digital transformation and strategic consulting built around your business goals.</p><span class="service-arrow">↗</span></div>
+   <div class="service reveal"><span class="service-num">02</span><h3>Software Engineering</h3><p>Scalable platforms, intelligent applications and custom software engineered for performance.</p><span class="service-arrow">↗</span></div>
+   <div class="service reveal"><span class="service-num">03</span><h3>AI & Data Intelligence</h3><p>Turning complex data into actionable insight through AI, machine learning and advanced analytics.</p><span class="service-arrow">↗</span></div>
+   <div class="service reveal"><span class="service-num">04</span><h3>Cloud & Infrastructure</h3><p>Modern cloud architecture, secure infrastructure and connected digital environments.</p><span class="service-arrow">↗</span></div>
+   <div class="service reveal"><span class="service-num">05</span><h3>Cybersecurity</h3><p>Resilient digital ecosystems with security, governance and risk management at their core.</p><span class="service-arrow">↗</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="feature">
+ <div class="container">
+  <div class="feature-card reveal">
+   <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=85" alt="Technology team collaborating in a modern workspace">
+   <div class="feature-content">
+    <span class="feature-tag">OUR APPROACH / 2026</span>
+    <h2>Technology should move business <span class="accent">forward.</span></h2>
+    <p>We don't believe in technology for technology's sake. Every solution begins with a clear purpose, a real challenge and a vision for what comes next.</p>
+    <a href="#contact" class="btn">Let's build something ↗</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="work">
+ <div class="container">
+  <div class="section-head reveal">
+   <div><div class="mono">03 — SELECTED WORK</div><h2>Ideas made <span class="accent">operational.</span></h2></div>
+   <p>A selection of initiatives that demonstrate how thoughtful engineering can reshape the way organizations operate.</p>
+  </div>
+  <div class="projects-grid">
+   <article class="project reveal">
+    <div class="project-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=85" alt="Connected digital global network"></div>
+    <div class="project-info"><div><h3>ORBITAL / Connected Cities</h3><p>SMART INFRASTRUCTURE · DIGITAL SYSTEMS</p></div><span>↗</span></div>
+   </article>
+   <article class="project reveal">
+    <div class="project-img"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=85" alt="Modern data center infrastructure"></div>
+    <div class="project-info"><div><h3>NEXUS / Cloud Core</h3><p>CLOUD ENGINEERING · INFRASTRUCTURE</p></div><span>↗</span></div>
+   </article>
+   <article class="project reveal">
+    <div class="project-img"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=85" alt="Artificial intelligence concept"></div>
+    <div class="project-info"><div><h3>QUANTUM / Intelligence</h3><p>ARTIFICIAL INTELLIGENCE · DATA</p></div><span>↗</span></div>
+   </article>
+   <article class="project reveal">
+    <div class="project-img"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=85" alt="Cybersecurity digital network"></div>
+    <div class="project-info"><div><h3>FORTRESS / Secure Future</h3><p>CYBERSECURITY · DIGITAL TRUST</p></div><span>↗</span></div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="metrics">
+ <div class="container metrics-grid">
+  <div class="metric"><strong>120+</strong><span>Projects delivered</span></div>
+  <div class="metric"><strong>24</strong><span>Markets connected</span></div>
+  <div class="metric"><strong>08</strong><span>Years of experience</span></div>
+  <div class="metric"><strong>98%</strong><span>Client satisfaction</span></div>
+ </div>
+</section>
+
+<section class="section" id="insights">
+ <div class="container">
+  <div class="section-head reveal">
+   <div><div class="mono">04 — THINKING AHEAD</div><h2>Perspectives on <span class="accent">what's next.</span></h2></div>
+   <p>Ideas, observations and perspectives shaping the next generation of digital business.</p>
+  </div>
+  <div class="insights-grid">
+   <article class="insight reveal"><div class="mono">01 / INTELLIGENCE · 06 MIN READ</div><h3>Beyond automation: building an organization that thinks.</h3><p>How intelligent systems are changing the relationship between data, decisions and people.</p><a href="#contact">EXPLORE TOPIC ↗</a></article>
+   <article class="insight reveal"><div class="mono">02 / INFRASTRUCTURE · 04 MIN READ</div><h3>The invisible architecture behind tomorrow's business.</h3><p>Why the most important digital transformations begin beneath the surface.</p><a href="#contact">EXPLORE TOPIC ↗</a></article>
+   <article class="insight reveal"><div class="mono">03 / STRATEGY · 08 MIN READ</div><h3>Designing for uncertainty in a world that never stands still.</h3><p>Building adaptive technology strategies for a rapidly changing environment.</p><a href="#contact">EXPLORE TOPIC ↗</a></article>
+  </div>
+ </div>
+</section>
+
+<section class="contact" id="contact">
+ <div class="container contact-grid">
+  <div class="reveal">
+   <div class="mono">05 — YOUR NEXT MOVE</div>
+   <h2>Let's make<br> <span class="accent">progress.</span></h2>
+   <p class="contact-intro">Have a complex challenge, a bold idea or a digital ambition? Let's start with a conversation.</p>
+   <div class="contact-details">
+    <p><span>↗</span> HELLO@VYTRON.DIGITAL</p>
+    <p><span>↗</span> GLOBAL PARTNERSHIPS</p>
+    <p><span>↗</span> AVAILABLE FOR SELECT PROJECTS</p>
+   </div>
+  </div>
+  <form class="contact-form reveal" id="contactForm">
+   <div class="field"><label>01 / YOUR NAME</label><input required type="text" placeholder="Full name"></div>
+   <div class="field"><label>02 / EMAIL ADDRESS</label><input required type="email" placeholder="name@company.com"></div>
+   <div class="field"><label>03 / WHAT ARE YOU THINKING?</label><textarea required placeholder="Tell us about your project or challenge..."></textarea></div>
+   <button class="btn" type="submit">Send your inquiry <span>↗</span></button>
+   <p style="font-size:10px;color:#788395;line-height:1.6">By submitting, you agree to be contacted regarding your inquiry.</p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container">
+  <div class="footer-top">
+   <a href="#" class="logo">VYTRON<span>.</span><small>TECHNOLOGY GROUP</small></a>
+   <div class="footer-links"><a href="#about">Company</a><a href="#services">Capabilities</a><a href="#work">Projects</a><a href="#contact">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 VYTRON TECHNOLOGY GROUP. ALL RIGHTS RESERVED.</span><span>ENGINEERED FOR WHAT'S NEXT ↗</span></div>
+ </div>
+</footer>
+
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const navLinks=document.getElementById('navLinks');
+menuBtn.addEventListener('click',()=>{
+ navLinks.classList.toggle('open');
+ menuBtn.textContent=navLinks.classList.contains('open')?'×':'☰';
+});
+navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+ navLinks.classList.remove('open');
+ menuBtn.textContent='☰';
+}));
+
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add('visible');
+   observer.unobserve(entry.target);
+  }
+ });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+document.getElementById('contactForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ alert('Thank you for contacting VYTRON. This is a demo form — connect it to a backend or form service to receive real inquiries.');
+ e.target.reset();
+});
+</script>
+</body>
+</html>

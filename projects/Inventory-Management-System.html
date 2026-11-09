@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VYNTARA — Inventory Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #20243b;
+      --muted: #8790a5;
+      --blue: #6268df;
+      --blue-light: #eff0ff;
+      --line: #e9eaf2;
+      --bg: #f2f3f9;
+      --green: #69c99b;
+      --red: #f18c91;
+      --purple: #aaa0ed;
+      --white: #fff;
+      --orange: #f2b66d;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: #e8eaf2;
+      color: var(--ink);
+      font: 12px 'DM Sans', sans-serif
+    }
+
+    button,
+    input,
+    select {
+      font: inherit
+    }
+
+    .app {
+      max-width: 1500px;
+      min-height: 100vh;
+      margin: auto;
+      background: var(--bg);
+      display: grid;
+      grid-template-columns: 215px minmax(0, 1fr);
+      box-shadow: 0 8px 45px #1d2a4610
+    }
+
+    .sidebar {
+      background: #fafaff;
+      border-right: 1px solid var(--line);
+      padding: 25px 15px 17px;
+      display: flex;
+      flex-direction: column
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 8px 29px;
+      font: 800 17px Manrope;
+      color: #242943;
+      letter-spacing: -.6px
+    }
+
+    .brand-mark {
+      width: 29px;
+      height: 29px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #a69bf5, #5966dc);
+      color: white;
+      font-size: 18px
+    }
+
+    .brand small {
+      font: 600 8px 'DM Sans';
+      color: #a0a5b7;
+      letter-spacing: 1.6px;
+      display: block;
+      margin-top: 1px
+    }
+
+    .nav-label {
+      font-size: 9px;
+      color: #a1a7b8;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      padding: 9px 10px 7px
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #788198;
+      padding: 11px 10px;
+      border-radius: 8px;
+      margin: 2px 0;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .nav:hover,
+    .nav.active {
+      background: white;
+      color: #303653;
+      box-shadow: 0 2px 9px #26325a0a
+    }
+
+    .nav.active {
+      border: 1px solid #e8e9f2
+    }
+
+    .nav .ico {
+      width: 17px;
+      text-align: center;
+      font-size: 15px
+    }
+
+    .nav.active .ico {
+      color: var(--blue)
+    }
+
+    .nav .count {
+      margin-left: auto;
+      font-size: 9px;
+      background: #fff0ee;
+      color: #e77f82;
+      padding: 3px 6px;
+      border-radius: 5px
+    }
+
+    .sidebar-bottom {
+      margin-top: auto
+    }
+
+    .help-card {
+      background: linear-gradient(140deg, #f0efff, #e9eaff);
+      border-radius: 10px;
+      padding: 13px;
+      margin: 12px 2px 15px
+    }
+
+    .help-card strong {
+      font: 700 11px Manrope
+    }
+
+    .help-card p {
+      font-size: 9px;
+      color: #7d83a0;
+      line-height: 1.6;
+      margin: 6px 0 10px
+    }
+
+    .help-card button {
+      border: 0;
+      background: white;
+      color: #5d63d5;
+      padding: 7px 10px;
+      border-radius: 5px;
+      font-size: 9px;
+      font-weight: 700;
+      cursor: pointer
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white
+    }
+
+    .face {
+      width: 29px;
+      height: 29px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #e9d8cf;
+      font-size: 16px
+    }
+
+    .profile strong {
+      font-size: 10px;
+      display: block
+    }
+
+    .profile small {
+      font-size: 9px;
+      color: var(--muted)
+    }
+
+    .profile .more {
+      margin-left: auto;
+      color: #9299aa
+    }
+
+    .main {
+      min-width: 0;
+      padding: 25px 27px 35px
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 26px
+    }
+
+    .welcome {
+      font: 700 17px Manrope;
+      letter-spacing: -.5px
+    }
+
+    .welcome small {
+      display: block;
+      font: 10px 'DM Sans';
+      color: var(--muted);
+      letter-spacing: 0;
+      margin-top: 4px
+    }
+
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .search {
+      width: 225px;
+      border-radius: 22px;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 9px 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #8992a7
+    }
+
+    .search input {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      width: 100%;
+      font-size: 10px;
+      color: var(--ink)
+    }
+
+    .bell {
+      position: relative;
+      font-size: 17px;
+      color: #69758d;
+      cursor: pointer
+    }
+
+    .bell:after {
+      content: '3';
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      background: #f18c91;
+      color: white;
+      font-size: 8px;
+      border-radius: 50%;
+      padding: 2px 4px
+    }
+
+    .user {
+      height: 29px;
+      width: 29px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #e6d4c8;
+      font-size: 16px
+    }
+
+    .mobile-menu {
+      display: none
+    }
+
+    .page-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px
+    }
+
+    .page-heading h1 {
+      font: 800 19px Manrope;
+      margin: 0;
+      letter-spacing: -.7px
+    }
+
+    .page-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 10px
+    }
+
+    .primary {
+      border: 0;
+      background: var(--blue);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 7px;
+      font-weight: 600;
+      font-size: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px #6268df30
+    }
+
+    .primary:hover {
+      background: #5158cb
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 12px
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid #ececf3;
+      border-radius: 11px;
+      padding: 15px;
+      min-height: 112px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .stat-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #778198;
+      font-size: 10px
+    }
+
+    .stat-icon {
+      width: 27px;
+      height: 27px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 14px
+    }
+
+    .stat:nth-child(2) .stat-icon {
+      background: #e9f8f1;
+      color: #48b887
+    }
+
+    .stat:nth-child(3) .stat-icon {
+      background: #fff4e8;
+      color: #e5a14e
+    }
+
+    .stat:nth-child(4) .stat-icon {
+      background: #fff0f0;
+      color: #e77980
+    }
+
+    .value {
+      font: 800 22px Manrope;
+      margin-top: 10px;
+      letter-spacing: -.7px
+    }
+
+    .delta {
+      font-size: 8px;
+      padding: 3px 6px;
+      border-radius: 12px;
+      color: #36ad7b;
+      background: #e9f9f1;
+      margin-left: 5px
+    }
+
+    .delta.down {
+      color: #e77b80;
+      background: #fff0f0
+    }
+
+    .stat-foot {
+      font-size: 9px;
+      color: #a0a6b6;
+      margin-top: 4px
+    }
+
+    .analytics {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(240px, .9fr);
+      gap: 12px;
+      margin: 12px 0
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #ececf3;
+      border-radius: 12px;
+      padding: 16px;
+      min-width: 0
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px
+    }
+
+    .panel-head h2 {
+      font: 700 13px Manrope;
+      margin: 0
+    }
+
+    .panel-sub {
+      font-size: 9px;
+      color: #9ba2b2;
+      margin-top: 4px
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #7c879a;
+      font-size: 9px
+    }
+
+    .dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 4px
+    }
+
+    .period {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 9px;
+      color: #59677e;
+      outline: 0
+    }
+
+    .chart-wrap {
+      position: relative;
+      padding-left: 30px
+    }
+
+    .chart-y {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #a0a7b5;
+      font-size: 8px
+    }
+
+    .cash-chart {
+      height: 175px;
+      display: flex;
+      align-items: flex-end;
+      gap: 11px;
+      padding: 12px 3px 0;
+      position: relative;
+      border-bottom: 1px solid #edf0f5;
+      background: repeating-linear-gradient(to bottom, transparent 0, transparent 42px, #edf0f5 43px)
+    }
+
+    .month-col {
+      height: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-direction: column;
+      z-index: 1;
+      min-width: 0
+    }
+
+    .bar-group {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 3px
+    }
+
+    .bar {
+      width: 10px;
+      max-width: 35%;
+      border-radius: 3px 3px 0 0;
+      background: #dcdcf0;
+      transition: .2s
+    }
+
+    .bar.income {
+      background: linear-gradient(to top, #a79ce9, #c8c2f7)
+    }
+
+    .bar.expense {
+      background: linear-gradient(to top, #f3a1a0, #ffd0c8)
+    }
+
+    .month {
+      font-size: 8px;
+      color: #929bad;
+      margin-top: 7px
+    }
+
+    .month-col.current .month {
+      font-weight: 700;
+      color: #303750
+    }
+
+    .donut-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 0 16px
+    }
+
+    .donut {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background: conic-gradient(from -90deg, #70c99a 0 67%, #f3b66d 67% 84%, #a69ce9 84% 100%);
+      position: relative;
+      display: grid;
+      place-items: center
+    }
+
+    .donut:after {
+      content: '';
+      position: absolute;
+      inset: 24px;
+      border-radius: 50%;
+      background: white
+    }
+
+    .donut-center {
+      position: relative;
+      z-index: 1;
+      text-align: center
+    }
+
+    .donut-center strong {
+      display: block;
+      font: 800 20px Manrope
+    }
+
+    .donut-center span {
+      font-size: 8px;
+      color: #939bad
+    }
+
+    .donut-legend {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px
+    }
+
+    .donut-legend div {
+      font-size: 9px;
+      color: #7d879b
+    }
+
+    .donut-legend strong {
+      display: block;
+      font: 700 13px Manrope;
+      color: #252d48;
+      margin: 5px 0 0 10px
+    }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(230px, .8fr);
+      gap: 12px
+    }
+
+    .inventory {
+      padding: 0;
+      overflow: hidden
+    }
+
+    .inventory .panel-head {
+      padding: 16px 16px 12px;
+      margin: 0
+    }
+
+    .table-tools {
+      display: flex;
+      gap: 7px
+    }
+
+    .tool {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      padding: 7px 10px;
+      font-size: 9px;
+      cursor: pointer;
+      color: #59677d
+    }
+
+    .tool:hover {
+      background: #f8f8ff
+    }
+
+    .table-wrap {
+      overflow: auto
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+      text-align: left
+    }
+
+    thead {
+      background: #f8f8fc
+    }
+
+    th {
+      font-size: 9px;
+      color: #818ba0;
+      font-weight: 600;
+      padding: 11px 13px;
+      border-top: 1px solid #edf0f5;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap
+    }
+
+    td {
+      padding: 11px 13px;
+      border-bottom: 1px solid #eff0f5;
+      font-size: 10px;
+      color: #566179;
+      white-space: nowrap
+    }
+
+    tbody tr:hover {
+      background: #fafaff
+    }
+
+    .product {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #28314b;
+      font-weight: 600
+    }
+
+    .product-thumb {
+      width: 29px;
+      height: 29px;
+      border-radius: 7px;
+      background: #f0f1f8;
+      display: grid;
+      place-items: center;
+      font-size: 16px
+    }
+
+    .sku {
+      color: #9099ab
+    }
+
+    .status {
+      display: inline-block;
+      border-radius: 5px;
+      padding: 4px 7px;
+      font-size: 9px
+    }
+
+    .status.low {
+      color: #d68d37;
+      background: #fff5e7;
+      border: 1px solid #ffe6c4
+    }
+
+    .status.stock {
+      color: #31a87a;
+      background: #eaf9f2;
+      border: 1px solid #c9efdc
+    }
+
+    .status.out {
+      color: #e66f76;
+      background: #fff0f0;
+      border: 1px solid #ffd9d9
+    }
+
+    .icon-btn {
+      width: 24px;
+      height: 24px;
+      border: 1px solid #e8eaf1;
+      background: white;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #65718a
+    }
+
+    .alerts {
+      padding: 16px
+    }
+
+    .alert-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f1f5
+    }
+
+    .alert-item:last-child {
+      border: 0
+    }
+
+    .alert-symbol {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #fff4e8;
+      color: #e2a04c;
+      font-size: 13px;
+      flex-shrink: 0
+    }
+
+    .alert-item.red .alert-symbol {
+      background: #fff0f0;
+      color: #e77d83
+    }
+
+    .alert-item strong {
+      font-size: 10px;
+      display: block;
+      color: #303852
+    }
+
+    .alert-item p {
+      font-size: 9px;
+      color: #929bad;
+      margin: 4px 0 0;
+      line-height: 1.5
+    }
+
+    .alert-item a {
+      font-size: 9px;
+      color: var(--blue);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 5px
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #252b45;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      box-shadow: 0 8px 25px #0002;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: .2s;
+      pointer-events: none;
+      z-index: 10
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    @media(max-width:1050px) {
+      .app {
+        grid-template-columns: 185px minmax(0, 1fr)
+      }
+
+      .main {
+        padding: 20px
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:760px) {
+      .app {
+        display: block
+      }
+
+      .sidebar {
+        display: none;
+        position: fixed;
+        z-index: 4;
+        inset: 0 auto 0 0;
+        width: 235px;
+        box-shadow: 8px 0 35px #0002
+      }
+
+      .sidebar.open {
+        display: flex
+      }
+
+      .main {
+        padding: 15px
+      }
+
+      .mobile-menu {
+        display: block;
+        border: 0;
+        background: white;
+        border-radius: 6px;
+        padding: 8px
+      }
+
+      .topbar {
+        align-items: flex-start
+      }
+
+      .welcome {
+        font-size: 14px
+      }
+
+      .top-right {
+        gap: 10px
+      }
+
+      .search {
+        width: min(200px, 42vw)
+      }
+
+      .analytics,
+      .lower-grid {
+        grid-template-columns: 1fr
+      }
+
+      .cash-chart {
+        height: 180px
+      }
+
+      .page-heading {
+        align-items: flex-start
+      }
+
+      .page-heading h1 {
+        font-size: 17px
+      }
+    }
+
+    @media(max-width:430px) {
+      .stats {
+        gap: 8px
+      }
+
+      .stat {
+        padding: 12px;
+        min-height: 100px
+      }
+
+      .value {
+        font-size: 19px
+      }
+
+      .topbar {
+        flex-wrap: wrap
+      }
+
+      .top-right {
+        width: 100%;
+        justify-content: flex-end
+      }
+
+      .search {
+        flex: 1
+      }
+
+      .main {
+        padding: 12px
+      }
+
+      .panel {
+        padding: 12px
+      }
+
+      .cash-chart {
+        gap: 5px
+      }
+
+      .month {
+        font-size: 7px
+      }
+
+      .page-heading {
+        gap: 8px
+      }
+
+      .primary {
+        padding: 9px;
+        font-size: 9px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="brand-mark">◈</span><span>VYNTARA<small>INVENTORY CONTROL</small></span></div>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav active" data-page="Dashboard"><span class="ico">⌂</span>Dashboard</a>
+      <a class="nav" data-page="Inventory"><span class="ico">▦</span>Inventory</a>
+      <a class="nav" data-page="Warehouses"><span class="ico">▤</span>Warehouses</a>
+      <a class="nav" data-page="Suppliers"><span class="ico">♧</span>Suppliers</a>
+      <div class="nav-label">OPERATIONS</div>
+      <a class="nav" data-page="Purchase Orders"><span class="ico">▣</span>Purchase Orders</a>
+      <a class="nav" data-page="Shipments"><span class="ico">⇢</span>Shipments</a>
+      <a class="nav" data-page="Tracking"><span class="ico">⌖</span>Tracking</a>
+      <div class="nav-label">INSIGHTS</div>
+      <a class="nav" data-page="Reports"><span class="ico">⌁</span>Reports</a>
+      <a class="nav" data-page="Cash Flow"><span class="ico">$</span>Cash Flow</a>
+      <a class="nav" data-page="Customers"><span class="ico">♙</span>Customers</a>
+      <div class="sidebar-bottom">
+        <div class="help-card"><strong>Need a hand?</strong>
+          <p>Explore tips and guides to manage your inventory efficiently.</p><button
+            onclick="notify('Help center opened')">Visit Help Center ↗</button>
+        </div>
+        <div class="profile">
+          <div class="face">👩🏻</div>
+          <div><strong>Admin User</strong><small>Administrator</small></div><span class="more">⌄</span>
+        </div>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menu">☰</button>
+        <div class="welcome" id="welcome">Good morning, Admin 👋<small>Here's what's happening with your inventory
+            today.</small></div>
+        <div class="top-right">
+          <div class="search">⌕ <input id="search" placeholder="Search products / SKU..."></div><span class="bell"
+            onclick="notify('You have 3 notifications')">♧</span>
+          <div class="user">👩🏻</div>
+        </div>
+      </header>
+      <div class="page-heading">
+        <div>
+          <h1>Dashboard overview</h1>
+          <p>Monitor your stock, orders and business performance.</p>
+        </div><button class="primary" id="addProduct">＋ Add Product</button>
+      </div>
+      <section class="stats">
+        <article class="stat">
+          <div class="stat-top">Total Products <span class="stat-icon">▦</span></div>
+          <div class="value" id="total">13,284</div>
+          <div class="stat-foot"><span class="delta">↗ 9.4%</span> compared to last month</div>
+        </article>
+        <article class="stat">
+          <div class="stat-top">In Stock <span class="stat-icon">✓</span></div>
+          <div class="value" id="inStock">8,102</div>
+          <div class="stat-foot"><span class="delta">↗ 3.2%</span> healthy stock levels</div>
+        </article>
+        <article class="stat">
+          <div class="stat-top">Low Stock <span class="stat-icon">!</span></div>
+          <div class="value" id="lowStock">1,496</div>
+          <div class="stat-foot"><span class="delta down">↘ 2.8%</span> need replenishment</div>
+        </article>
+        <article class="stat">
+          <div class="stat-top">Out of Stock <span class="stat-icon">×</span></div>
+          <div class="value" id="outStock">345</div>
+          <div class="stat-foot"><span class="delta down">↘ 1.6%</span> items unavailable</div>
+        </article>
+      </section>
+      <section class="analytics">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Cash flow overview</h2>
+              <div class="panel-sub">Income and expenses throughout the year</div>
+            </div>
+            <div class="legend"><span><i class="dot" style="background:#aaa0ed"></i>Income</span><span><i class="dot"
+                  style="background:#f18c91"></i>Expenses</span><select class="period" id="period">
+                <option>Monthly</option>
+                <option>Weekly</option>
+                <option>Yearly</option>
+              </select></div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-y"><span>$12k</span><span>$9k</span><span>$6k</span><span>$3k</span><span>$0</span></div>
+            <div class="cash-chart" id="cashChart"></div>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Inventory distribution</h2>
+              <div class="panel-sub">Current stock availability</div>
+            </div><span style="font-size:15px;color:#9ba2b2">•••</span>
+          </div>
+          <div class="donut-area">
+            <div class="donut">
+              <div class="donut-center"><strong>9,943</strong><span>Total units</span></div>
+            </div>
+          </div>
+          <div class="donut-legend">
+            <div><i class="dot" style="background:var(--green)"></i>In Stock<strong>67%</strong></div>
+            <div><i class="dot" style="background:var(--orange)"></i>Low Stock<strong>17%</strong></div>
+            <div><i class="dot" style="background:var(--purple)"></i>Out<strong>16%</strong></div>
+          </div>
+        </article>
+      </section>
+      <section class="lower-grid">
+        <article class="panel inventory">
+          <div class="panel-head">
+            <div>
+              <h2>Recent inventory</h2>
+              <div class="panel-sub">A quick look at your product catalog</div>
+            </div>
+            <div class="table-tools"><button class="tool" id="filter">☷ Filter</button><button class="tool"
+                id="seeAll">See all</button></div>
+          </div>
+          <div class="table-wrap">
+            <table id="products">
+              <thead>
+                <tr>
+                  <th>PRODUCT</th>
+                  <th>SKU</th>
+                  <th>CATEGORY</th>
+                  <th>LOCATION</th>
+                  <th>UNITS</th>
+                  <th>STATUS</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-status="low">
+                  <td>
+                    <div class="product"><span class="product-thumb">🎧</span>Wireless Headphones</div>
+                  </td>
+                  <td class="sku">HP-401</td>
+                  <td>Electronics</td>
+                  <td>Warehouse A</td>
+                  <td>24</td>
+                  <td><span class="status low">Low stock</span></td>
+                  <td><button class="icon-btn">···</button></td>
+                </tr>
+                <tr data-status="stock">
+                  <td>
+                    <div class="product"><span class="product-thumb">⌚</span>Smart Watch Pro</div>
+                  </td>
+                  <td class="sku">SW-205</td>
+                  <td>Electronics</td>
+                  <td>Warehouse B</td>
+                  <td>346</td>
+                  <td><span class="status stock">In stock</span></td>
+                  <td><button class="icon-btn">···</button></td>
+                </tr>
+                <tr data-status="out">
+                  <td>
+                    <div class="product"><span class="product-thumb">📷</span>Digital Camera</div>
+                  </td>
+                  <td class="sku">DC-118</td>
+                  <td>Accessories</td>
+                  <td>Warehouse C</td>
+                  <td>0</td>
+                  <td><span class="status out">Out of stock</span></td>
+                  <td><button class="icon-btn">···</button></td>
+                </tr>
+                <tr data-status="stock">
+                  <td>
+                    <div class="product"><span class="product-thumb">🎒</span>Urban Backpack</div>
+                  </td>
+                  <td class="sku">UB-309</td>
+                  <td>Travel</td>
+                  <td>Warehouse A</td>
+                  <td>246</td>
+                  <td><span class="status stock">In stock</span></td>
+                  <td><button class="icon-btn">···</button></td>
+                </tr>
+                <tr data-status="low">
+                  <td>
+                    <div class="product"><span class="product-thumb">🔊</span>Bluetooth Speaker</div>
+                  </td>
+                  <td class="sku">BS-114</td>
+                  <td>Electronics</td>
+                  <td>Warehouse D</td>
+                  <td>8</td>
+                  <td><span class="status low">Low stock</span></td>
+                  <td><button class="icon-btn">···</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel alerts">
+          <div class="panel-head">
+            <div>
+              <h2>Stock alerts</h2>
+              <div class="panel-sub">Items that need your attention</div>
+            </div><span style="font-size:9px;color:var(--blue);cursor:pointer"
+              onclick="notify('All alerts opened')">View all ↗</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-symbol">!</div>
+            <div><strong>Wireless Headphones</strong>
+              <p>Only 24 units left in Warehouse A.</p><a href="#"
+                onclick="notify('Reorder request created');return false">Create reorder ↗</a>
+            </div>
+          </div>
+          <div class="alert-item red">
+            <div class="alert-symbol">×</div>
+            <div><strong>Digital Camera</strong>
+              <p>Product is currently out of stock.</p><a href="#"
+                onclick="notify('Restock request created');return false">Restock item ↗</a>
+            </div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-symbol">!</div>
+            <div><strong>Bluetooth Speaker</strong>
+              <p>Below minimum stock threshold.</p><a href="#"
+                onclick="notify('Supplier details opened');return false">Contact supplier ↗</a>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+    const toast = document.getElementById('toast'); let timer;
+    function notify(msg) { toast.textContent = msg; toast.classList.add('show'); clearTimeout(timer); timer = setTimeout(() => toast.classList.remove('show'), 2300) }
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const income = [58, 72, 45, 82, 65, 91, 100, 62, 76, 48, 68, 84];
+    const expenses = [35, 48, 30, 50, 42, 61, 72, 45, 55, 34, 49, 57];
+    function drawChart() { const chart = document.getElementById('cashChart'); chart.innerHTML = ''; months.forEach((m, i) => { let c = document.createElement('div'); c.className = 'month-col ' + (i === 6 ? 'current' : ''); c.innerHTML = `<div class="bar-group"><div class="bar income" style="height:${income[i]}%"></div><div class="bar expense" style="height:${expenses[i]}%"></div></div><div class="month">${m}</div>`; chart.appendChild(c) }) }
+    drawChart();
+    document.querySelectorAll('.nav').forEach(n => n.addEventListener('click', () => { document.querySelectorAll('.nav').forEach(x => x.classList.remove('active')); n.classList.add('active'); document.getElementById('welcome').innerHTML = n.dataset.page === 'Dashboard' ? 'Good morning, Admin 👋<small>Here\'s what\'s happening with your inventory today.</small>': `${n.dataset.page} overview<small>Manage and monitor your ${n.dataset.page.toLowerCase()}.</small>`; notify(`${n.dataset.page} selected`); if (innerWidth < 760) document.getElementById('sidebar').classList.remove('open') }));
+    document.getElementById('search').addEventListener('input', e => { let q = e.target.value.toLowerCase(); document.querySelectorAll('#products tbody tr').forEach(r => r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none') });
+    let filtered = false; document.getElementById('filter').addEventListener('click', () => { filtered = !filtered; document.querySelectorAll('#products tbody tr').forEach(r => r.style.display = !filtered || r.dataset.status === 'low' ? '' : 'none'); notify(filtered ? 'Showing low-stock products' : 'Filter cleared') });
+    document.getElementById('seeAll').addEventListener('click', () => { filtered = false; document.getElementById('search').value = ''; document.querySelectorAll('#products tbody tr').forEach(r => r.style.display = ''); notify('All inventory items shown') });
+    document.getElementById('addProduct').addEventListener('click', () => { let name = prompt('Product name:'); if (!name || !name.trim()) return; let sku = prompt('Product SKU:', 'NEW-' + Math.floor(Math.random() * 900 + 100)); let row = document.createElement('tr'); row.dataset.status = 'stock'; row.innerHTML = `<td><div class="product"><span class="product-thumb">📦</span></div></td><td class="sku"></td><td>General</td><td>Warehouse A</td><td>0</td><td><span class="status stock">In stock</span></td><td><button class="icon-btn">···</button></td>`; row.querySelector('.product').append(document.createTextNode(name.trim())); row.children[1].textContent = sku || 'NEW'; document.querySelector('#products tbody').prepend(row); document.getElementById('total').textContent = (13284 + document.querySelectorAll('#products tbody tr').length - 5).toLocaleString(); notify('Product added to inventory') });
+    document.getElementById('period').addEventListener('change', e => notify(`Cash flow view: ${e.target.value}`));
+    document.getElementById('menu').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
+    document.querySelectorAll('.icon-btn').forEach(b => b.addEventListener('click', () => notify('Product actions opened')));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ÉCLORA — A modern destination for skincare, beauty and everyday wellness.">
+<title>ÉCLORA — Beauty, Naturally.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --cerise:#bd245d;
+  --cerise-dark:#941747;
+  --berry:#5b1837;
+  --pink:#f6dce5;
+  --pink-light:#fff2f5;
+  --blush:#fbe9ee;
+  --paper:#fffaf8;
+  --ink:#30232a;
+  --muted:#927d86;
+  --line:#ead1da;
+  --white:#fff;
+  --shadow:0 24px 65px rgba(86,25,53,.12);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{
+  background:#b99aa7;
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+button,input,select{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer}
+img{display:block;width:100%;object-fit:cover}
+
+.page-shell{
+  width:min(1320px,calc(100% - 70px));
+  margin:35px auto;
+  position:relative;
+}
+.journal-panel{
+  position:absolute;
+  left:0;top:0;
+  width:58%;
+  min-height:1750px;
+  padding:48px 30px;
+  background:var(--pink);
+  border-radius:15px;
+}
+.shop-panel{
+  position:relative;
+  width:69%;
+  margin-left:auto;
+  top:95px;
+  z-index:2;
+  background:var(--paper);
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.container{width:calc(100% - 54px);max-width:1100px;margin:auto}
+.kicker{
+  color:var(--cerise);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:9px;
+  font-weight:700;
+}
+.section-title{
+  font-family:"Playfair Display",serif;
+  font-weight:500;
+  font-size:clamp(27px,3vw,39px);
+  line-height:1.15;
+}
+.description{
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.9;
+  margin-top:9px;
+}
+.primary-btn,.outline-btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:12px 17px;
+  border-radius:5px;
+  font-size:10px;
+  font-weight:700;
+  transition:.25s;
+}
+.primary-btn{
+  color:white;
+  background:var(--cerise);
+  border:1px solid var(--cerise);
+}
+.primary-btn:hover{background:var(--cerise-dark);transform:translateY(-2px)}
+.outline-btn{
+  color:var(--cerise-dark);
+  border:1px solid var(--line);
+  background:transparent;
+}
+.outline-btn:hover{background:var(--pink-light)}
+
+/* JOURNAL PANEL */
+.journal-heading{text-align:center;margin-bottom:30px}
+.journal-heading h2{
+  font-family:"Playfair Display",serif;
+  font-size:31px;
+  font-weight:500;
+  margin:8px 0;
+}
+.journal-heading p{
+  font-size:9px;
+  color:var(--muted);
+  line-height:1.8;
+}
+.journal-post{
+  margin-bottom:30px;
+  padding:13px;
+  background:rgba(255,250,248,.62);
+  border:1px solid rgba(189,36,93,.12);
+  border-radius:11px;
+}
+.post-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+.post-label{
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:var(--cerise);
+}
+.post-number{
+  font-family:"Playfair Display",serif;
+  color:#c78ba1;
+  font-size:17px;
+}
+.post-feature{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  align-items:center;
+  margin-bottom:15px;
+}
+.post-feature img{
+  height:190px;
+  border-radius:7px;
+}
+.post-feature h3{
+  font-family:"Playfair Display",serif;
+  font-size:24px;
+  font-weight:500;
+  line-height:1.2;
+}
+.post-feature p{
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.8;
+  margin:9px 0 12px;
+}
+.text-link{
+  color:var(--cerise);
+  font-size:9px;
+  font-weight:700;
+  border-bottom:1px solid var(--cerise);
+  padding-bottom:3px;
+}
+.post-products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+.mini-product{min-width:0}
+.mini-product img{
+  height:105px;
+  border-radius:6px;
+  margin-bottom:7px;
+}
+.mini-product h4{
+  font-family:"Playfair Display",serif;
+  font-size:11px;
+  font-weight:500;
+}
+.mini-product span{
+  display:block;
+  color:var(--muted);
+  font-size:8px;
+  margin-top:4px;
+}
+.journal-note{
+  margin:25px 0;
+  padding:25px 20px;
+  background:var(--berry);
+  color:white;
+  text-align:center;
+  border-radius:9px;
+}
+.journal-note span{
+  color:#f4b8ce;
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+.journal-note h3{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+  font-size:25px;
+  line-height:1.3;
+  margin:10px 0;
+}
+.journal-note p{
+  color:#e5c8d4;
+  font-size:9px;
+  line-height:1.8;
+}
+
+/* SHOP HEADER */
+.header{
+  height:69px;
+  padding:0 27px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #f0e1e5;
+  position:relative;
+  z-index:10;
+}
+.brand{display:flex;align-items:center;gap:9px}
+.brand-symbol{
+  width:29px;height:29px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:var(--cerise);
+  color:white;
+  font-size:15px;
+}
+.brand-name{
+  font-family:"Playfair Display",serif;
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:1px;
+}
+.brand-name span{color:var(--cerise)}
+.nav-links{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.nav-links a{
+  font-size:9px;
+  font-weight:600;
+  color:#78646d;
+  transition:.2s;
+}
+.nav-links a:hover{color:var(--cerise)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.cart-button{
+  position:relative;
+  width:32px;height:32px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  color:var(--cerise);
+  background:transparent;
+  font-size:15px;
+}
+.cart-count{
+  position:absolute;
+  top:-5px;right:-5px;
+  display:grid;place-items:center;
+  width:15px;height:15px;
+  border-radius:50%;
+  background:var(--cerise);
+  color:white;
+  font-size:8px;
+}
+.menu-toggle{
+  display:none;
+  border:0;background:transparent;
+  color:var(--berry);font-size:23px;
+}
+
+/* SHOP INTRO — NOT A HERO */
+.shop-intro{
+  padding:35px 28px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  background:var(--paper);
+}
+.shop-intro h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(33px,4vw,49px);
+  line-height:1.08;
+  font-weight:500;
+  margin:9px 0;
+}
+.shop-intro h1 span{color:var(--cerise)}
+.shop-intro p{
+  max-width:280px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.8;
+}
+.intro-stamp{
+  width:90px;height:90px;
+  flex-shrink:0;
+  border:1px solid #e5b7c7;
+  border-radius:50%;
+  display:grid;place-items:center;
+  text-align:center;
+  color:var(--cerise);
+  font-family:"Playfair Display",serif;
+  font-size:14px;
+  line-height:1.25;
+  transform:rotate(9deg);
+}
+
+/* COLLECTION STRIP */
+.collection-strip{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  padding:0 27px 28px;
+}
+.collection-card{
+  height:115px;
+  position:relative;
+  overflow:hidden;
+  border-radius:7px;
+  background:#ead5dc;
+}
+.collection-card img{
+  height:100%;
+  transition:.5s;
+}
+.collection-card:hover img{transform:scale(1.06)}
+.collection-card:after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(45,15,31,.65),transparent 75%);
+}
+.collection-card span{
+  position:absolute;
+  z-index:1;
+  left:11px;bottom:10px;
+  color:white;
+  font-family:"Playfair Display",serif;
+  font-size:15px;
+}
+
+/* PRODUCTS */
+.products-section{
+  padding:30px 27px 38px;
+  background:#fff1f4;
+}
+.section-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:18px;
+}
+.filter-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:20px;
+}
+.filter-tabs button{
+  border:1px solid #e7cbd5;
+  background:transparent;
+  color:#826b75;
+  padding:7px 11px;
+  border-radius:30px;
+  font-size:8px;
+  transition:.2s;
+}
+.filter-tabs button.active,
+.filter-tabs button:hover{
+  background:var(--cerise);
+  border-color:var(--cerise);
+  color:white;
+}
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.product-card{
+  min-width:0;
+  background:var(--paper);
+  border:1px solid #f0dce3;
+  border-radius:9px;
+  padding:8px;
+  transition:.3s;
+}
+.product-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 25px rgba(95,29,57,.09);
+}
+.product-image{
+  height:155px;
+  border-radius:6px;
+  position:relative;
+  overflow:hidden;
+  background:#f2dfe6;
+}
+.product-image img{
+  height:100%;
+  transition:.4s;
+}
+.product-card:hover .product-image img{transform:scale(1.05)}
+.product-tag{
+  position:absolute;
+  top:8px;left:8px;
+  background:white;
+  color:var(--cerise);
+  padding:5px 7px;
+  border-radius:3px;
+  font-size:7px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+.product-info{padding:10px 3px 3px}
+.product-category{
+  color:var(--muted);
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.product-info h3{
+  font-family:"Playfair Display",serif;
+  font-size:15px;
+  font-weight:500;
+  margin:5px 0;
+}
+.product-info p{
+  color:var(--muted);
+  font-size:8px;
+  line-height:1.6;
+  min-height:25px;
+}
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+  margin-top:10px;
+}
+.product-price{
+  color:var(--berry);
+  font-size:11px;
+  font-weight:700;
+}
+.add-btn{
+  border:0;
+  border-radius:4px;
+  padding:7px 9px;
+  background:var(--cerise);
+  color:white;
+  font-size:8px;
+  font-weight:700;
+  transition:.2s;
+}
+.add-btn:hover{background:var(--cerise-dark)}
+.product-rating{
+  color:#c77b38;
+  font-size:8px;
+  margin-top:5px;
+}
+
+/* BRAND MESSAGE */
+.brand-message{
+  padding:38px 28px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:20px;
+  background:var(--paper);
+}
+.brand-message img{
+  height:190px;
+  border-radius:8px;
+}
+.brand-message h2{
+  font-family:"Playfair Display",serif;
+  font-size:29px;
+  line-height:1.2;
+  font-weight:500;
+  margin:9px 0;
+}
+.brand-message p{
+  font-size:9px;
+  color:var(--muted);
+  line-height:1.9;
+  margin-bottom:14px;
+}
+
+/* NEWSLETTER */
+.newsletter{
+  padding:35px 25px;
+  background:var(--berry);
+  color:white;
+  text-align:center;
+}
+.newsletter h2{
+  font-family:"Playfair Display",serif;
+  font-size:27px;
+  font-weight:400;
+}
+.newsletter p{
+  color:#e3c3d0;
+  font-size:9px;
+  margin:8px 0 17px;
+}
+.newsletter-form{
+  max-width:370px;
+  display:flex;
+  margin:auto;
+  gap:6px;
+}
+.newsletter-form input{
+  flex:1;min-width:0;
+  padding:11px 12px;
+  border:1px solid #87506a;
+  background:#6a2948;
+  color:white;
+  border-radius:4px;
+  outline:none;
+  font-size:9px;
+}
+.newsletter-form input::placeholder{color:#d9b8c7}
+.newsletter-form button{
+  border:0;border-radius:4px;
+  background:#f5c4d5;
+  color:var(--berry);
+  padding:0 13px;
+  font-size:9px;
+  font-weight:700;
+}
+
+/* FOOTER */
+.footer{
+  padding:30px 27px 18px;
+  background:#fff8f8;
+}
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  padding-bottom:23px;
+}
+.footer-brand p{
+  max-width:200px;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.8;
+  margin-top:10px;
+}
+.footer-columns{display:flex;gap:30px}
+.footer-column h4{
+  font-size:9px;
+  margin-bottom:11px;
+}
+.footer-column a{
+  display:block;
+  color:var(--muted);
+  font-size:8px;
+  margin-top:9px;
+}
+.footer-column a:hover{color:var(--cerise)}
+.footer-bottom{
+  border-top:1px solid var(--line);
+  padding-top:13px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  color:var(--muted);
+  font-size:8px;
+}
+
+/* CART DRAWER */
+.cart-overlay{
+  position:fixed;inset:0;
+  z-index:100;
+  background:rgba(35,13,25,.45);
+  opacity:0;visibility:hidden;
+  transition:.3s;
+}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-drawer{
+  position:absolute;right:0;top:0;
+  height:100%;width:min(390px,92%);
+  padding:25px;
+  background:var(--paper);
+  transform:translateX(100%);
+  transition:.3s;
+  overflow:auto;
+}
+.cart-overlay.open .cart-drawer{transform:translateX(0)}
+.cart-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.cart-head h3{
+  font-family:"Playfair Display",serif;
+  font-size:25px;
+}
+.close-cart{
+  border:0;background:none;
+  color:var(--cerise);font-size:25px;
+}
+.cart-items{margin:22px 0}
+.cart-line{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid var(--line);
+  font-size:10px;
+}
+.cart-line small{
+  display:block;color:var(--muted);
+  margin-top:5px;
+}
+.cart-line button{
+  border:0;background:none;
+  color:var(--cerise);
+  font-size:9px;margin-top:5px;
+}
+.cart-total{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  font-weight:700;
+  margin:20px 0;
+}
+.cart-empty{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
+}
+.toast{
+  position:fixed;
+  z-index:150;
+  bottom:22px;left:50%;
+  transform:translate(-50%,20px);
+  background:var(--berry);
+  color:white;
+  padding:12px 20px;
+  border-radius:6px;
+  font-size:10px;
+  opacity:0;visibility:hidden;
+  transition:.3s;
+}
+.toast.show{
+  opacity:1;visibility:visible;
+  transform:translate(-50%,0);
+}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .page-shell{width:calc(100% - 35px)}
+  .journal-panel{width:60%}
+  .shop-panel{width:76%}
+  .nav-links{gap:12px}
+  .header{padding:0 18px}
+  .product-image{height:130px}
+}
+@media(max-width:760px){
+  .page-shell{width:100%;margin:0}
+  .journal-panel{
+    position:relative;
+    width:100%;min-height:auto;
+    padding:45px 18px;
+    border-radius:0;
+  }
+  .shop-panel{
+    width:100%;top:0;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .container{width:calc(100% - 36px)}
+  .header{padding:0 18px}
+  .menu-toggle{display:block}
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:68px;left:0;right:0;
+    background:var(--paper);
+    padding:18px 25px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:17px;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-links.open{display:flex}
+  .header-actions{margin-left:auto;margin-right:15px}
+  .shop-intro{padding:32px 20px 25px}
+  .shop-intro h1{font-size:38px}
+  .collection-strip{padding:0 20px 25px}
+  .products-section{padding:30px 20px}
+  .brand-message{padding:32px 20px}
+  .footer-top{flex-direction:column}
+}
+@media(max-width:480px){
+  .journal-panel{padding:38px 15px}
+  .post-feature{grid-template-columns:1fr}
+  .post-feature img{height:190px}
+  .post-feature h3{font-size:25px}
+  .post-products{gap:7px}
+  .mini-product img{height:90px}
+  .mini-product h4{font-size:10px}
+  .shop-intro{align-items:center}
+  .shop-intro h1{font-size:34px}
+  .intro-stamp{width:70px;height:70px;font-size:11px}
+  .collection-card{height:95px}
+  .collection-card span{font-size:12px;left:7px}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:9px}
+  .product-image{height:145px}
+  .product-info h3{font-size:14px}
+  .product-bottom{align-items:flex-start;flex-direction:column}
+  .add-btn{width:100%}
+  .brand-message{grid-template-columns:1fr}
+  .brand-message img{height:200px}
+  .section-title{font-size:29px}
+  .footer-columns{gap:23px}
+  .footer-bottom{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+<div class="page-shell">
+
+  <!-- LEFT EDITORIAL PANEL -->
+  <aside class="journal-panel" id="journal">
+
+    <div class="journal-heading">
+      <span class="kicker">The Éclora Journal</span>
+      <h2>A little beauty, a lot of you.</h2>
+      <p>Thoughtful rituals, skin discoveries and everyday moments<br>of feeling good in your own skin.</p>
+    </div>
+
+    <!-- LONG POST 01 -->
+    <article class="journal-post">
+      <div class="post-top">
+        <span class="post-label">01 / The skincare edit</span>
+        <span class="post-number">01</span>
+      </div>
+
+      <div class="post-feature">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=85" alt="Minimal skincare products">
+        <div>
+          <span class="kicker">Your daily ritual</span>
+          <h3>Skin first.<br>Everything else follows.</h3>
+          <p>Build a routine that feels effortless. Hydration, gentle care and ingredients your skin will love.</p>
+          <a href="#products" class="text-link">Explore skincare ↗</a>
+        </div>
+      </div>
+
+      <div class="post-products">
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=350&q=85" alt="Skincare serum">
+          <h4>Glow Serum</h4>
+          <span>Hydration · $24</span>
+        </div>
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=350&q=85" alt="Face cream">
+          <h4>Cloud Cream</h4>
+          <span>Moisturizer · $29</span>
+        </div>
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=350&q=85" alt="Beauty skincare">
+          <h4>Daily Cleanse</h4>
+          <span>Cleanser · $18</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- LONG POST 02 -->
+    <article class="journal-post">
+      <div class="post-top">
+        <span class="post-label">02 / The wellness edit</span>
+        <span class="post-number">02</span>
+      </div>
+
+      <div class="post-feature">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=700&q=85" alt="Relaxing wellness spa">
+        <div>
+          <span class="kicker">Slow down, feel good</span>
+          <h3>Your moment.<br>Your own kind of calm.</h3>
+          <p>Little rituals can change the rhythm of your day. Make room for rest, care and a softer routine.</p>
+          <a href="#products" class="text-link">Discover wellness ↗</a>
+        </div>
+      </div>
+
+      <div class="post-products">
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=350&q=85" alt="Body care oil">
+          <h4>Body Elixir</h4>
+          <span>Body care · $26</span>
+        </div>
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=350&q=85" alt="Wellness candle">
+          <h4>Soft Glow</h4>
+          <span>Home ritual · $21</span>
+        </div>
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=350&q=85" alt="Beauty essentials">
+          <h4>Ritual Set</h4>
+          <span>Gift set · $39</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="journal-note">
+      <span>A note from Éclora</span>
+      <h3>Beauty isn't about becoming someone else.</h3>
+      <p>It's about finding little ways to feel more like yourself. Every single day.</p>
+    </div>
+
+    <!-- JOURNAL POST 03 -->
+    <article class="journal-post">
+      <div class="post-top">
+        <span class="post-label">03 / Beauty notes</span>
+        <span class="post-number">03</span>
+      </div>
+      <div class="post-feature">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85" alt="Lifestyle accessories">
+        <div>
+          <span class="kicker">Little things matter</span>
+          <h3>Make everyday feel special.</h3>
+          <p>From your morning routine to your evening reset, discover the details that make self-care yours.</p>
+          <a href="#products" class="text-link">Shop the edit ↗</a>
+        </div>
+      </div>
+    </article>
+
+  </aside>
+
+  <!-- RIGHT SHOP PANEL -->
+  <main class="shop-panel">
+
+    <header class="header">
+      <a href="#home" class="brand">
+        <span class="brand-symbol">✳</span>
+        <span class="brand-name">ÉCL<span>ORA</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#products">Shop</a></li>
+          <li><a href="#journal">Journal</a></li>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#newsletter">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-button" id="openCart" aria-label="Open cart">
+          ♡ <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </header>
+
+    <!-- EDITORIAL SHOP INTRO -->
+    <section class="shop-intro" id="home">
+      <div>
+        <span class="kicker">A considered beauty collection</span>
+        <h1>Feel good.<br><span>Look like you.</span></h1>
+        <p>Beauty essentials and feel-good rituals, thoughtfully selected to bring a little more joy to your everyday.</p>
+      </div>
+      <div class="intro-stamp">Beauty<br>in your<br>own way ✳</div>
+    </section>
+
+    <!-- COLLECTIONS -->
+    <section class="collection-strip">
+      <a href="#products" class="collection-card">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=500&q=85" alt="Skincare collection">
+        <span>Skincare</span>
+      </a>
+      <a href="#products" class="collection-card">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=500&q=85" alt="Makeup collection">
+        <span>Makeup</span>
+      </a>
+      <a href="#products" class="collection-card">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=85" alt="Wellness collection">
+        <span>Wellness</span>
+      </a>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products-section" id="products">
+      <div class="section-top">
+        <div>
+          <span class="kicker">The good stuff</span>
+          <h2 class="section-title">Find your favourites.</h2>
+          <p class="description">A little something for your everyday ritual.</p>
+        </div>
+      </div>
+
+      <div class="filter-tabs" id="filterTabs">
+        <button class="active" data-filter="All">All products</button>
+        <button data-filter="Skincare">Skincare</button>
+        <button data-filter="Makeup">Makeup</button>
+        <button data-filter="Body">Body care</button>
+        <button data-filter="Wellness">Wellness</button>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <!-- BRAND STORY -->
+    <section class="brand-message" id="about">
+      <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=800&q=85" alt="Beauty products arranged elegantly">
+      <div>
+        <span class="kicker">The Éclora philosophy</span>
+        <h2>Care that feels like you.</h2>
+        <p>We believe beauty should feel personal, uncomplicated and full of possibility. That's why we bring together thoughtful essentials for skin, body and everyday wellbeing.</p>
+        <a href="#journal" class="text-link">Get to know us ↗</a>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="newsletter">
+      <span class="kicker" style="color:#f3b9cf">A little love in your inbox</span>
+      <h2>Stay in the glow.</h2>
+      <p>New arrivals, beauty notes and little treats. No noise, just good things.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Join us ↗</button>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" class="brand">
+            <span class="brand-symbol">✳</span>
+            <span class="brand-name">ÉCL<span>ORA</span></span>
+          </a>
+          <p>Thoughtful beauty. Everyday rituals. A little more you, every day.</p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-column">
+            <h4>Discover</h4>
+            <a href="#products">Shop all</a>
+            <a href="#journal">Beauty journal</a>
+            <a href="#about">Our story</a>
+          </div>
+          <div class="footer-column">
+            <h4>Need help?</h4>
+            <a href="#newsletter">Contact us</a>
+            <a href="#newsletter">Shipping</a>
+            <a href="#newsletter">FAQs</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Éclora Beauty. All rights reserved.</span>
+        <span>Made for your everyday rituals ✳</span>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay">
+  <aside class="cart-drawer">
+    <div class="cart-head">
+      <h3>Your beauty bag</h3>
+      <button class="close-cart" id="closeCart" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your beauty bag is waiting for something lovely.</p>
+    </div>
+    <div class="cart-total">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <button class="primary-btn" id="checkoutBtn" style="width:100%">Continue to checkout ↗</button>
+    <p style="font-size:9px;color:var(--muted);line-height:1.7;margin-top:12px">
+      Demo store — connect a payment provider to accept real orders.
+    </p>
+  </aside>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+  {
+    name:"Dew Drop Serum",
+    category:"Skincare",
+    description:"A lightweight serum for a fresh, hydrated look.",
+    price:24,
+    tag:"Bestseller",
+    image:"https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=500&q=85"
+  },
+  {
+    name:"Cloud Nine Cream",
+    category:"Skincare",
+    description:"A comforting daily moisturizer for soft skin.",
+    price:29,
+    tag:"Daily essential",
+    image:"https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=500&q=85"
+  },
+  {
+    name:"Velvet Lip Tint",
+    category:"Makeup",
+    description:"A soft wash of colour with a velvet finish.",
+    price:18,
+    tag:"New",
+    image:"https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=500&q=85"
+  },
+  {
+    name:"Rose Glow Palette",
+    category:"Makeup",
+    description:"Warm rosy shades for effortless everyday looks.",
+    price:32,
+    tag:"Editor's pick",
+    image:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=500&q=85"
+  },
+  {
+    name:"Silk Body Oil",
+    category:"Body",
+    description:"A silky body oil for a soft, luminous finish.",
+    price:26,
+    tag:"Loved",
+    image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=500&q=85"
+  },
+  {
+    name:"The Reset Candle",
+    category:"Wellness",
+    description:"A gentle fragrance for slower evenings.",
+    price:21,
+    tag:"Feel-good",
+    image:"https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=500&q=85"
+  },
+  {
+    name:"Pure Cleanser",
+    category:"Skincare",
+    description:"A gentle daily cleanse without the fuss.",
+    price:19,
+    tag:"Everyday",
+    image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=500&q=85"
+  },
+  {
+    name:"Soft Touch Lotion",
+    category:"Body",
+    description:"A nourishing lotion for daily body care.",
+    price:23,
+    tag:"New",
+    image:"https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=500&q=85"
+  },
+  {
+    name:"Sunday Ritual Set",
+    category:"Wellness",
+    description:"A thoughtful collection for your reset routine.",
+    price:39,
+    tag:"Gift idea",
+    image:"https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=85"
+  }
+];
+
+const productGrid = document.getElementById("productGrid");
+const cart = [];
+
+function renderProducts(filter="All"){
+  const filtered = filter==="All"
+    ? products
+    : products.filter(product=>product.category===filter);
+
+  productGrid.innerHTML = filtered.map(product=>`
+    <article class="product-card">
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.name}" loading="lazy">
+        <span class="product-tag">${product.tag}</span>
+      </div>
+      <div class="product-info">
+        <span class="product-category">${product.category}</span>
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <div class="product-rating">★★★★★ <span style="color:#927d86"> (4.9)</span></div>
+        <div class="product-bottom">
+          <span class="product-price">$${product.price.toFixed(2)}</span>
+          <button class="add-btn" data-add="${product.name}">Add to bag +</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+renderProducts();
+
+/* FILTERS */
+document.getElementById("filterTabs").addEventListener("click",event=>{
+  const button=event.target.closest("[data-filter]");
+  if(!button)return;
+
+  document.querySelectorAll("#filterTabs button").forEach(btn=>btn.classList.remove("active"));
+  button.classList.add("active");
+  renderProducts(button.dataset.filter);
+});
+
+/* CART */
+function addToCart(name){
+  const product=products.find(item=>item.name===name);
+  if(!product)return;
+
+  const existing=cart.find(item=>item.name===name);
+  if(existing)existing.quantity++;
+  else cart.push({...product,quantity:1});
+
+  updateCart();
+  showToast(`${name} added to your beauty bag`);
+}
+
+function updateCart(){
+  const count=cart.reduce((sum,item)=>sum+item.quantity,0);
+  const total=cart.reduce((sum,item)=>sum+item.price*item.quantity,0);
+
+  document.getElementById("cartCount").textContent=count;
+  document.getElementById("cartTotal").textContent=`$${total.toFixed(2)}`;
+
+  const cartItems=document.getElementById("cartItems");
+
+  if(!cart.length){
+    cartItems.innerHTML='<p class="cart-empty">Your beauty bag is waiting for something lovely.</p>';
+    return;
+  }
+
+  cartItems.innerHTML=cart.map(item=>`
+    <div class="cart-line">
+      <div>
+        <strong>${item.name}</strong>
+        <small>$${item.price.toFixed(2)} × ${item.quantity}</small>
+      </div>
+      <div style="text-align:right">
+        <strong>$${(item.price*item.quantity).toFixed(2)}</strong>
+        <button data-remove="${item.name}">Remove</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+document.addEventListener("click",event=>{
+  const add=event.target.closest("[data-add]");
+  const remove=event.target.closest("[data-remove]");
+
+  if(add)addToCart(add.dataset.add);
+
+  if(remove){
+    const index=cart.findIndex(item=>item.name===remove.dataset.remove);
+    if(index!==-1)cart.splice(index,1);
+    updateCart();
+  }
+});
+
+const cartOverlay=document.getElementById("cartOverlay");
+document.getElementById("openCart").addEventListener("click",()=>cartOverlay.classList.add("open"));
+document.getElementById("closeCart").addEventListener("click",()=>cartOverlay.classList.remove("open"));
+
+cartOverlay.addEventListener("click",event=>{
+  if(event.target===cartOverlay)cartOverlay.classList.remove("open");
+});
+
+document.getElementById("checkoutBtn").addEventListener("click",()=>{
+  showToast(cart.length?"Demo checkout — connect a payment provider to continue.":"Your beauty bag is empty.");
+});
+
+/* MOBILE MENU */
+const menuToggle=document.getElementById("menuToggle");
+const navLinks=document.getElementById("navLinks");
+
+menuToggle.addEventListener("click",()=>{
+  const open=navLinks.classList.toggle("open");
+  menuToggle.textContent=open?"×":"☰";
+  menuToggle.setAttribute("aria-expanded",open);
+});
+
+navLinks.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    navLinks.classList.remove("open");
+    menuToggle.textContent="☰";
+    menuToggle.setAttribute("aria-expanded","false");
+  });
+});
+
+/* NEWSLETTER DEMO */
+document.getElementById("newsletterForm").addEventListener("submit",event=>{
+  event.preventDefault();
+  showToast("Thank you for joining the Éclora circle!");
+  event.currentTarget.reset();
+});
+
+/* TOAST */
+let toastTimer;
+function showToast(message){
+  const toast=document.getElementById("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toast.classList.remove("show"),2600);
+}
+
+/* FOOTER */
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

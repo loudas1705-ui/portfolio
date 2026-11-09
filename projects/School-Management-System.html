@@ -1,0 +1,1459 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UDUCER — School Management System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #17243B;
+  --navy-light: #263754;
+  --blue: #4169E1;
+  --blue-light: #EAF0FF;
+  --cyan: #72C6E8;
+  --ink: #202B3C;
+  --muted: #8993A3;
+  --line: #E9EDF3;
+  --bg: #F5F7FA;
+  --white: #FFFFFF;
+  --green: #32A879;
+  --orange: #E5A44D;
+  --red: #E36C70;
+  --font: 'DM Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 250px;
+  background: var(--navy);
+  color: white;
+  padding: 30px 19px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-height: 100vh;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px 42px;
+}
+
+.logo-mark {
+  width: 37px;
+  height: 37px;
+  background: var(--blue);
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.logo h2 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #8CA9FF;
+}
+
+.sidebar-label {
+  padding: 0 13px;
+  color: #78869E;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 13px;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav-item {
+  border: 0;
+  background: transparent;
+  color: #AAB5C7;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 14px;
+  border-radius: 9px;
+  text-align: left;
+  font-size: 12px;
+  transition: .25s;
+}
+
+.nav-item .nav-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #2B3B57;
+  color: white;
+}
+
+.nav-item.active {
+  box-shadow: inset 3px 0 var(--cyan);
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.help-card {
+  background: #263754;
+  border-radius: 12px;
+  padding: 17px;
+  margin-top: 35px;
+}
+
+.help-card strong {
+  font-size: 12px;
+}
+
+.help-card p {
+  color: #AAB5C7;
+  font-size: 10px;
+  line-height: 1.7;
+  margin: 8px 0 15px;
+}
+
+.help-card a {
+  color: #91B4FF;
+  font-size: 10px;
+}
+
+/* MAIN */
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 0 38px 40px;
+}
+
+.topbar {
+  min-height: 92px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  gap: 20px;
+}
+
+.page-heading h1 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.page-heading p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search {
+  position: relative;
+}
+
+.search input {
+  width: 210px;
+  padding: 11px 15px 11px 36px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  font-size: 11px;
+}
+
+.search span {
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  color: var(--muted);
+}
+
+.notification {
+  position: relative;
+  border: 0;
+  background: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  font-size: 17px;
+}
+
+.notification::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 1px solid white;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 37px;
+  height: 37px;
+  background: #DDE6FA;
+  color: var(--blue);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.profile-info strong {
+  display: block;
+  font-size: 11px;
+}
+
+.profile-info span {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* PAGE CONTENT */
+
+.content {
+  padding-top: 31px;
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 27px;
+  gap: 20px;
+}
+
+.welcome h2 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 24px;
+  letter-spacing: -.7px;
+}
+
+.welcome p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 7px;
+}
+
+.primary-btn {
+  background: var(--blue);
+  color: white;
+  border: 0;
+  border-radius: 7px;
+  padding: 12px 18px;
+  font-size: 11px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.primary-btn:hover {
+  background: #3156C5;
+  transform: translateY(-2px);
+}
+
+/* STATS */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+  margin-bottom: 23px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+}
+
+.stat-icon.blue { background: #EAF0FF; color: #4169E1; }
+.stat-icon.green { background: #E4F5EE; color: #32A879; }
+.stat-icon.orange { background: #FFF2E1; color: #D99A3D; }
+.stat-icon.purple { background: #F0EAFF; color: #8D6DD7; }
+
+.stat-change {
+  font-size: 9px;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.stat-card h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 27px;
+  margin-top: 17px;
+}
+
+.stat-card p {
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+/* PANELS */
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 23px;
+  min-width: 0;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.panel-header h3 {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.panel-header p {
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 5px;
+}
+
+.select-small {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 8px 11px;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* ATTENDANCE CHART */
+
+.chart-area {
+  height: 210px;
+  display: flex;
+  gap: 17px;
+}
+
+.y-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #A1A9B5;
+  font-size: 9px;
+  padding-bottom: 22px;
+}
+
+.chart {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  position: relative;
+  padding-bottom: 22px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 49px,
+    #EDF0F5 50px
+  );
+}
+
+.bar-group {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  position: relative;
+}
+
+.bar {
+  width: 13px;
+  border-radius: 4px 4px 0 0;
+  background: #DCE5FF;
+  transition: height .5s;
+}
+
+.bar.primary {
+  background: var(--blue);
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -21px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: var(--muted);
+}
+
+/* ATTENDANCE SUMMARY */
+
+.attendance-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px 0 15px;
+}
+
+.donut {
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--blue) 0 76%,
+    #72C6E8 76% 91%,
+    #E9EDF3 91% 100%
+  );
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.donut::before {
+  content: "";
+  position: absolute;
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  background: white;
+}
+
+.donut-center {
+  position: relative;
+  text-align: center;
+}
+
+.donut-center strong {
+  display: block;
+  font-size: 25px;
+}
+
+.donut-center span {
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--blue);
+}
+
+.legend-dot.cyan { background: #72C6E8; }
+.legend-dot.grey { background: #E9EDF3; }
+
+.legend-item strong {
+  color: var(--ink);
+  margin-left: 4px;
+}
+
+/* LOWER GRID */
+
+.lower-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 18px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  padding: 12px 9px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--line);
+}
+
+td {
+  padding: 14px 9px;
+  font-size: 10px;
+  border-bottom: 1px solid #F0F2F5;
+}
+
+.student {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.student-avatar {
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #EAF0FF;
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.student strong {
+  font-size: 10px;
+}
+
+.student small {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.present { background: #E5F5ED; color: #27966A; }
+.absent { background: #FCEAEA; color: #D25C61; }
+.late { background: #FFF3E1; color: #C58A35; }
+
+/* SCHEDULE */
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: 60px 4px 1fr;
+  gap: 13px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.schedule-time {
+  font-size: 9px;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.schedule-color {
+  background: var(--blue);
+  border-radius: 5px;
+}
+
+.schedule-item:nth-child(2) .schedule-color { background: var(--cyan); }
+.schedule-item:nth-child(3) .schedule-color { background: var(--orange); }
+.schedule-item:nth-child(4) .schedule-color { background: #9879D8; }
+
+.schedule-info strong {
+  display: block;
+  font-size: 11px;
+}
+
+.schedule-info span {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 5px;
+}
+
+/* COURSES */
+
+.courses {
+  margin-top: 20px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.course-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: transform .3s;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+.course-image {
+  height: 130px;
+  position: relative;
+}
+
+.course-image img {
+  height: 100%;
+}
+
+.course-image span {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 9px;
+  background: rgba(15,20,30,.8);
+  color: white;
+  font-size: 9px;
+  border-radius: 4px;
+}
+
+.course-info {
+  padding: 16px;
+}
+
+.course-info h4 {
+  font-size: 12px;
+}
+
+.course-info p {
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 7px;
+}
+
+.progress {
+  height: 4px;
+  background: #EEF0F5;
+  border-radius: 5px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--blue);
+  border-radius: 5px;
+}
+
+/* FOOTER */
+
+.footer {
+  margin-top: 35px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.footer span {
+  color: var(--blue);
+}
+
+/* PAGE FILTER */
+
+.dashboard-view {
+  display: none;
+}
+
+.dashboard-view.active {
+  display: block;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1100px) {
+  .sidebar { width: 215px; }
+  .main { padding: 0 24px 30px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .panel-grid, .lower-grid { grid-template-columns: 1fr; }
+}
+
+@media(max-width: 750px) {
+  .sidebar {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    z-index: 200;
+    width: 250px;
+    transition: left .3s;
+  }
+
+  .sidebar.open { left: 0; }
+
+  .main {
+    width: 100%;
+    padding: 0 17px 25px;
+  }
+
+  .topbar { min-height: 75px; }
+
+  .top-actions { gap: 10px; }
+
+  .search { display: none; }
+
+  .profile-info { display: none; }
+
+  .welcome {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .stats-grid { gap: 10px; }
+
+  .stat-card { padding: 15px; }
+
+  .stat-card h3 { font-size: 22px; }
+
+  .attendance-summary { gap: 17px; }
+
+  .donut {
+    width: 120px;
+    height: 120px;
+  }
+
+  .donut::before {
+    width: 88px;
+    height: 88px;
+  }
+
+  .course-grid { grid-template-columns: 1fr; }
+
+  .footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media(max-width: 400px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .stat-card h3 { font-size: 20px; }
+  .stat-change { font-size: 8px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+      <div class="logo-mark">U</div>
+      <h2>UDUCER<span>.</span></h2>
+    </div>
+
+    <p class="sidebar-label">Main Menu</p>
+
+    <nav class="nav-list">
+      <button class="nav-item active" data-view="overview">
+        <span class="nav-icon">▦</span> Dashboard
+      </button>
+
+      <button class="nav-item" data-view="students">
+        <span class="nav-icon">♙</span> Students
+      </button>
+
+      <button class="nav-item" data-view="teachers">
+        <span class="nav-icon">♧</span> Teachers
+      </button>
+
+      <button class="nav-item" data-view="attendance">
+        <span class="nav-icon">◷</span> Attendance
+      </button>
+
+      <button class="nav-item" data-view="grades">
+        <span class="nav-icon">▤</span> Grades
+      </button>
+
+      <button class="nav-item" data-view="courses">
+        <span class="nav-icon">▣</span> Courses
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <p class="sidebar-label">Support</p>
+
+      <nav class="nav-list">
+        <button class="nav-item" data-view="settings">
+          <span class="nav-icon">⚙</span> Settings
+        </button>
+      </nav>
+
+      <div class="help-card">
+        <strong>Need assistance?</strong>
+        <p>Find help with your school administration workspace.</p>
+        <a href="mailto:suppor@uducer.demo">Contact support ↗</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:15px;">
+        <button id="sidebarToggle" class="notification" aria-label="Open menu">☰</button>
+        <div class="page-heading">
+          <h1 id="pageTitle">Dashboard</h1>
+          <p>School Administration / Overview</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <div class="search">
+          <span>⌕</span>
+          <input type="search" id="globalSearch" placeholder="Search students...">
+        </div>
+
+        <button class="notification" aria-label="Notifications">♧</button>
+
+        <div class="profile">
+          <div class="avatar">AM</div>
+          <div class="profile-info">
+            <strong>Alex Morgan</strong>
+            <span>Administrator</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <section class="dashboard-view active" id="overview">
+
+        <div class="welcome">
+          <div>
+            <h2>Good morning, Alex 👋</h2>
+            <p>Here's what's happening at your school today.</p>
+          </div>
+
+          <button class="primary-btn" id="reportBtn">＋ Generate Report</button>
+        </div>
+
+        <!-- STATISTICS -->
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-icon blue">♙</div>
+              <span class="stat-change">↑ 8.2%</span>
+            </div>
+            <h3>2,840</h3>
+            <p>Total Students</p>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-icon green">♧</div>
+              <span class="stat-change">↑ 4.5%</span>
+            </div>
+            <h3>186</h3>
+            <p>Teaching Staff</p>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-icon orange">◷</div>
+              <span class="stat-change">↑ 2.1%</span>
+            </div>
+            <h3>94.8%</h3>
+            <p>Attendance Rate</p>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-icon purple">▣</div>
+              <span class="stat-change">Active</span>
+            </div>
+            <h3>64</h3>
+            <p>Active Courses</p>
+          </div>
+
+        </div>
+
+        <!-- CHARTS -->
+        <div class="panel-grid">
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Attendance Overview</h3>
+                <p>Weekly attendance statistics</p>
+              </div>
+
+              <select class="select-small" id="chartPeriod">
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+              </select>
+            </div>
+
+            <div class="chart-area">
+              <div class="y-labels">
+                <span>100%</span>
+                <span>75%</span>
+                <span>50%</span>
+                <span>25%</span>
+                <span>0%</span>
+              </div>
+
+              <div class="chart" id="attendanceChart">
+                <div class="bar-group">
+                  <div class="bar primary" style="height:83%"></div>
+                  <div class="bar" style="height:70%"></div>
+                  <span class="bar-label">Mon</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar primary" style="height:91%"></div>
+                  <div class="bar" style="height:77%"></div>
+                  <span class="bar-label">Tue</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar primary" style="height:78%"></div>
+                  <div class="bar" style="height:65%"></div>
+                  <span class="bar-label">Wed</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar primary" style="height:95%"></div>
+                  <div class="bar" style="height:81%"></div>
+                  <span class="bar-label">Thu</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar primary" style="height:88%"></div>
+                  <div class="bar" style="height:75%"></div>
+                  <span class="bar-label">Fri</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar primary" style="height:72%"></div>
+                  <div class="bar" style="height:60%"></div>
+                  <span class="bar-label">Sat</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Student Attendance</h3>
+                <p>Today's attendance distribution</p>
+              </div>
+              <span style="font-size:10px;color:var(--green);">● Live demo</span>
+            </div>
+
+            <div class="attendance-summary">
+              <div class="donut">
+                <div class="donut-center">
+                  <strong>94.8%</strong>
+                  <span>Attendance</span>
+                </div>
+              </div>
+
+              <div class="legend">
+                <div class="legend-item">
+                  <span class="legend-dot"></span>
+                  Present <strong>76%</strong>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot cyan"></span>
+                  Late <strong>15%</strong>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot grey"></span>
+                  Absent <strong>9%</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TABLES -->
+        <div class="lower-grid">
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Recent Attendance</h3>
+                <p>Student attendance records</p>
+              </div>
+              <button class="select-small" data-open="attendance">View All ↗</button>
+            </div>
+
+            <div class="table-wrap">
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>STUDENT</th>
+                    <th>CLASS</th>
+                    <th>TIME</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td><div class="student"><div class="student-avatar">OM</div><div><strong>Olivia Martin</strong><small>ST-1024</small></div></div></td>
+                    <td>Grade 10-A</td>
+                    <td>08:02 AM</td>
+                    <td><span class="status present">Present</span></td>
+                  </tr>
+
+                  <tr>
+                    <td><div class="student"><div class="student-avatar">JW</div><div><strong>James Wilson</strong><small>ST-1025</small></div></div></td>
+                    <td>Grade 11-B</td>
+                    <td>08:17 AM</td>
+                    <td><span class="status late">Late</span></td>
+                  </tr>
+
+                  <tr>
+                    <td><div class="student"><div class="student-avatar">SC</div><div><strong>Sophia Clark</strong><small>ST-1026</small></div></div></td>
+                    <td>Grade 9-C</td>
+                    <td>08:05 AM</td>
+                    <td><span class="status present">Present</span></td>
+                  </tr>
+
+                  <tr>
+                    <td><div class="student"><div class="student-avatar">EB</div><div><strong>Ethan Brown</strong><small>ST-1027</small></div></div></td>
+                    <td>Grade 12-A</td>
+                    <td>—</td>
+                    <td><span class="status absent">Absent</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Today's Schedule</h3>
+                <p>Upcoming school activities</p>
+              </div>
+              <span style="font-size:10px;color:var(--blue);">Monday, 02 Nov</span>
+            </div>
+
+            <div class="schedule-list">
+              <div class="schedule-item">
+                <span class="schedule-time">08:00 AM</span>
+                <div class="schedule-color"></div>
+                <div class="schedule-info">
+                  <strong>Mathematics</strong>
+                  <span>Grade 10-A · Room 204</span>
+                </div>
+              </div>
+
+              <div class="schedule-item">
+                <span class="schedule-time">09:30 AM</span>
+                <div class="schedule-color"></div>
+                <div class="schedule-info">
+                  <strong>Physics</strong>
+                  <span>Grade 11-B · Lab 02</span>
+                </div>
+              </div>
+
+              <div class="schedule-item">
+                <span class="schedule-time">11:00 AM</span>
+                <div class="schedule-color"></div>
+                <div class="schedule-info">
+                  <strong>English Language</strong>
+                  <span>Grade 9-C · Room 108</span>
+                </div>
+              </div>
+
+              <div class="schedule-item">
+                <span class="schedule-time">01:00 PM</span>
+                <div class="schedule-color"></div>
+                <div class="schedule-info">
+                  <strong>Computer Science</strong>
+                  <span>Grade 12-A · Computer Lab</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COURSES -->
+        <div class="panel courses">
+          <div class="panel-header">
+            <div>
+              <h3>Popular Courses</h3>
+              <p>Overview of currently active courses</p>
+            </div>
+            <button class="select-small" data-open="courses">All Courses ↗</button>
+          </div>
+
+          <div class="course-grid">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80" alt="Mathematics">
+                <span>SCIENCE</span>
+              </div>
+              <div class="course-info">
+                <h4>Advanced Mathematics</h4>
+                <p>Mr. Daniel Cooper · 128 students</p>
+                <div class="progress"><span style="width:85%"></span></div>
+              </div>
+            </div>
+
+            <div class="course-card">
+              <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80" alt="Physics">
+                <span>SCIENCE</span>
+              </div>
+              <div class="course-info">
+                <h4>Physics & Experiments</h4>
+                <p>Dr. Sarah Bennett · 96 students</p>
+                <div class="progress"><span style="width:67%"></span></div>
+              </div>
+            </div>
+
+            <div class="course-card">
+              <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80" alt="Literature">
+                <span>HUMANITIES</span>
+              </div>
+              <div class="course-info">
+                <h4>English Literature</h4>
+                <p>Ms. Emily Roberts · 112 students</p>
+                <div class="progress"><span style="width:74%"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- STUDENTS -->
+      <section class="dashboard-view" id="students">
+        <div class="welcome">
+          <div>
+            <h2>Students</h2>
+            <p>Manage student records and enrollment.</p>
+          </div>
+          <button class="primary-btn" onclick="showDemoMessage()">＋ Add Student</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div><h3>Student Directory</h3><p>Registered students · Academic year 2026–2027</p></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>STUDENT</th><th>ID</th><th>CLASS</th><th>EMAIL</th><th>STATUS</th></tr></thead>
+              <tbody>
+                <tr><td>Olivia Martin</td><td>ST-1024</td><td>Grade 10-A</td><td>olivia@example.com</td><td><span class="status present">Active</span></td></tr>
+                <tr><td>James Wilson</td><td>ST-1025</td><td>Grade 11-B</td><td>james@example.com</td><td><span class="status present">Active</span></td></tr>
+                <tr><td>Sophia Clark</td><td>ST-1026</td><td>Grade 9-C</td><td>sophia@example.com</td><td><span class="status present">Active</span></td></tr>
+                <tr><td>Ethan Brown</td><td>ST-1027</td><td>Grade 12-A</td><td>ethan@example.com</td><td><span class="status late">Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEACHERS -->
+      <section class="dashboard-view" id="teachers">
+        <div class="welcome">
+          <div><h2>Teachers</h2><p>Manage teaching staff and departments.</p></div>
+          <button class="primary-btn" onclick="showDemoMessage()">＋ Add Teacher</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header"><div><h3>Teaching Staff</h3><p>Faculty directory</p></div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>TEACHER</th><th>DEPARTMENT</th><th>COURSES</th><th>EMAIL</th><th>STATUS</th></tr></thead>
+              <tbody>
+                <tr><td>Daniel Cooper</td><td>Mathematics</td><td>3</td><td>daniel@example.com</td><td><span class="status present">Active</span></td></tr>
+                <tr><td>Sarah Bennett</td><td>Physics</td><td>2</td><td>sarah@example.com</td><td><span class="status present">Active</span></td></tr>
+                <tr><td>Emily Roberts</td><td>Languages</td><td>4</td><td>emily@example.com</td><td><span class="status present">Active</span></td></tr>
+                <tr><td>Michael Foster</td><td>Computer Science</td><td>3</td><td>michael@example.com</td><td><span class="status present">Active</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATTENDANCE -->
+      <section class="dashboard-view" id="attendance">
+        <div class="welcome">
+          <div><h2>Attendance</h2><p>Daily attendance monitoring and records.</p></div>
+          <button class="primary-btn" onclick="showDemoMessage()">＋ Record Attendance</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon green">✓</div><h3>2,693</h3><p>Present Today</p></div>
+          <div class="stat-card"><div class="stat-icon orange">◷</div><h3>426</h3><p>Late Arrivals</p></div>
+          <div class="stat-card"><div class="stat-icon purple">♙</div><h3>147</h3><p>Absent Today</p></div>
+          <div class="stat-card"><div class="stat-icon blue">%</div><h3>94.8%</h3><p>Attendance Rate</p></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header"><div><h3>Attendance Register</h3><p>Today's student records</p></div><input type="date" class="select-small"></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>STUDENT</th><th>CLASS</th><th>CHECK-IN</th><th>STATUS</th></tr></thead>
+              <tbody>
+                <tr><td>Olivia Martin</td><td>Grade 10-A</td><td>08:02 AM</td><td><span class="status present">Present</span></td></tr>
+                <tr><td>James Wilson</td><td>Grade 11-B</td><td>08:17 AM</td><td><span class="status late">Late</span></td></tr>
+                <tr><td>Sophia Clark</td><td>Grade 9-C</td><td>08:05 AM</td><td><span class="status present">Present</span></td></tr>
+                <tr><td>Ethan Brown</td><td>Grade 12-A</td><td>—</td><td><span class="status absent">Absent</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRADES -->
+      <section class="dashboard-view" id="grades">
+        <div class="welcome">
+          <div><h2>Grades & Results</h2><p>Academic performance and student assessments.</p></div>
+          <button class="primary-btn" onclick="showDemoMessage()">＋ Add Grade</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header"><div><h3>Recent Assessment Results</h3><p>Semester 1 · 2026–2027</p></div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>STUDENT</th><th>SUBJECT</th><th>GRADE</th><th>SCORE</th><th>RESULT</th></tr></thead>
+              <tbody>
+                <tr><td>Olivia Martin</td><td>Mathematics</td><td>A</td><td>94 / 100</td><td><span class="status present">Excellent</span></td></tr>
+                <tr><td>James Wilson</td><td>Physics</td><td>B+</td><td>87 / 100</td><td><span class="status present">Passed</span></td></tr>
+                <tr><td>Sophia Clark</td><td>English</td><td>A-</td><td>91 / 100</td><td><span class="status present">Excellent</span></td></tr>
+                <tr><td>Ethan Brown</td><td>Computer Science</td><td>C</td><td>72 / 100</td><td><span class="status late">Passed</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- COURSES -->
+      <section class="dashboard-view" id="courses">
+        <div class="welcome">
+          <div><h2>Courses</h2><p>Academic programs and learning resources.</p></div>
+          <button class="primary-btn" onclick="showDemoMessage()">＋ Create Course</button>
+        </div>
+
+        <div class="course-grid">
+          <div class="course-card">
+            <div class="course-image"><img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80" alt="Mathematics"><span>SCIENCE</span></div>
+            <div class="course-info"><h4>Advanced Mathematics</h4><p>Daniel Cooper · 128 students</p><div class="progress"><span style="width:85%"></span></div></div>
+          </div>
+          <div class="course-card">
+            <div class="course-image"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80" alt="Physics"><span>SCIENCE</span></div>
+            <div class="course-info"><h4>Physics & Experiments</h4><p>Sarah Bennett · 96 students</p><div class="progress"><span style="width:67%"></span></div></div>
+          </div>
+          <div class="course-card">
+            <div class="course-image"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80" alt="Literature"><span>HUMANITIES</span></div>
+            <div class="course-info"><h4>English Literature</h4><p>Emily Roberts · 112 students</p><div class="progress"><span style="width:74%"></span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="dashboard-view" id="settings">
+        <div class="welcome">
+          <div><h2>Settings</h2><p>Manage your school workspace preferences.</p></div>
+        </div>
+        <div class="panel">
+          <h3 style="font-size:14px;margin-bottom:12px;">School Information</h3>
+          <p style="font-size:11px;color:var(--muted);line-height:2;">UDUCER Academy<br>Academic Year: 2026–2027<br>Administrator: Alex Morgan<br>System Version: 1.0.0 Demo</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>© 2026 UDUCER SCHOOL SYSTEM</p>
+        <p>Designed for <span>better learning.</span></p>
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // Sidebar navigation
+  const navItems = document.querySelectorAll(".nav-item[data-view]");
+  const views = document.querySelectorAll(".dashboard-view");
+  const pageTitle = document.getElementById("pageTitle");
+  const sidebar = document.getElementById("sidebar");
+
+  navItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const target = item.dataset.view;
+
+      navItems.forEach(nav => nav.classList.remove("active"));
+      item.classList.add("active");
+
+      views.forEach(view => view.classList.remove("active"));
+      document.getElementById(target).classList.add("active");
+
+      pageTitle.textContent = item.textContent.trim();
+      sidebar.classList.remove("open");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  // Quick navigation links
+  document.querySelectorAll("[data-open]").forEach(button => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.open;
+      const nav = document.querySelector(`[data-view="${target}"]`);
+      if (nav) nav.click();
+    });
+  });
+
+  // Mobile sidebar
+  document.getElementById("sidebarToggle").addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+  });
+
+  // Student search
+  document.getElementById("globalSearch").addEventListener("input", function() {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll("#studentTable tbody tr").forEach(row => {
+      row.style.display = row.textContent.toLowerCase().includes(query) ? "" : "none";
+    });
+  });
+
+  // Chart period demo
+  document.getElementById("chartPeriod").addEventListener("change", function() {
+    const bars = document.querySelectorAll("#attendanceChart .bar.primary");
+    const values = this.value === "month"
+      ? [90, 85, 95, 82, 93, 88]
+      : [83, 91, 78, 95, 88, 72];
+
+    bars.forEach((bar, index) => {
+      bar.style.height = values[index] + "%";
+    });
+  });
+
+  // Demo actions
+  function showDemoMessage() {
+    alert("This is a visual demonstration. Connect a backend to enable this feature.");
+  }
+
+  document.getElementById("reportBtn").addEventListener("click", () => {
+    window.print();
+  });
+</script>
+
+</body>
+</html>

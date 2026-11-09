@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOLTARA — Objects for Tomorrow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17171d;
+      --dark: #22222c;
+      --blue: #55BFEF;
+      --cyan: #B9E9FF;
+      --paper: #f0eff3;
+      --white: #fff;
+      --muted: #92919e;
+      --line: #dedde5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--paper);
+      color: var(--ink)
+    }
+
+    button,
+    input,
+    select {
+      font: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover
+    }
+
+    .header {
+      height: 76px;
+      background: var(--ink);
+      color: white;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 40
+    }
+
+    .logo {
+      font: 800 27px "Space Grotesk";
+      letter-spacing: -.09em
+    }
+
+    .logo span {
+      color: var(--blue)
+    }
+
+    .nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      font-size: 12px;
+      color: #c4c2cf;
+      font-weight: 600
+    }
+
+    .nav a:hover {
+      color: var(--cyan)
+    }
+
+    .header-right {
+      display: flex;
+      gap: 19px;
+      align-items: center
+    }
+
+    .header-btn {
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 21px;
+      position: relative
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -9px;
+      background: var(--blue);
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 9px
+    }
+
+    .menu-btn {
+      display: none
+    }
+
+    .ticker {
+      background: var(--blue);
+      color: white;
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase
+    }
+
+    .ticker span:last-child {
+      color: #e1d9ff
+    }
+
+    /* editorial opening */
+    .opening {
+      padding: 35px 5% 75px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .opening-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px
+    }
+
+    .opening-top p {
+      font-size: 10px;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+      color: #777582;
+      font-weight: 700
+    }
+
+    .opening-top span {
+      font: 600 11px "Space Grotesk";
+      color: #777582
+    }
+
+    .opening-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 1.65fr .55fr;
+      min-height: 570px;
+      gap: 14px
+    }
+
+    .opening-intro {
+      background: var(--ink);
+      color: white;
+      padding: 35px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden
+    }
+
+    .opening-intro:after {
+      content: "V";
+      position: absolute;
+      font: 800 350px "Space Grotesk";
+      color: #ffffff08;
+      bottom: -120px;
+      left: -30px;
+      pointer-events: none
+    }
+
+    .mini-label {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 800
+    }
+
+    .opening-intro h1 {
+      font: 700 clamp(43px, 5.1vw, 74px)/.96 "Space Grotesk";
+      letter-spacing: -.09em;
+      position: relative;
+      z-index: 1
+    }
+
+    .opening-intro h1 em {
+      font-style: normal;
+      color: var(--blue)
+    }
+
+    .opening-intro p {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #aaa9b6;
+      max-width: 280px;
+      margin-top: 20px
+    }
+
+    .text-link {
+      display: inline-flex;
+      gap: 17px;
+      align-items: center;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      border-bottom: 1px solid var(--blue);
+      padding-bottom: 10px;
+      width: max-content;
+      margin-top: 28px
+    }
+
+    .opening-image {
+      position: relative;
+      overflow: hidden;
+      background: #d5d1e2;
+      min-height: 570px
+    }
+
+    .opening-image img {
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      object-fit: cover
+    }
+
+    .opening-image:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, #1111168a, transparent 50%)
+    }
+
+    .image-caption {
+      position: absolute;
+      bottom: 28px;
+      left: 30px;
+      z-index: 2;
+      color: white
+    }
+
+    .image-caption small {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase
+    }
+
+    .image-caption h2 {
+      font: 600 34px "Space Grotesk";
+      letter-spacing: -.06em;
+      margin-top: 7px
+    }
+
+    .image-caption p {
+      font-size: 11px;
+      color: #e1e0e8;
+      margin-top: 5px
+    }
+
+    .image-number {
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      z-index: 2;
+      color: white;
+      font: 500 11px "Space Grotesk"
+    }
+
+    .opening-side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .side-card {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #d7d5e3;
+      min-height: 0
+    }
+
+    .side-card img {
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      object-fit: cover
+    }
+
+    .side-card:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, #17171d99, transparent 70%)
+    }
+
+    .side-card span {
+      position: absolute;
+      bottom: 17px;
+      left: 16px;
+      color: white;
+      z-index: 2;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .side-note {
+      flex: 1;
+      background: var(--cyan);
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between
+    }
+
+    .side-note strong {
+      font: 700 34px "Space Grotesk";
+      letter-spacing: -.08em
+    }
+
+    .side-note p {
+      font-size: 11px;
+      line-height: 1.6;
+      color: #34444a
+    }
+
+    /* manifesto strip */
+    .manifesto {
+      background: #dcd9e7;
+      padding: 25px 5%;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      align-items: center;
+      gap: 20px
+    }
+
+    .manifesto span {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-weight: 800;
+      color: #74717f
+    }
+
+    .manifesto h2 {
+      font: 600 clamp(20px, 2.7vw, 34px) "Space Grotesk";
+      letter-spacing: -.06em;
+      text-align: center
+    }
+
+    .manifesto strong {
+      text-align: right;
+      font: 700 12px "Space Grotesk";
+      color: var(--blue)
+    }
+
+    /* categories */
+    .collections {
+      padding: 85px 5%
+    }
+
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 30px;
+      gap: 20px
+    }
+
+    .kicker {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: .18em;
+      text-transform: uppercase
+    }
+
+    .section-top h2 {
+      font: 700 clamp(32px, 4vw, 49px) "Space Grotesk";
+      letter-spacing: -.08em;
+      margin-top: 10px
+    }
+
+    .section-top p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px
+    }
+
+    .section-link {
+      font-size: 11px;
+      font-weight: 800;
+      border-bottom: 1px solid var(--blue);
+      padding-bottom: 7px;
+      white-space: nowrap
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: 220px 220px;
+      gap: 13px
+    }
+
+    .collection {
+      position: relative;
+      overflow: hidden;
+      background: #d7d4e0;
+      color: white;
+      display: flex;
+      align-items: flex-end;
+      padding: 23px;
+      isolation: isolate
+    }
+
+    .collection:first-child {
+      grid-row: span 2
+    }
+
+    .collection:nth-child(4) {
+      grid-column: 2/4
+    }
+
+    .collection img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      transition: transform .6s;
+      z-index: -2
+    }
+
+    .collection:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, #101016c9, transparent 75%);
+      z-index: -1
+    }
+
+    .collection:hover img {
+      transform: scale(1.06)
+    }
+
+    .collection small {
+      font-size: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #d7d3e8
+    }
+
+    .collection h3 {
+      font: 700 26px "Space Grotesk";
+      letter-spacing: -.06em;
+      margin-top: 6px
+    }
+
+    .collection:first-child h3 {
+      font-size: 38px
+    }
+
+    .collection .arrow {
+      position: absolute;
+      right: 22px;
+      top: 20px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #ffffff8a;
+      border-radius: 50%;
+      display: grid;
+      place-items: center
+    }
+
+    /* product catalogue */
+    .catalog {
+      background: white;
+      padding: 85px 5%
+    }
+
+    .catalog-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 32px;
+      gap: 20px
+    }
+
+    .catalog-head h2 {
+      font: 700 clamp(32px, 4vw, 49px) "Space Grotesk";
+      letter-spacing: -.08em;
+      margin-top: 10px
+    }
+
+    .catalog-head p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px
+    }
+
+    .catalog-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 25px
+    }
+
+    .filters {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap
+    }
+
+    .filter {
+      border: 1px solid var(--line);
+      background: white;
+      padding: 10px 14px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #777481;
+      transition: .2s
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white
+    }
+
+    .sort-select {
+      border: 1px solid var(--line);
+      padding: 10px 13px;
+      background: white;
+      font-size: 11px;
+      color: #666;
+      outline: none
+    }
+
+    .search-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px
+    }
+
+    .search-row input {
+      width: 100%;
+      max-width: 330px;
+      border: 0;
+      border-bottom: 1px solid #ccc;
+      padding: 13px 2px;
+      font-size: 12px;
+      outline: none
+    }
+
+    .search-row input:focus {
+      border-color: var(--blue)
+    }
+
+    .result-count {
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px
+    }
+
+    .product-card {
+      min-width: 0;
+      position: relative;
+      background: #f3f2f6;
+      transition: .3s
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px)
+    }
+
+    .product-image {
+      height: 260px;
+      position: relative;
+      overflow: hidden;
+      background: #eae8ef;
+      display: grid;
+      place-items: center
+    }
+
+    .product-image img {
+      width: 87%;
+      height: 87%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      transition: .45s
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.08)
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--ink);
+      color: white;
+      padding: 7px 10px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .product-tag.sale {
+      background: #e36c76
+    }
+
+    .product-tag.new {
+      background: #46977b
+    }
+
+    .product-details {
+      padding: 17px
+    }
+
+    .product-type {
+      font-size: 9px;
+      color: var(--blue);
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase
+    }
+
+    .product-name {
+      font: 700 15px "Space Grotesk";
+      margin-top: 8px;
+      min-height: 21px
+    }
+
+    .product-rating {
+      font-size: 11px;
+      color: #d7a64c;
+      margin-top: 8px
+    }
+
+    .product-rating span {
+      color: #9693a0;
+      margin-left: 5px
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px
+    }
+
+    .product-price {
+      font-size: 15px;
+      font-weight: 800
+    }
+
+    .old-price {
+      font-size: 10px;
+      color: #aaa;
+      margin-left: 5px;
+      text-decoration: line-through
+    }
+
+    .add-btn {
+      border: 0;
+      background: var(--ink);
+      color: white;
+      padding: 10px 13px;
+      font-size: 10px;
+      font-weight: 800
+    }
+
+    .add-btn:hover {
+      background: var(--blue)
+    }
+
+    .details-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid #dcd9e3;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 10px;
+      color: #6d6978;
+      font-weight: 700
+    }
+
+    .details-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue)
+    }
+
+    /* editorial campaign */
+    .campaign {
+      margin: 85px 5%;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      min-height: 410px;
+      background: var(--ink);
+      color: white;
+      overflow: hidden
+    }
+
+    .campaign-photo {
+      position: relative;
+      min-height: 410px;
+      overflow: hidden
+    }
+
+    .campaign-photo img {
+      height: 100%;
+      position: absolute;
+      inset: 0
+    }
+
+    .campaign-photo:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 50%, #17171d 100%)
+    }
+
+    .campaign-copy {
+      padding: 55px 45px 55px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start
+    }
+
+    .campaign-copy h2 {
+      font: 700 clamp(34px, 4vw, 52px)/1.02 "Space Grotesk";
+      letter-spacing: -.08em;
+      margin-top: 17px
+    }
+
+    .campaign-copy h2 span {
+      color: var(--cyan)
+    }
+
+    .campaign-copy p {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #aaa9b7;
+      margin-top: 18px;
+      max-width: 350px
+    }
+
+    .campaign-copy .text-link {
+      margin-top: 25px
+    }
+
+    /* journal */
+    .journal {
+      padding: 0 5% 85px
+    }
+
+    .journal-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 15px
+    }
+
+    .journal-card {
+      background: white
+    }
+
+    .journal-card img {
+      height: 210px
+    }
+
+    .journal-card:first-child img {
+      height: 290px
+    }
+
+    .journal-card div {
+      padding: 18px
+    }
+
+    .journal-card small {
+      font-size: 9px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 800
+    }
+
+    .journal-card h3 {
+      font: 700 19px "Space Grotesk";
+      letter-spacing: -.04em;
+      margin-top: 9px
+    }
+
+    .journal-card p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 8px
+    }
+
+    /* service strip and footer */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin: 0 5% 80px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .service {
+      padding: 25px 12px;
+      text-align: center;
+      border-right: 1px solid var(--line)
+    }
+
+    .service:last-child {
+      border: 0
+    }
+
+    .service-icon {
+      font-size: 23px;
+      color: var(--blue)
+    }
+
+    .service h3 {
+      font-size: 12px;
+      margin-top: 10px
+    }
+
+    .service p {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 6px
+    }
+
+    .footer {
+      background: var(--ink);
+      color: white;
+      padding: 55px 5% 22px
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+      padding-bottom: 40px
+    }
+
+    .footer-brand p {
+      font-size: 12px;
+      line-height: 1.9;
+      color: #9997a5;
+      max-width: 280px;
+      margin-top: 17px
+    }
+
+    .footer-col h4 {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 17px
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 11px;
+      color: #9997a5;
+      margin-bottom: 12px
+    }
+
+    .footer-col a:hover {
+      color: var(--cyan)
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #373640;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      color: #858391;
+      font-size: 10px;
+      gap: 15px
+    }
+
+    /* cart */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: #080810a6;
+      z-index: 60;
+      opacity: 0;
+      visibility: hidden;
+      transition: .3s
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible
+    }
+
+    .drawer {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: min(430px, 100%);
+      height: 100%;
+      background: white;
+      z-index: 61;
+      transform: translateX(100%);
+      transition: .35s;
+      display: flex;
+      flex-direction: column
+    }
+
+    .drawer.show {
+      transform: translateX(0)
+    }
+
+    .drawer-head {
+      padding: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .drawer-head h2 {
+      font: 700 20px "Space Grotesk"
+    }
+
+    .close-btn {
+      border: 0;
+      background: none;
+      font-size: 27px
+    }
+
+    .drawer-items {
+      padding: 20px;
+      flex: 1;
+      overflow: auto
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 60px 15px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 85px 1fr;
+      gap: 14px;
+      padding-bottom: 17px;
+      margin-bottom: 17px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .cart-item img {
+      width: 85px;
+      height: 95px;
+      object-fit: contain;
+      background: #f1eff5
+    }
+
+    .cart-item h3 {
+      font-size: 13px;
+      margin: 5px 0 8px
+    }
+
+    .cart-item p {
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 800
+    }
+
+    .qty {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      margin-top: 10px
+    }
+
+    .qty button {
+      border: 0;
+      background: white;
+      padding: 5px 9px
+    }
+
+    .qty span {
+      font-size: 11px;
+      min-width: 22px;
+      text-align: center
+    }
+
+    .remove {
+      border: 0;
+      background: none;
+      text-decoration: underline;
+      color: var(--muted);
+      font-size: 10px;
+      margin-left: 10px
+    }
+
+    .drawer-bottom {
+      padding: 22px;
+      border-top: 1px solid var(--line)
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 10px
+    }
+
+    .drawer-bottom p {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 15px
+    }
+
+    .checkout-button {
+      width: 100%;
+      margin: 0
+    }
+
+    /* modals */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: #080810b9;
+      z-index: 70;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px
+    }
+
+    .modal-overlay.show {
+      display: flex
+    }
+
+    .modal {
+      background: white;
+      width: min(700px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      padding: 30px;
+      position: relative
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 17px;
+      top: 12px;
+      border: 0;
+      background: none;
+      font-size: 27px
+    }
+
+    .product-modal-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center
+    }
+
+    .product-modal-content img {
+      height: 300px;
+      object-fit: contain;
+      background: #f1eff5
+    }
+
+    .product-modal-content h2 {
+      font: 700 26px "Space Grotesk";
+      margin: 12px 0
+    }
+
+    .product-modal-content p {
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-top: 15px
+    }
+
+    .modal-price {
+      font-size: 21px;
+      color: var(--blue);
+      font-weight: 800;
+      margin-top: 15px
+    }
+
+    .checkout-modal {
+      width: min(480px, 100%)
+    }
+
+    .checkout-modal h2 {
+      font: 700 26px "Space Grotesk";
+      margin-bottom: 8px
+    }
+
+    .checkout-modal>p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px
+    }
+
+    .checkout-form label {
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      margin: 13px 0 6px
+    }
+
+    .checkout-form input,
+    .checkout-form select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      font-size: 12px;
+      outline: none
+    }
+
+    .checkout-form input:focus,
+    .checkout-form select:focus {
+      border-color: var(--blue)
+    }
+
+    .checkout-form .primary-btn {
+      width: 100%
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      background: var(--blue);
+      color: white;
+      border: 0;
+      padding: 15px 21px;
+      font-size: 10px;
+      font-weight: 800;
+      margin-top: 25px;
+      transition: .2s
+    }
+
+    .primary-btn:hover {
+      background: #269FD8
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translate(-50%, 20px);
+      background: var(--ink);
+      color: white;
+      padding: 13px 22px;
+      font-size: 11px;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0)
+    }
+
+    @media(max-width:1000px) {
+      .opening-grid {
+        grid-template-columns: 1fr 1.5fr
+      }
+
+      .opening-side {
+        display: none
+      }
+
+      .collection-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px 220px
+      }
+
+      .collection:first-child {
+        grid-row: span 2
+      }
+
+      .collection:nth-child(4) {
+        grid-column: 2
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:650px) {
+      .header {
+        height: 68px;
+        padding: 0 5%
+      }
+
+      .logo {
+        font-size: 24px
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--ink);
+        padding: 25px 6%;
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .nav.open {
+        display: flex
+      }
+
+      .menu-btn {
+        display: block
+      }
+
+      .ticker {
+        font-size: 8px
+      }
+
+      .opening {
+        padding: 23px 4% 45px
+      }
+
+      .opening-top span {
+        display: none
+      }
+
+      .opening-grid {
+        grid-template-columns: 1fr;
+        min-height: 0
+      }
+
+      .opening-intro {
+        min-height: 420px;
+        padding: 30px 25px
+      }
+
+      .opening-intro h1 {
+        font-size: 60px
+      }
+
+      .opening-image {
+        min-height: 350px
+      }
+
+      .manifesto {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center
+      }
+
+      .manifesto h2 {
+        text-align: center
+      }
+
+      .manifesto strong {
+        text-align: center
+      }
+
+      .collections,
+      .catalog {
+        padding: 60px 5%
+      }
+
+      .section-top,
+      .catalog-head {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .collection-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 180px 180px;
+        gap: 9px
+      }
+
+      .collection:first-child {
+        grid-row: span 2
+      }
+
+      .collection:nth-child(4) {
+        grid-column: 1/3
+      }
+
+      .collection {
+        padding: 14px
+      }
+
+      .collection h3 {
+        font-size: 19px
+      }
+
+      .collection:first-child h3 {
+        font-size: 27px
+      }
+
+      .catalog-tools {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .products {
+        gap: 11px
+      }
+
+      .product-image {
+        height: 175px
+      }
+
+      .product-details {
+        padding: 11px
+      }
+
+      .product-name {
+        font-size: 13px
+      }
+
+      .product-price {
+        font-size: 12px
+      }
+
+      .add-btn {
+        padding: 8px;
+        font-size: 9px
+      }
+
+      .search-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px
+      }
+
+      .campaign {
+        margin: 55px 4%;
+        grid-template-columns: 1fr
+      }
+
+      .campaign-photo {
+        min-height: 270px
+      }
+
+      .campaign-photo:after {
+        background: linear-gradient(0deg, #17171d, transparent 65%)
+      }
+
+      .campaign-copy {
+        padding: 10px 25px 35px
+      }
+
+      .journal {
+        padding: 0 5% 55px
+      }
+
+      .journal-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .journal-card:first-child {
+        grid-column: 1/-1
+      }
+
+      .journal-card img,
+      .journal-card:first-child img {
+        height: 190px
+      }
+
+      .services {
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 55px
+      }
+
+      .service:nth-child(2) {
+        border-right: 0
+      }
+
+      .service:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line)
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 18px
+      }
+
+      .footer-brand {
+        grid-column: 1/-1
+      }
+
+      .footer-bottom {
+        flex-direction: column
+      }
+
+      .product-modal-content {
+        grid-template-columns: 1fr
+      }
+
+      .product-modal-content img {
+        height: 210px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ticker"><span>VOLTARA — TECHNOLOGY, REDEFINED</span><span>DISCOVER WHAT'S NEXT ↗</span></div>
+  <header class="header">
+    <a href="#" class="logo">VOLT<span>ARA.</span></a>
+    <nav class="nav" id="nav">
+      <a href="#">Discover</a><a href="#categories">Collections</a><a href="#catalog">Shop</a><a
+        href="#journal">Journal</a><a href="#footer">Contact</a>
+    </nav>
+    <div class="header-right">
+      <button class="header-btn" onclick="document.getElementById('searchInput').focus()" aria-label="Search">⌕</button>
+      <button class="header-btn" onclick="showToast('Wishlist feature — demo')" aria-label="Wishlist">♡</button>
+      <button class="header-btn" onclick="openCart()" aria-label="Shopping cart">▱<span class="cart-count"
+          id="cartCount">0</span></button>
+      <button class="header-btn menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="opening">
+      <div class="opening-top">
+        <p>Independent technology store / Est. 2026</p><span>SCROLL TO EXPLORE ↓</span>
+      </div>
+      <div class="opening-grid">
+        <div class="opening-intro">
+          <span class="mini-label">A new perspective on tech</span>
+          <div>
+            <h1>Objects<br>for <em>tomorrow.</em></h1>
+            <p>Not just devices. The tools, sounds and details that shape the way we experience the world.</p>
+            <a href="#catalog" class="text-link">EXPLORE THE COLLECTION <span>↗</span></a>
+          </div>
+          <span class="mini-label">VOL. 01 — THE FUTURE EDIT</span>
+        </div>
+        <div class="opening-image">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=90"
+            alt="Wireless headphones">
+          <span class="image-number">01 / 04</span>
+          <div class="image-caption"><small>Featured object / Audio</small>
+            <h2>Sound, redefined.</h2>
+            <p>Discover a more immersive everyday.</p>
+          </div>
+        </div>
+        <div class="opening-side">
+          <div class="side-card"><img
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=85"
+              alt="Watch"><span>Wearable technology ↗</span></div>
+          <div class="side-note"><strong>01—08</strong>
+            <p>A carefully selected collection of essentials for a more connected life.</p><span class="mini-label">THE
+              VOLTARA EDIT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="manifesto">
+      <span>More than technology</span>
+      <h2>Good design should make you feel something.</h2>
+      <strong>THINK DIFFERENTLY. ↗</strong>
+    </div>
+
+    <section class="collections" id="categories">
+      <div class="section-top">
+        <div><span class="kicker">Explore by interest</span>
+          <h2>Find your next obsession.</h2>
+          <p>Different worlds. One carefully selected collection.</p>
+        </div>
+        <a href="#catalog" class="section-link">VIEW EVERYTHING ↗</a>
+      </div>
+      <div class="collection-grid">
+        <a href="#catalog" class="collection" onclick="filterProducts('Audio')">
+          <img src="https://images.unsplash.com/photo-1593078166039-9b6b7f4a4f2a?auto=format&fit=crop&w=900&q=85"
+            alt="Audio collection">
+          <div><small>01 / Immerse yourself</small>
+            <h3>Audio &<br>Sound</h3>
+          </div><span class="arrow">↗</span>
+        </a>
+        <a href="#catalog" class="collection" onclick="filterProducts('Smartphones')">
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=85"
+            alt="Smartphones">
+          <div><small>02 / Always connected</small>
+            <h3>Smartphones</h3>
+          </div><span class="arrow">↗</span>
+        </a>
+        <a href="#catalog" class="collection" onclick="filterProducts('Computers')">
+          <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=85"
+            alt="Computers">
+          <div><small>03 / Make it happen</small>
+            <h3>Computers</h3>
+          </div><span class="arrow">↗</span>
+        </a>
+        <a href="#catalog" class="collection" onclick="filterProducts('Gaming')">
+          <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1100&q=85"
+            alt="Gaming setup">
+          <div><small>04 / Enter another world</small>
+            <h3>Gaming & Accessories</h3>
+          </div><span class="arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="catalog" id="catalog">
+      <div class="catalog-head">
+        <div><span class="kicker">The curated selection</span>
+          <h2>Meet the essentials.</h2>
+          <p>Eight objects. Countless possibilities.</p>
+        </div>
+        <span class="section-link" id="resultCount">8 PRODUCTS</span>
+      </div>
+      <div class="catalog-tools">
+        <div class="filters">
+          <button class="filter active" onclick="filterProducts('All',this)">All pieces</button>
+          <button class="filter" onclick="filterProducts('Audio',this)">Audio</button>
+          <button class="filter" onclick="filterProducts('Smartphones',this)">Smartphones</button>
+          <button class="filter" onclick="filterProducts('Computers',this)">Computers</button>
+          <button class="filter" onclick="filterProducts('Wearables',this)">Wearables</button>
+          <button class="filter" onclick="filterProducts('Gaming',this)">Gaming</button>
+          <button class="filter" onclick="filterProducts('Accessories',this)">Accessories</button>
+        </div>
+        <select class="sort-select" id="sortSelect" onchange="renderProducts()">
+          <option value="default">Sort: Featured</option>
+          <option value="low">Price: Low to high</option>
+          <option value="high">Price: High to low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+      <div class="search-row"><input id="searchInput" type="search" placeholder="Find something..."
+          oninput="renderProducts()"><span class="result-count">THE OBJECT LIBRARY / 2026</span></div>
+      <div class="products" id="productGrid"></div>
+    </section>
+
+    <section class="campaign">
+      <div class="campaign-photo"><img
+          src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1100&q=90"
+          alt="Creative workspace"></div>
+      <div class="campaign-copy">
+        <span class="mini-label">The workspace issue / 01</span>
+        <h2>Make space<br>for <span>big ideas.</span></h2>
+        <p>Build a setup that inspires you to think further. From powerful computers to the small details that make your
+          workspace yours.</p>
+        <a href="#catalog" class="text-link">SHOP THE WORKSPACE EDIT ↗</a>
+      </div>
+    </section>
+
+    <section class="journal" id="journal">
+      <div class="section-top">
+        <div><span class="kicker">Notes from the future</span>
+          <h2>The technology journal.</h2>
+          <p>Ideas, inspiration and a closer look at the objects we love.</p>
+        </div>
+        <a href="#journal" class="section-link">READ THE JOURNAL ↗</a>
+      </div>
+      <div class="journal-grid">
+        <article class="journal-card"><img
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=85"
+            alt="Creative workspace">
+          <div><small>Perspective / 04 min read</small>
+            <h3>How the right tools change the way we create.</h3>
+            <p>A closer look at the relationship between thoughtful technology and creative work.</p>
+          </div>
+        </article>
+        <article class="journal-card"><img
+            src="https://images.unsplash.com/photo-1512446733611-9099a758e0b7?auto=format&fit=crop&w=700&q=85"
+            alt="Technology">
+          <div><small>Culture / 03 min read</small>
+            <h3>Less noise. More meaning.</h3>
+            <p>Why simplicity is becoming the ultimate luxury in technology.</p>
+          </div>
+        </article>
+        <article class="journal-card"><img
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=85"
+            alt="Electronics">
+          <div><small>Innovation / 05 min read</small>
+            <h3>A future built around you.</h3>
+            <p>Exploring the little innovations that make everyday life better.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="service">
+        <div class="service-icon">↗</div>
+        <h3>Fast Delivery</h3>
+        <p>Quick and reliable shipping.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">◇</div>
+        <h3>Curated Selection</h3>
+        <p>Technology chosen with care.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">⟳</div>
+        <h3>Easy Returns</h3>
+        <p>A straightforward return process.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">◎</div>
+        <h3>Customer Support</h3>
+        <p>We're here when you need us.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="#" class="logo">VOLT<span>ARA.</span></a>
+        <p>A different perspective on technology. A carefully selected collection for people who look beyond the
+          ordinary.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Discover</h4><a href="#catalog">The collection</a><a href="#categories">Categories</a><a
+          href="#journal">Journal</a><a href="#catalog">New arrivals</a>
+      </div>
+      <div class="footer-col">
+        <h4>Customer care</h4><a href="#">Contact us</a><a href="#">Delivery</a><a href="#">Returns</a><a
+          href="#">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h4>VOLTARA</h4><a href="#">Our story</a><a href="#">Journal</a><a href="#">Privacy</a><a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 VOLTARA. Demo storefront.</span><span>OBJECTS FOR TOMORROW. ✦</span></div>
+  </footer>
+
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head">
+      <h2>Your bag <span id="cartTitleCount">(0)</span></h2><button class="close-btn" onclick="closeCart()">×</button>
+    </div>
+    <div class="drawer-items" id="cartItems"></div>
+    <div class="drawer-bottom">
+      <div class="total-row"><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
+      <p>Shipping and taxes are calculated at checkout.</p><button class="primary-btn checkout-button"
+        onclick="openCheckout()">CONTINUE TO CHECKOUT →</button>
+    </div>
+  </aside>
+
+  <div class="modal-overlay" id="productModal" onclick="if(event.target===this)closeProductModal()">
+    <div class="modal"><button class="modal-close" onclick="closeProductModal()">×</button>
+      <div class="product-modal-content" id="productModalContent"></div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="checkoutModal" onclick="if(event.target===this)closeCheckout()">
+    <div class="modal checkout-modal"><button class="modal-close" onclick="closeCheckout()">×</button>
+      <h2>Almost yours.</h2>
+      <p>Enter your details to complete this demo checkout.</p>
+      <form class="checkout-form" onsubmit="placeOrder(event)">
+        <label>Full name</label><input type="text" placeholder="Your full name" required>
+        <label>Email address</label><input type="email" placeholder="you@example.com" required>
+        <label>Delivery address</label><input type="text" placeholder="Street address" required>
+        <label>City</label><input type="text" placeholder="Your city" required>
+        <label>Payment method</label><select required>
+          <option value="">Select payment method</option>
+          <option>Cash on delivery</option>
+          <option>Card payment (demo)</option>
+        </select>
+        <button class="primary-btn" type="submit">PLACE DEMO ORDER →</button>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const products = [
+      { id: 1, name: "Studio Wireless Headphones", category: "Audio", price: 149, oldPrice: 179, badge: "Best seller", image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=85", description: "Immerse yourself in rich, detailed sound with comfortable over-ear design and wireless freedom." },
+      { id: 2, name: "Pulse Bluetooth Speaker", category: "Audio", price: 89, oldPrice: null, badge: "New", image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=85", description: "Bring your favorite sound anywhere with a compact speaker designed for everyday listening." },
+      { id: 3, name: "Nova Smartphone", category: "Smartphones", price: 699, oldPrice: 749, badge: "−7%", image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=700&q=85", description: "A modern smartphone with a vivid display, powerful performance, and a versatile camera system." },
+      { id: 4, name: "AirBook Pro 14", category: "Computers", price: 1199, oldPrice: null, badge: "Popular", image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=85", description: "A sleek laptop for focused work, creative projects, and everything you do throughout the day." },
+      { id: 5, name: "Active Smart Watch", category: "Wearables", price: 219, oldPrice: 249, badge: "−12%", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85", description: "Keep your day in view with a clean design, helpful notifications, and activity tracking." },
+      { id: 6, name: "Core Gaming Controller", category: "Gaming", price: 69, oldPrice: null, badge: "New", image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=700&q=85", description: "A comfortable controller built for responsive gameplay and long gaming sessions." },
+      { id: 7, name: "Precision Wireless Mouse", category: "Accessories", price: 49, oldPrice: 59, badge: "−17%", image: "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=85", description: "A precise, comfortable wireless mouse for your workspace and everyday computing." },
+      { id: 8, name: "Mechanical Keyboard", category: "Accessories", price: 109, oldPrice: null, badge: "", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=85", description: "A tactile mechanical keyboard with a clean layout for productivity and gaming." }
+    ];
+    let cart = [], activeCategory = "All", toastTimer;
+    const grid = document.getElementById("productGrid");
+    function renderProducts() {
+      let list = activeCategory === "All" ? [...products] : products.filter(p => p.category === activeCategory);
+      const search = document.getElementById("searchInput").value.toLowerCase().trim();
+      list = list.filter(p => p.name.toLowerCase().includes(search) || p.category.toLowerCase().includes(search));
+      const sort = document.getElementById("sortSelect").value;
+      if (sort === "low") list.sort((a, b) => a.price - b.price);
+      if (sort === "high") list.sort((a, b) => b.price - a.price);
+      if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
+      document.getElementById("resultCount").textContent = `${list.length} PRODUCTS`;
+      if (!list.length) { grid.innerHTML = '<p style="grid-column:1/-1;padding:35px 0;color:var(--muted);font-size:13px">No products found. Try another search.</p>'; return }
+      grid.innerHTML = list.map(p => `<article class="product-card"><div class="product-image"><img src="${p.image}" alt="${p.name}" loading="lazy">${p.badge ? `<span class="product-tag ${p.badge.includes('−') ? 'sale' : p.badge === 'New' ? 'new' : ''}">${p.badge}</span>` : ""}</div><div class="product-details"><span class="product-type">${p.category}</span><h3 class="product-name">${p.name}</h3><div class="product-rating">★★★★★ <span>(24 reviews)</span></div><div class="product-price-row"><div class="product-price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old-price">$${p.oldPrice.toFixed(2)}</span>` : ""}</div><button class="add-btn" onclick="addToCart(${p.id})">+ ADD</button></div><button class="details-btn" onclick="showProductDetails(${p.id})">VIEW DETAILS ↗</button></div></article>`).join("");
+    }
+    function filterProducts(category, button) {
+      activeCategory = category;
+      document.querySelectorAll(".filter,.category").forEach(b => b.classList.remove("active"));
+      if (button) button.classList.add("active");
+      else document.querySelectorAll(".filter").forEach(b => { if (b.textContent.trim().toLowerCase() === (category === "All" ? "all pieces" : category.toLowerCase())) b.classList.add("active") });
+      renderProducts();
+    }
+    function addToCart(id) { const p = products.find(x => x.id === id), item = cart.find(x => x.id === id); if (item) item.quantity++; else cart.push({ ...p, quantity: 1 }); updateCart(); showToast(`${p.name} added to your bag.`) }
+    function updateCart() {
+      const count = cart.reduce((s, p) => s + p.quantity, 0), total = cart.reduce((s, p) => s + p.price * p.quantity, 0);
+      document.getElementById("cartCount").textContent = count; document.getElementById("cartTitleCount").textContent = `(${count})`; document.getElementById("subtotal").textContent = `$${total.toFixed(2)}`;
+      const container = document.getElementById("cartItems");
+      if (!cart.length) { container.innerHTML = '<div class="empty-cart">Your bag is empty.<br><br>Discover something worth keeping.</div>'; return }
+      container.innerHTML = cart.map(p => `<div class="cart-item"><img src="${p.image}" alt="${p.name}"><div><h3>${p.name}</h3><p>$${p.price.toFixed(2)}</p><div class="qty"><button onclick="changeQuantity(${p.id},-1)">−</button><span>${p.quantity}</span><button onclick="changeQuantity(${p.id},1)">+</button></div><button class="remove" onclick="removeItem(${p.id})">Remove</button></div></div>`).join("");
+    }
+    function changeQuantity(id, n) { const p = cart.find(x => x.id === id); if (!p) return; p.quantity += n; if (p.quantity <= 0) removeItem(id); else updateCart() }
+    function removeItem(id) { cart = cart.filter(p => p.id !== id); updateCart(); showToast("Item removed from your bag.") }
+    function openCart() { document.getElementById("drawer").classList.add("show"); document.getElementById("overlay").classList.add("show"); document.body.style.overflow = "hidden" }
+    function closeCart() { document.getElementById("drawer").classList.remove("show"); document.getElementById("overlay").classList.remove("show"); document.body.style.overflow = "" }
+    function showProductDetails(id) { const p = products.find(x => x.id === id); document.getElementById("productModalContent").innerHTML = `<img src="${p.image}" alt="${p.name}"><div><span class="kicker">${p.category}</span><h2>${p.name}</h2><div class="product-rating">★★★★★ <span>(24 reviews)</span></div><div class="modal-price">$${p.price.toFixed(2)}</div><p>${p.description}</p><button class="primary-btn" onclick="addToCart(${p.id});closeProductModal()">ADD TO BAG →</button></div>`; document.getElementById("productModal").classList.add("show") }
+    function closeProductModal() { document.getElementById("productModal").classList.remove("show") }
+    function openCheckout() { if (!cart.length) { showToast("Your bag is empty."); return } closeCart(); document.getElementById("checkoutModal").classList.add("show") }
+    function closeCheckout() { document.getElementById("checkoutModal").classList.remove("show") }
+    function placeOrder(e) { e.preventDefault(); const n = Math.floor(100000 + Math.random() * 900000); cart = []; updateCart(); closeCheckout(); showToast(`Demo order #${n} placed successfully!`) }
+    function toggleMenu() { document.getElementById("nav").classList.toggle("open") }
+    function showToast(message) { const t = document.getElementById("toast"); t.textContent = message; t.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2500) }
+    renderProducts(); updateCart();
+  </script>
+</body>
+
+</html>

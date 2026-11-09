@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE Golden  HAVEN — Luxury Hotel & Resort</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --black: #17120f;
+      --dark: #211914;
+      --brown: #30231b;
+      --gold: #c6a16b;
+      --gold-light: #dfc69d;
+      --cream: #f5f1e9;
+      --white: #fffdf9;
+      --muted: #a69b8e;
+      --serif: 'Cormorant Garamond', serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--black);
+      overflow-x: hidden
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    button,
+    input,
+    select {
+      font: inherit
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover
+    }
+
+    .container {
+      width: min(1380px, 90%);
+      margin: auto
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold)
+    }
+
+    .section-title {
+      font: 500 clamp(42px, 5.2vw, 76px)/.98 var(--serif);
+      letter-spacing: -1.5px
+    }
+
+    .gold-line {
+      width: 58px;
+      height: 1px;
+      background: var(--gold);
+      display: block;
+      margin: 24px 0
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 16px 25px;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid var(--gold);
+      transition: .3s;
+      cursor: pointer
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--gold)
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255, 255, 255, .55)
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold)
+    }
+
+    /* NAVIGATION */
+    header {
+      position: absolute;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: white;
+      border-bottom: 1px solid rgba(255, 255, 255, .17)
+    }
+
+    .navbar {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .brand-mark {
+      font-size: 34px;
+      color: var(--gold);
+      line-height: 1
+    }
+
+    .brand-name {
+      font: 500 23px var(--serif);
+      letter-spacing: 2px;
+      text-transform: uppercase
+    }
+
+    .brand-sub {
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-align: center;
+      margin-top: 4px;
+      color: var(--gold-light)
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: #eee;
+      transition: .25s
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light)
+    }
+
+    .nav-book {
+      border: 1px solid var(--gold);
+      padding: 13px 20px;
+      color: var(--gold-light) !important
+    }
+
+    .nav-book:hover {
+      background: var(--gold);
+      color: var(--black) !important
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 23px;
+      cursor: pointer
+    }
+
+    /* HERO */
+    .hero {
+      height: 850px;
+      min-height: 720px;
+      max-height: 1000px;
+      position: relative;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(15, 10, 7, .88) 0%, rgba(15, 10, 7, .64) 39%, rgba(15, 10, 7, .08) 100%),
+        linear-gradient(0deg, rgba(15, 10, 7, .38), transparent 40%),
+        url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=2200&q=90') center 48%/cover
+    }
+
+    .hero-content {
+      padding-top: 245px;
+      max-width: 780px
+    }
+
+    .hero .eyebrow {
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 18px
+    }
+
+    .hero .eyebrow:after {
+      content: "";
+      height: 1px;
+      width: 75px;
+      background: var(--gold)
+    }
+
+    .hero h1 {
+      font: 400 clamp(65px, 8.4vw, 120px)/.83 var(--serif);
+      letter-spacing: -2px;
+      margin: 30px 0
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--gold-light);
+      font-style: italic
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #e1d9d0;
+      max-width: 470px;
+      margin-bottom: 32px
+    }
+
+    .hero-bottom {
+      position: absolute;
+      bottom: 45px;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      align-items: end;
+      justify-content: space-between
+    }
+
+    .hero-features {
+      display: flex;
+      gap: 0
+    }
+
+    .hero-feature {
+      padding: 0 28px;
+      border-right: 1px solid rgba(255, 255, 255, .25);
+      display: flex;
+      gap: 13px;
+      align-items: center
+    }
+
+    .hero-feature:first-child {
+      padding-left: 0
+    }
+
+    .hero-feature:last-child {
+      border: 0
+    }
+
+    .hero-feature i {
+      font-size: 21px;
+      color: var(--gold)
+    }
+
+    .hero-feature span {
+      font: 400 17px var(--serif);
+      color: #f1e9df
+    }
+
+    .scroll-note {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e8dfd4
+    }
+
+    .scroll-note i {
+      margin-right: 10px;
+      color: var(--gold)
+    }
+
+    /* BOOKING BAR */
+    .booking-wrap {
+      position: relative;
+      z-index: 3;
+      margin-top: -1px;
+      background: var(--dark);
+      color: white
+    }
+
+    .booking {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr 1fr 1fr auto;
+      align-items: center;
+      min-height: 116px
+    }
+
+    .booking-field {
+      padding: 22px 25px;
+      border-right: 1px solid rgba(255, 255, 255, .14)
+    }
+
+    .booking-field label {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px
+    }
+
+    .booking-field input,
+    .booking-field select {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: white;
+      outline: 0;
+      font-size: 13px
+    }
+
+    .booking-field select option {
+      color: #222
+    }
+
+    .booking .btn {
+      height: 100%;
+      min-height: 116px;
+      padding: 0 30px
+    }
+
+    /* INTRO */
+    .intro {
+      padding: 140px 0 130px;
+      background: var(--cream)
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 100px;
+      align-items: center
+    }
+
+    .intro-copy {
+      padding: 20px 0
+    }
+
+    .intro-copy .section-title {
+      max-width: 520px
+    }
+
+    .intro-copy .section-title em {
+      color: #a17d4e;
+      font-weight: 400
+    }
+
+    .intro-copy p {
+      color: #746b62;
+      font-size: 14px;
+      line-height: 2;
+      margin: 25px 0;
+      max-width: 480px
+    }
+
+    .intro-image {
+      height: 570px;
+      position: relative
+    }
+
+    .intro-image img {
+      height: 100%
+    }
+
+    .image-caption {
+      position: absolute;
+      bottom: -24px;
+      left: -35px;
+      background: var(--gold);
+      padding: 22px 28px;
+      color: var(--black)
+    }
+
+    .image-caption strong {
+      display: block;
+      font: 500 32px var(--serif)
+    }
+
+    .image-caption span {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase
+    }
+
+    /* ROOMS */
+    .rooms {
+      padding: 120px 0;
+      background: var(--white)
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 55px
+    }
+
+    .section-heading p {
+      max-width: 350px;
+      font-size: 13px;
+      color: #82796f;
+      line-height: 1.8
+    }
+
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px
+    }
+
+    .room-card {
+      background: var(--cream)
+    }
+
+    .room-image {
+      height: 310px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .room-image img {
+      height: 100%;
+      transition: transform .7s
+    }
+
+    .room-card:hover .room-image img {
+      transform: scale(1.06)
+    }
+
+    .room-tag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: var(--gold);
+      padding: 9px 13px;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase
+    }
+
+    .room-info {
+      padding: 26px 27px 30px
+    }
+
+    .room-info h3 {
+      font: 500 30px var(--serif);
+      margin-bottom: 9px
+    }
+
+    .room-info p {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #82796f;
+      min-height: 44px
+    }
+
+    .room-meta {
+      display: flex;
+      gap: 18px;
+      margin: 19px 0;
+      color: #736a60;
+      font-size: 10px
+    }
+
+    .room-meta i {
+      color: #a17d4e;
+      margin-right: 6px
+    }
+
+    .room-bottom {
+      border-top: 1px solid #ddd6cb;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .price {
+      font: 500 26px var(--serif)
+    }
+
+    .price small {
+      font: 400 10px var(--sans);
+      color: #8b8176
+    }
+
+    .room-link {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #87663e
+    }
+
+    .room-link i {
+      margin-left: 7px
+    }
+
+    /* EXPERIENCE */
+    .experience {
+      background: var(--black);
+      color: white;
+      padding: 130px 0
+    }
+
+    .experience-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: end;
+      margin-bottom: 60px
+    }
+
+    .experience-top p {
+      color: #b7aaa0;
+      font-size: 13px;
+      line-height: 1.9;
+      max-width: 440px
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 17px
+    }
+
+    .exp-card {
+      position: relative;
+      overflow: hidden
+    }
+
+    .exp-card:first-child {
+      grid-row: span 2
+    }
+
+    .exp-card img {
+      height: 100%;
+      transition: .7s
+    }
+
+    .exp-card:hover img {
+      transform: scale(1.06)
+    }
+
+    .exp-card:after {
+      content: "";
+      position: absolute;
+      inset: 30% 0 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, .8))
+    }
+
+    .exp-label {
+      position: absolute;
+      z-index: 2;
+      bottom: 24px;
+      left: 25px
+    }
+
+    .exp-label span {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-light)
+    }
+
+    .exp-label h3 {
+      font: 500 32px var(--serif);
+      margin-top: 5px
+    }
+
+    /* DINING */
+    .dining {
+      padding: 130px 0;
+      background: #e9e3d9
+    }
+
+    .dining-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 100px;
+      align-items: center
+    }
+
+    .dining-image {
+      height: 600px;
+      position: relative
+    }
+
+    .dining-image img {
+      height: 100%
+    }
+
+    .dining-image:before {
+      content: "";
+      position: absolute;
+      inset: 20px -20px -20px 20px;
+      border: 1px solid var(--gold);
+      z-index: 0
+    }
+
+    .dining-image img {
+      position: relative;
+      z-index: 1
+    }
+
+    .dining-copy p {
+      font-size: 14px;
+      line-height: 2;
+      color: #766d63;
+      margin: 25px 0 30px;
+      max-width: 450px
+    }
+
+    .dining-details {
+      display: flex;
+      gap: 40px;
+      margin: 35px 0
+    }
+
+    .dining-details div strong {
+      font: 500 23px var(--serif);
+      display: block
+    }
+
+    .dining-details div span {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #82796f
+    }
+
+    /* WELLNESS STRIP */
+    .wellness {
+      height: 540px;
+      position: relative;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(17, 15, 13, .78), rgba(17, 15, 13, .12)),
+        url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=90') center/cover
+    }
+
+    .wellness-content {
+      padding-top: 140px;
+      max-width: 550px
+    }
+
+    .wellness-content p {
+      color: #e0d9d0;
+      font-size: 14px;
+      line-height: 1.9;
+      margin: 25px 0 30px;
+      max-width: 430px
+    }
+
+    /* GALLERY */
+    .gallery {
+      padding: 120px 0;
+      background: var(--white)
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 14px;
+      margin-top: 50px
+    }
+
+    .gallery-grid img {
+      height: 100%;
+      transition: .5s
+    }
+
+    .gallery-grid a {
+      overflow: hidden
+    }
+
+    .gallery-grid a:hover img {
+      transform: scale(1.04)
+    }
+
+    .gallery-grid a:first-child {
+      grid-row: span 2
+    }
+
+    .gallery-grid a:nth-child(4) {
+      grid-column: 2/4
+    }
+
+    /* TESTIMONIAL */
+    .quote {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 105px 20px
+    }
+
+    .quote-mark {
+      font: 100px/.6 var(--serif);
+      color: var(--gold)
+    }
+
+    .quote blockquote {
+      font: 400 clamp(27px, 4vw, 48px)/1.25 var(--serif);
+      max-width: 900px;
+      margin: 30px auto
+    }
+
+    .quote cite {
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-light)
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--cream);
+      padding: 110px 0
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px
+    }
+
+    .contact-copy p {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #786f66;
+      max-width: 400px;
+      margin: 25px 0
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 35px
+    }
+
+    .contact-list div {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: 12px;
+      color: #655c53
+    }
+
+    .contact-list i {
+      color: #a17d4e;
+      width: 18px
+    }
+
+    .contact-form {
+      background: var(--white);
+      padding: 42px
+    }
+
+    .contact-form h3 {
+      font: 500 32px var(--serif);
+      margin-bottom: 25px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px 0;
+      margin-bottom: 18px;
+      border: 0;
+      border-bottom: 1px solid #d9d1c7;
+      background: transparent;
+      outline: 0;
+      font-size: 12px
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 90px
+    }
+
+    .contact-form button {
+      width: 100%
+    }
+
+    /* FOOTER */
+    footer {
+      background: #15110e;
+      color: white;
+      padding: 65px 0 25px
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 55px
+    }
+
+    .footer-brand p {
+      font-size: 12px;
+      color: #a99d91;
+      line-height: 1.8;
+      max-width: 270px;
+      margin-top: 20px
+    }
+
+    .footer-col h4 {
+      font: 500 21px var(--serif);
+      margin-bottom: 20px;
+      color: var(--gold-light)
+    }
+
+    .footer-col a,
+    .footer-col p {
+      display: block;
+      font-size: 11px;
+      color: #b5aaa0;
+      margin: 12px 0
+    }
+
+    .footer-col a:hover {
+      color: var(--gold)
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .13);
+      padding-top: 23px;
+      display: flex;
+      justify-content: space-between;
+      color: #82786e;
+      font-size: 10px
+    }
+
+    .socials {
+      display: flex;
+      gap: 18px
+    }
+
+    .socials a {
+      color: #b5aaa0
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: all .8s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1000px) {
+      .nav-links {
+        gap: 17px
+      }
+
+      .nav-links a {
+        font-size: 11px
+      }
+
+      .booking {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px 0
+      }
+
+      .booking-field {
+        border-bottom: 1px solid rgba(255, 255, 255, .12)
+      }
+
+      .booking .btn {
+        min-height: 65px;
+        grid-column: span 2
+      }
+
+      .intro-grid,
+      .dining-grid {
+        gap: 55px
+      }
+
+      .experience-grid {
+        grid-template-rows: 220px 220px
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:700px) {
+      .container {
+        width: 88%
+      }
+
+      .navbar {
+        height: 78px
+      }
+
+      .brand-name {
+        font-size: 19px
+      }
+
+      .menu-toggle {
+        display: block
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        background: #1d1713;
+        padding: 25px 6%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px
+      }
+
+      .nav-links.open {
+        display: flex
+      }
+
+      .nav-book {
+        display: inline-block
+      }
+
+      .hero {
+        height: 780px;
+        min-height: 680px;
+        background-position: 58% center
+      }
+
+      .hero-content {
+        padding-top: 190px
+      }
+
+      .hero h1 {
+        font-size: 69px
+      }
+
+      .hero-desc {
+        font-size: 13px;
+        max-width: 350px
+      }
+
+      .hero-bottom {
+        bottom: 25px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 25px
+      }
+
+      .hero-features {
+        flex-wrap: wrap;
+        gap: 15px
+      }
+
+      .hero-feature {
+        padding: 0 14px 0 0;
+        gap: 8px
+      }
+
+      .hero-feature span {
+        font-size: 14px
+      }
+
+      .hero-feature i {
+        font-size: 16px
+      }
+
+      .scroll-note {
+        display: none
+      }
+
+      .booking {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .booking-field {
+        padding: 17px 12px
+      }
+
+      .booking-field input,
+      .booking-field select {
+        font-size: 11px
+      }
+
+      .booking .btn {
+        min-height: 60px
+      }
+
+      .intro,
+      .rooms,
+      .experience,
+      .dining,
+      .gallery {
+        padding: 85px 0
+      }
+
+      .intro-grid,
+      .dining-grid,
+      .experience-top,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 45px
+      }
+
+      .intro-image {
+        height: 430px;
+        margin-left: 15px
+      }
+
+      .image-caption {
+        left: -15px
+      }
+
+      .section-heading {
+        display: block
+      }
+
+      .section-heading p {
+        margin-top: 20px
+      }
+
+      .room-grid {
+        grid-template-columns: 1fr;
+        gap: 25px
+      }
+
+      .room-image {
+        height: 280px
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 300px 190px 190px
+      }
+
+      .exp-card:first-child {
+        grid-column: span 2;
+        grid-row: auto
+      }
+
+      .exp-label h3 {
+        font-size: 25px
+      }
+
+      .dining-image {
+        height: 420px;
+        margin-right: 15px
+      }
+
+      .wellness {
+        height: 500px;
+        background-position: 60% center
+      }
+
+      .wellness-content {
+        padding-top: 105px
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 180px 180px
+      }
+
+      .gallery-grid a:first-child {
+        grid-row: span 2
+      }
+
+      .gallery-grid a:nth-child(4) {
+        grid-column: span 2
+      }
+
+      .contact-form {
+        padding: 28px 22px
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 20px
+      }
+
+      .footer-brand {
+        grid-column: span 2
+      }
+
+      .footer-bottom {
+        gap: 15px;
+        flex-direction: column
+      }
+    }
+
+    @media(max-width:400px) {
+      .hero h1 {
+        font-size: 58px
+      }
+
+      .hero-feature {
+        font-size: 12px
+      }
+
+      .experience-grid {
+        grid-template-rows: 260px 170px 170px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="brand">
+        <span class="brand-mark">♕</span>
+        <span>
+          <span class="brand-name">The Golden  Haven</span>
+          <span class="brand-sub">HOTEL & RESORT</span>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#dining">Dining</a>
+        <a href="#wellness">Wellness</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-book" href="#booking">Book Your Stay <i class="fa-solid fa-arrow-right"></i></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="eyebrow">A luxury escape</div>
+        <h1>Experience <span>Timeless</span> Elegance</h1>
+        <p class="hero-desc">Discover a world where extraordinary moments meet exceptional hospitality. Your private
+          sanctuary awaits.</p>
+        <a href="#about" class="btn">Discover More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-features">
+          <div class="hero-feature"><i class="fa-regular fa-gem"></i><span>Luxury Rooms<br>& Suites</span></div>
+          <div class="hero-feature"><i class="fa-solid fa-spa"></i><span>World-Class<br>Spa</span></div>
+          <div class="hero-feature"><i class="fa-solid fa-utensils"></i><span>Gourmet<br>Dining</span></div>
+          <div class="hero-feature"><i class="fa-solid fa-water"></i><span>Infinity<br>Pool</span></div>
+        </div>
+        <div class="scroll-note"><i class="fa-solid fa-arrow-down"></i> Scroll to discover</div>
+      </div>
+    </section>
+
+    <section class="booking-wrap" id="booking">
+      <form class="container booking" id="bookingForm">
+        <div class="booking-field">
+          <label for="checkin">Check in</label>
+          <input type="date" id="checkin" required>
+        </div>
+        <div class="booking-field">
+          <label for="checkout">Check out</label>
+          <input type="date" id="checkout" required>
+        </div>
+        <div class="booking-field">
+          <label for="guests">Guests</label>
+          <select id="guests">
+            <option>1 Guest</option>
+            <option selected>2 Guests</option>
+            <option>3 Guests</option>
+            <option>4 Guests</option>
+            <option>5+ Guests</option>
+          </select>
+        </div>
+        <div class="booking-field">
+          <label for="roomtype">Room type</label>
+          <select id="roomtype">
+            <option>Any Room</option>
+            <option>Deluxe Room</option>
+            <option>Executive Suite</option>
+            <option>Golden  Penthouse</option>
+          </select>
+        </div>
+        <button class="btn" type="submit">Check Availability <i class="fa-solid fa-arrow-right"></i></button>
+      </form>
+    </section>
+
+    <section class="intro" id="about">
+      <div class="container intro-grid">
+        <div class="intro-copy reveal">
+          <div class="eyebrow">Welcome to Golden  Haven</div>
+          <span class="gold-line"></span>
+          <h2 class="section-title">Where every stay becomes <em>a story.</em></h2>
+          <p>Beyond the ordinary, discover a destination shaped by timeless architecture, thoughtful details and the art
+            of genuine hospitality. Every corner is designed to make you feel somewhere extraordinary.</p>
+          <p>From the moment you arrive, the world slows down. Let us take care of the details while you enjoy the
+            moments that matter.</p>
+          <a href="#experiences" class="btn">Explore the hotel <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="intro-image reveal">
+          <img src="https://images.unsplash.com/photo-1742844552193-2fd3425cd26d?auto=format&fit=crop&w=1600&q=85"
+            alt="Elegant luxury hotel interior">
+          <div class="image-caption"><strong>Since 1998</strong><span>A tradition of excellence</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rooms" id="rooms">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Stay in comfort</div><span class="gold-line"></span>
+            <h2 class="section-title">Rooms & Suites</h2>
+          </div>
+          <p>Spaces that blend refined design, exceptional comfort and the feeling of being somewhere truly special.</p>
+        </div>
+        <div class="room-grid">
+          <article class="room-card reveal">
+            <div class="room-image"><img
+                src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=85"
+                alt="Deluxe hotel room"><span class="room-tag">Most loved</span></div>
+            <div class="room-info">
+              <h3>Deluxe Room</h3>
+              <p>A serene retreat with elegant interiors and everything you need for a restful escape.</p>
+              <div class="room-meta"><span><i class="fa-solid fa-user"></i> 2 Guests</span><span><i
+                    class="fa-solid fa-maximize"></i> 42 m²</span><span><i class="fa-solid fa-bed"></i> King Bed</span>
+              </div>
+              <div class="room-bottom">
+                <div class="price">$240 <small>/ night</small></div><a href="#booking" class="room-link">Discover <i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+          <article class="room-card reveal">
+            <div class="room-image"><img
+                src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=85"
+                alt="Executive suite"></div>
+            <div class="room-info">
+              <h3>Executive Suite</h3>
+              <p>More room to unwind, with a separate lounge and elevated views over the resort.</p>
+              <div class="room-meta"><span><i class="fa-solid fa-user"></i> 3 Guests</span><span><i
+                    class="fa-solid fa-maximize"></i> 68 m²</span><span><i class="fa-solid fa-bed"></i> King Bed</span>
+              </div>
+              <div class="room-bottom">
+                <div class="price">$390 <small>/ night</small></div><a href="#booking" class="room-link">Discover <i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+          <article class="room-card reveal">
+            <div class="room-image"><img
+                src="https://ddeu48opr85vl.cloudfront.net/b2c/original/11.%20Mandarin%20Oriental%20Jumeira%2C%20Dubai%20-%20The%20Royal%20Penthouse%20Bedroom-1743164325.jpg"
+                alt="Golden  penthouse"></div>
+            <div class="room-info">
+              <h3>Golden  Penthouse</h3>
+              <p>The ultimate private escape, featuring generous spaces and an unforgettable atmosphere.</p>
+              <div class="room-meta"><span><i class="fa-solid fa-user"></i> 4 Guests</span><span><i
+                    class="fa-solid fa-maximize"></i> 120 m²</span><span><i class="fa-solid fa-bed"></i> King Bed</span>
+              </div>
+              <div class="room-bottom">
+                <div class="price">$680 <small>/ night</small></div><a href="#booking" class="room-link">Discover <i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" id="experiences">
+      <div class="container">
+        <div class="experience-top reveal">
+          <div>
+            <div class="eyebrow">Beyond your expectations</div><span class="gold-line"></span>
+            <h2 class="section-title">The art of <br><em style="color:var(--gold-light)">living beautifully.</em></h2>
+          </div>
+          <p>Every experience at Golden  Haven is an invitation to discover something exceptional. Indulge in moments of
+            relaxation, adventure and unforgettable pleasure.</p>
+        </div>
+        <div class="experience-grid">
+          <a class="exp-card reveal" href="#wellness"><img
+              src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1100&q=85"
+              alt="Luxury infinity swimming pool">
+            <div class="exp-label"><span>01 / Relaxation</span>
+              <h3>The Infinity Pool</h3>
+            </div>
+          </a>
+          <a class="exp-card reveal" href="#dining"><img
+              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=85"
+              alt="Fine dining restaurant">
+            <div class="exp-label"><span>02 / Gastronomy</span>
+              <h3>Fine Dining</h3>
+            </div>
+          </a>
+          <a class="exp-card reveal" href="#wellness"><img
+              src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=85"
+              alt="Luxury spa treatment">
+            <div class="exp-label"><span>03 / Wellbeing</span>
+              <h3>Golden  Spa</h3>
+            </div>
+          </a>
+          <a class="exp-card reveal" href="#contact"><img
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85"
+              alt="Hotel lounge">
+            <div class="exp-label"><span>04 / Moments</span>
+              <h3>Private Events</h3>
+            </div>
+          </a>
+          <a class="exp-card reveal" href="#contact"><img
+              src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=85"
+              alt="Elegant event setting">
+            <div class="exp-label"><span>05 / Celebration</span>
+              <h3>Special Occasions</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="dining" id="dining">
+      <div class="container dining-grid">
+        <div class="dining-image reveal"><img
+            src="https://saffronandspice.com.au/images/gallery/gallery-1-sm.jpg"
+            alt="Elegant fine dining restaurant"></div>
+        <div class="dining-copy reveal">
+          <div class="eyebrow">A taste of excellence</div><span class="gold-line"></span>
+          <h2 class="section-title">An unforgettable <em>table.</em></h2>
+          <p>Discover a culinary journey inspired by seasonal ingredients, creative craftsmanship and the pleasure of
+            sharing exceptional food. An intimate setting makes every meal an occasion.</p>
+          <div class="dining-details">
+            <div><strong>07:00 – 10:30</strong><span>Breakfast</span></div>
+            <div><strong>12:00 – 23:00</strong><span>All-day dining</span></div>
+          </div>
+          <a href="#contact" class="btn">Discover our dining <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wellness" id="wellness">
+      <div class="container wellness-content reveal">
+        <div class="eyebrow">Your moment of calm</div><span class="gold-line"></span>
+        <h2 class="section-title">A sanctuary <br>for the senses.</h2>
+        <p>Escape the everyday at our tranquil wellness retreat. Reconnect with yourself through restorative treatments,
+          peaceful surroundings and moments made for you.</p>
+        <a href="#contact" class="btn btn-outline">Explore wellness <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">A glimpse of Golden  Haven</div><span class="gold-line"></span>
+            <h2 class="section-title">Moments to remember.</h2>
+          </div>
+          <p>Explore the atmosphere, the details and the beautiful spaces that make every visit memorable.</p>
+        </div>
+        <div class="gallery-grid reveal">
+          <a href="#booking"><img
+              src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85"
+              alt="Hotel lounge"></a>
+          <a href="#rooms"><img
+              src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=85"
+              alt="Luxury suite"></a>
+          <a href="#experiences"><img
+              src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=85"
+              alt="Resort pool"></a>
+          <a href="#dining"><img
+              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85"
+              alt="Fine dining"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="quote-mark">“</div>
+      <blockquote>Luxury is not just a place you visit. It is a feeling you carry with you.</blockquote>
+      <cite>The Golden  Haven Experience</cite>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <div class="eyebrow">We look forward to welcoming you</div><span class="gold-line"></span>
+          <h2 class="section-title">Your escape <em>starts here.</em></h2>
+          <p>Whether you are planning a relaxing getaway, a special celebration or simply have a question, our team is
+            here to help.</p>
+          <div class="contact-list">
+            <div><i class="fa-solid fa-location-dot"></i> 123 Ocean View Avenue, Riviera</div>
+            <div><i class="fa-solid fa-phone"></i> +1 234 567 890</div>
+            <div><i class="fa-regular fa-envelope"></i> reservations@goldenhaven.example</div>
+            <div><i class="fa-regular fa-clock"></i> Reception open 24 hours</div>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contactForm">
+          <h3>Send us a message</h3>
+          <div class="form-row">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Email address" required>
+          </div>
+          <input type="text" placeholder="Subject">
+          <textarea placeholder="How can we help you?" required></textarea>
+          <button class="btn" type="submit">Send message <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a href="#home" class="brand"><span class="brand-mark">♕</span><span><span class="brand-name">The Golden 
+                Haven</span><span class="brand-sub">HOTEL & RESORT</span></span></a>
+          <p>A world of timeless elegance, exceptional comfort and unforgettable hospitality.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4><a href="#about">Our Story</a><a href="#rooms">Rooms & Suites</a><a
+            href="#experiences">Experiences</a><a href="#dining">Dining</a>
+        </div>
+        <div class="footer-col">
+          <h4>Discover</h4><a href="#wellness">Wellness & Spa</a><a href="#gallery">Gallery</a><a
+            href="#booking">Reservations</a><a href="#contact">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <p>123 Ocean View Avenue</p>
+          <p>Riviera, Coastal District</p>
+          <p>+1 234 567 890</p>
+          <div class="socials"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i
+                class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-pinterest-p"></i></a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 The Golden  Haven Hotel & Resort. Demo website.</span><span>Designed for
+          exceptional stays.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuToggle.innerHTML = navLinks.classList.contains('open')
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    // Set sensible default dates
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const afterTomorrow = new Date(today);
+    afterTomorrow.setDate(today.getDate() + 2);
+    const toDateInput = d => d.toISOString().split('T')[0];
+
+    const checkin = document.getElementById('checkin');
+    const checkout = document.getElementById('checkout');
+    checkin.min = toDateInput(today);
+    checkin.value = toDateInput(tomorrow);
+    checkout.min = toDateInput(afterTomorrow);
+    checkout.value = toDateInput(afterTomorrow);
+
+    checkin.addEventListener('change', () => {
+      const next = new Date(checkin.value + 'T00:00:00');
+      next.setDate(next.getDate() + 1);
+      checkout.min = toDateInput(next);
+      if (checkout.value <= checkin.value) checkout.value = toDateInput(next);
+    });
+
+    document.getElementById('bookingForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const guests = document.getElementById('guests').value;
+      const room = document.getElementById('roomtype').value;
+      alert(`Thank you for your interest in Golden  Haven!\n\nCheck-in: ${checkin.value}\nCheck-out: ${checkout.value}\nGuests: ${guests}\nRoom: ${room}\n\nThis is a demo reservation form. Please contact the hotel to confirm availability.`);
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thank you for your message! This is a demo contact form.');
+      e.target.reset();
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>

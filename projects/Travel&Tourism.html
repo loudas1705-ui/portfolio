@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUREVIA — The Art of Going Somewhere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#14252c;
+  --navy2:#20383d;
+  --sand:#f4efe5;
+  --cream:#fbf9f4;
+  --orange:#e77e51;
+  --teal:#8bb8ad;
+  --muted:#8d9693;
+  --white:#fff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy)}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+a{text-decoration:none;color:inherit}
+
+nav{
+  height:78px;padding:0 7%;display:flex;align-items:center;
+  justify-content:space-between;background:var(--cream);
+  position:sticky;top:0;z-index:30;border-bottom:1px solid #eae6dc
+}
+.logo{font-family:'Playfair Display',serif;font-size:29px;font-weight:700;letter-spacing:1px}
+.logo span{color:var(--orange);font-style:italic}
+.navlinks{display:flex;gap:33px;align-items:center}
+.navlinks a{font-size:10px;letter-spacing:1px;font-weight:700;text-transform:uppercase;color:#65716e;transition:.2s}
+.navlinks a:hover{color:var(--orange)}
+.nav-action{background:var(--navy);color:white;padding:14px 23px;font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.menu-btn{display:none;background:none;font-size:23px}
+
+/* HERO */
+.hero{
+  min-height:690px;position:relative;display:flex;align-items:center;color:white;
+  background:
+  linear-gradient(90deg,#0c2028df 0%,#0c20288a 42%,#0c20281c 100%),
+  url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=2200&q=90') center 52%/cover;
+}
+.hero-inner{width:100%;max-width:1400px;margin:auto;padding:100px 9% 150px}
+.hero-kicker{font-size:10px;letter-spacing:3px;font-weight:700;color:#e8b18e}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(65px,9vw,115px);line-height:.96;font-weight:500;letter-spacing:-3px;margin:27px 0}
+.hero h1 em{color:#e9ad86;font-weight:500}
+.hero p{font-size:14px;line-height:1.9;color:#e0e3df;max-width:390px}
+.hero-btn{display:inline-flex;align-items:center;gap:25px;margin-top:32px;padding:17px 22px;background:var(--orange);color:white;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;transition:.3s}
+.hero-btn:hover{background:white;color:var(--navy)}
+.hero-btn span{font-size:18px}
+.hero-index{position:absolute;right:7%;bottom:65px;font-family:'Playfair Display';font-style:italic;font-size:14px;color:#fff9}
+.hero-index strong{font-size:32px;color:white;margin-right:8px}
+
+/* BOOKING */
+.booking-wrap{position:relative;z-index:4;margin:-55px auto 0;max-width:1200px;padding:0 35px}
+.booking{background:white;box-shadow:0 15px 50px #162b3020;padding:24px 27px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr auto;gap:20px;align-items:end}
+.field label{display:block;font-size:9px;letter-spacing:1.5px;font-weight:800;color:#89908c;margin-bottom:10px}
+.field input,.field select{width:100%;border:0;border-bottom:1px solid #e7e6df;padding:7px 0 11px;color:var(--navy);font-size:12px;outline:none;background:white}
+.search-btn{background:var(--navy);color:white;padding:17px 22px;font-size:10px;letter-spacing:1px;font-weight:800;white-space:nowrap;transition:.3s}
+.search-btn:hover{background:var(--orange)}
+
+/* GENERAL */
+.section{padding:105px 8%}
+.kicker{font-size:10px;font-weight:800;letter-spacing:2.5px;color:var(--orange)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:40px}
+.section h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(40px,5vw,60px);line-height:1.08;letter-spacing:-1.5px;margin-top:15px}
+.section-head p{font-size:12px;color:var(--muted);line-height:1.9;max-width:300px}
+.text-link{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--orange);padding-bottom:7px;white-space:nowrap}
+
+/* DESTINATIONS */
+.destinations{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:270px 270px;gap:13px}
+.destination{position:relative;overflow:hidden;color:white;background:#ccd0c8}
+.destination:first-child{grid-row:span 2}
+.destination img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.destination:hover img{transform:scale(1.07)}
+.destination:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0d202be8 0%,#0d202b25 55%,#0d202b05 100%)}
+.destination-info{position:absolute;z-index:2;bottom:25px;left:25px}
+.destination-info small{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#e6b798;font-weight:800}
+.destination-info h3{font-family:'Playfair Display',serif;font-size:35px;font-weight:500;margin:7px 0}
+.destination-info p{font-size:10px;color:#e6e8e3}
+.destination .number{position:absolute;z-index:2;right:18px;top:18px;font-family:'Playfair Display';font-style:italic;font-size:13px;color:white}
+
+/* STORY - FULL BACKGROUND */
+.intro-band{
+  min-height:620px;position:relative;display:flex;align-items:center;
+  padding:100px 10%;color:white;
+  background:
+  linear-gradient(90deg,#0c2029e8 0%,#0c2029a8 48%,#0c202930 100%),
+  url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=2200&q=90') center/cover;
+}
+.intro-image{display:none}
+.intro-copy{max-width:580px}
+.intro-copy .kicker{color:#e9ad86}
+.intro-copy h2{font-family:'Playfair Display';font-size:clamp(48px,6vw,72px);font-weight:500;line-height:1.05;margin:22px 0 25px}
+.intro-copy h2 em{color:#e9ad86}
+.intro-copy p{font-size:13px;color:#e0e5e1;line-height:2;max-width:480px}
+.intro-copy .text-link{display:inline-block;margin-top:30px;color:white;border-color:var(--orange)}
+
+/* EXPERIENCE - IMAGE CARDS */
+.packages{background:var(--cream)}
+.package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.package-card{height:480px;position:relative;overflow:hidden;color:white;background:var(--navy)}
+.package-image{position:absolute;inset:0;height:100%}
+.package-image img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.package-card:hover .package-image img{transform:scale(1.08)}
+.package-card:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0b1c25ed 0%,#0b1c255c 48%,#0b1c2508 100%);pointer-events:none}
+.package-price{position:absolute;top:20px;left:20px;z-index:2;background:#fff;color:var(--navy);padding:11px 14px;font-size:9px;font-weight:800;letter-spacing:.5px}
+.package-info{position:absolute;z-index:2;bottom:0;left:0;width:100%;padding:28px}
+.package-meta{display:flex;justify-content:space-between;color:#e5c5ae;font-size:9px;letter-spacing:1.3px;font-weight:800}
+.package-info h3{font-family:'Playfair Display';font-size:32px;font-weight:500;margin:15px 0 9px}
+.package-info p{font-size:11px;color:#d8dfdc;line-height:1.8;max-width:290px}
+.package-bottom{border-top:1px solid #ffffff45;margin-top:22px;padding-top:16px;display:flex;justify-content:space-between;align-items:center}
+.package-bottom span{font-size:9px;font-weight:800;letter-spacing:1px;color:#e9c8ae}
+.round-arrow{width:39px;height:39px;border-radius:50%;background:var(--orange);color:white;display:grid;place-items:center;font-size:18px;transition:.3s}
+.round-arrow:hover{background:white;color:var(--navy)}
+#noResults{display:none;text-align:center;padding:40px;color:var(--muted)}
+
+/* QUOTE - CINEMATIC */
+.quote{
+  min-height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:100px 10%;color:white;position:relative;
+  background:linear-gradient(#10252b8a,#10252bd9),
+  url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=90') center/cover fixed;
+}
+.quote .mark{font-family:'Playfair Display';font-size:75px;color:#e9ad86;line-height:1}
+.quote blockquote{font-family:'Playfair Display';font-size:clamp(34px,5vw,60px);line-height:1.3;max-width:900px;margin:20px auto 30px;font-weight:500}
+.quote small{font-size:9px;letter-spacing:2px;color:#e9c8ae;font-weight:700}
+
+/* WHY AUREVIA */
+.why-section{
+  position:relative;padding:110px 8%;color:white;
+  background:linear-gradient(90deg,#10252be8,#10252b9c),
+  url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2200&q=90') center/cover;
+}
+.why-section .kicker{color:#e9ad86}
+.why-section h2{font-family:'Playfair Display';font-size:clamp(42px,5vw,62px);font-weight:500;line-height:1.1;margin-top:17px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:55px}
+.why-item{padding:30px 25px;background:#ffffff15;border:1px solid #ffffff35;backdrop-filter:blur(8px);transition:.3s}
+.why-item:hover{background:#ffffff25;transform:translateY(-6px)}
+.why-item .icon{font-size:27px;color:#e9ad86}
+.why-item h3{font-family:'Playfair Display';font-size:24px;font-weight:500;margin:19px 0 10px}
+.why-item p{font-size:12px;color:#d8e0dc;line-height:1.9;max-width:280px}
+
+/* CTA */
+.cta{
+  margin:0;min-height:430px;display:flex;justify-content:space-between;align-items:center;
+  gap:30px;padding:90px 10%;color:white;
+  background:linear-gradient(90deg,#13272bdc,#13272b66),
+  url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2200&q=90') center/cover;
+}
+.cta h2{font-family:'Playfair Display';font-size:clamp(42px,5vw,64px);font-weight:500;line-height:1.1}
+.cta p{font-size:12px;color:#e2e5df;margin-top:14px}
+.cta button{background:var(--orange);color:white;padding:18px 25px;font-size:10px;letter-spacing:1px;font-weight:800;white-space:nowrap;transition:.3s}
+.cta button:hover{background:white;color:var(--navy)}
+
+/* FOOTER */
+footer{background:#102027;color:white;padding:65px 8% 25px}
+.footer-top{display:flex;justify-content:space-between;gap:35px;flex-wrap:wrap}
+.footer-brand .logo{font-size:34px}
+.footer-brand p{font-size:11px;color:#a9b2ad;margin-top:14px;line-height:1.8;max-width:250px}
+.footer-col h4{font-size:10px;letter-spacing:1.5px;color:#e9ad86;margin-bottom:19px}
+.footer-col a{display:block;font-size:11px;color:#c0c8c3;margin:12px 0;transition:.2s}
+.footer-col a:hover{color:var(--orange)}
+.footer-bottom{border-top:1px solid #ffffff20;margin-top:55px;padding-top:20px;display:flex;justify-content:space-between;color:#81918b;font-size:9px;letter-spacing:1px}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:#101f25bb;z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-card{background:var(--cream);width:100%;max-width:480px;padding:35px;position:relative}
+.modal-card h2{font-family:'Playfair Display';font-size:35px;font-weight:500;margin:10px 0}
+.modal-card p{font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.modal-card input,.modal-card select{width:100%;padding:13px;border:1px solid #e5e1d7;background:white;margin-bottom:12px;font-size:12px}
+.modal-card button.submit{width:100%;padding:15px;background:var(--navy);color:white;font-size:10px;letter-spacing:1px;font-weight:800}
+.close{position:absolute;right:18px;top:15px;background:none;font-size:24px;color:var(--navy)}
+
+@media(max-width:900px){
+  .booking{grid-template-columns:repeat(2,1fr)}
+  .destinations{grid-template-columns:1fr 1fr;grid-template-rows:280px 220px 220px}
+  .destination:first-child{grid-row:auto;grid-column:span 2}
+  .package-grid{grid-template-columns:repeat(2,1fr)}
+  .package-card{height:450px}
+  .why-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:650px){
+  nav{height:70px;padding:0 5%}
+  .navlinks{display:none;position:absolute;top:70px;left:0;width:100%;background:var(--cream);padding:25px;flex-direction:column;align-items:flex-start;gap:22px}
+  .navlinks.mobile-open{display:flex}
+  .menu-btn{display:block}
+  .nav-action{padding:12px 13px;font-size:9px}
+  .hero{min-height:630px;background-position:58% center}
+  .hero-inner{padding:75px 7% 130px}
+  .hero h1{font-size:70px}
+  .hero-index{bottom:45px}
+  .booking-wrap{padding:0 5%;margin-top:-35px}
+  .booking{grid-template-columns:1fr 1fr;padding:20px;gap:18px}
+  .search-btn{grid-column:span 2}
+  .section{padding:75px 6%}
+  .section-head{display:block}
+  .section-head p{margin-top:17px}
+  .destinations{display:flex;flex-direction:column}
+  .destination,.destination:first-child{height:300px}
+  .intro-band{min-height:590px;padding:80px 7%;background-position:58% center}
+  .intro-copy h2{font-size:48px}
+  .package-grid{grid-template-columns:1fr}
+  .package-card{height:480px}
+  .quote{min-height:460px;padding:80px 7%;background-attachment:scroll}
+  .why-section{padding:80px 7%}
+  .why-grid{grid-template-columns:1fr;gap:13px;margin-top:35px}
+  .why-item{padding:25px}
+  .cta{min-height:440px;padding:75px 8%;display:block;background-position:center}
+  .cta button{margin-top:28px}
+  .footer-bottom{display:block;line-height:2.5}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="#">AURE<span>VIA</span></a>
+  <div class="navlinks">
+    <a href="#destinations">Destinations</a>
+    <a href="#about">Our story</a>
+    <a href="#packages">Experiences</a>
+    <a href="#why">Why Aurevia</a>
+  </div>
+  <button class="nav-action" onclick="openBooking()">Plan your escape ↗</button>
+  <button class="menu-btn" onclick="document.querySelector('.navlinks').classList.toggle('mobile-open')">☰</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">TRAVEL BEYOND THE ORDINARY / EST. 2026</div>
+    <h1>The world<br>is your <em>story.</em></h1>
+    <p>Some places change your perspective. Others stay with you forever. Let's find the places that will become part of your story.</p>
+    <a class="hero-btn" href="#destinations">Discover the world <span>↗</span></a>
+  </div>
+  <div class="hero-index"><strong>01</strong> / THE ART OF ESCAPE</div>
+</section>
+
+<div class="booking-wrap" id="booking">
+  <div class="booking">
+    <div class="field"><label>WHERE TO?</label>
+      <select id="destination">
+        <option value="">Choose a destination</option>
+        <option>Amalfi Coast, Italy</option>
+        <option>Marrakech, Morocco</option>
+        <option>Bali, Indonesia</option>
+        <option>Santorini, Greece</option>
+        <option>Swiss Alps, Switzerland</option>
+      </select>
+    </div>
+    <div class="field"><label>WHEN?</label><input type="date" id="travelDate"></div>
+    <div class="field"><label>TRAVELERS</label>
+      <select id="travelers">
+        <option>1 Traveler</option><option selected>2 Travelers</option>
+        <option>3 Travelers</option><option>4 Travelers</option><option>5+ Travelers</option>
+      </select>
+    </div>
+    <div class="field"><label>EXPERIENCE</label>
+      <select id="tripType">
+        <option>Any experience</option><option>Adventure</option>
+        <option>Relaxation</option><option>Culture</option><option>Romantic escape</option>
+      </select>
+    </div>
+    <button class="search-btn" onclick="searchTrips()">FIND YOUR TRIP ↗</button>
+  </div>
+</div>
+
+<section class="section" id="destinations">
+  <div class="section-head">
+    <div>
+      <div class="kicker">01 / PLACES THAT STAY WITH YOU</div>
+      <h2>Somewhere<br><em style="font-style:italic;color:var(--orange)">wonderful</em> awaits.</h2>
+    </div>
+    <p>From slow Mediterranean mornings to wild landscapes and colorful cities. Your next favorite place is out there.</p>
+  </div>
+
+  <div class="destinations">
+    <a class="destination" href="#packages" onclick="chooseDestination('Amalfi Coast, Italy')">
+      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1100&q=85" alt="Amalfi Coast">
+      <span class="number">01 / ITALY</span>
+      <div class="destination-info"><small>THE MEDITERRANEAN DREAM</small><h3>Amalfi Coast</h3><p>Sunlit villages · Coastal escapes</p></div>
+    </a>
+    <a class="destination" href="#packages" onclick="chooseDestination('Marrakech, Morocco')">
+      <img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=85" alt="Marrakech">
+      <span class="number">02 / MOROCCO</span>
+      <div class="destination-info"><small>COLORS & CULTURE</small><h3>Marrakech</h3><p>Hidden riads · Desert nights</p></div>
+    </a>
+    <a class="destination" href="#packages" onclick="chooseDestination('Bali, Indonesia')">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=85" alt="Bali">
+      <span class="number">03 / INDONESIA</span>
+      <div class="destination-info"><small>FIND YOUR BALANCE</small><h3>Bali</h3><p>Jungle hideaways · Island life</p></div>
+    </a>
+    <a class="destination" href="#packages" onclick="chooseDestination('Santorini, Greece')">
+      <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?auto=format&fit=crop&w=800&q=85" alt="Santorini">
+      <span class="number">04 / GREECE</span>
+      <div class="destination-info"><small>ISLAND MAGIC</small><h3>Santorini</h3><p>Blue horizons · Golden sunsets</p></div>
+    </a>
+    <a class="destination" href="#packages" onclick="chooseDestination('Swiss Alps, Switzerland')">
+      <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=800&q=85" alt="Swiss Alps">
+      <span class="number">05 / SWITZERLAND</span>
+      <div class="destination-info"><small>WILD & WONDERFUL</small><h3>Swiss Alps</h3><p>Mountain air · Alpine trails</p></div>
+    </a>
+  </div>
+</section>
+
+<section class="intro-band" id="about">
+  <div class="intro-copy">
+    <div class="kicker">A DIFFERENT WAY TO TRAVEL</div>
+    <h2>Not just trips.<br><em>New perspectives.</em></h2>
+    <p>We believe the best journeys are about more than checking destinations off a list. They're about the unexpected conversations, the local flavors, the breathtaking views and the memories you bring home.</p>
+    <p style="margin-top:13px">Every Aurevia experience is thoughtfully curated to help you travel with curiosity, comfort and a little sense of wonder.</p>
+    <a href="#packages" class="text-link">EXPLORE OUR PHILOSOPHY ↗</a>
+  </div>
+</section>
+
+<section class="section packages" id="packages">
+  <div class="section-head">
+    <div>
+      <div class="kicker">02 / CURATED FOR THE CURIOUS</div>
+      <h2>Journeys worth<br>looking forward to.</h2>
+    </div>
+    <p>Thoughtfully designed escapes for every kind of traveler. Choose your next chapter.</p>
+  </div>
+
+  <div class="package-grid" id="packageGrid">
+    <article class="package-card" data-destination="Amalfi Coast, Italy">
+      <div class="package-image">
+        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1000&q=90" alt="Italy">
+      </div>
+      <span class="package-price">FROM €890 / PERSON</span>
+      <div class="package-info">
+        <div class="package-meta"><span>ITALY · 6 DAYS</span><span>✦ 4.9</span></div>
+        <h3>The Italian Summer</h3>
+        <p>Coastal villages, long lunches and beautiful Mediterranean sunsets.</p>
+        <div class="package-bottom"><span>✳ CULTURE · RELAXATION</span><button class="round-arrow" onclick="openBooking('Amalfi Coast, Italy')">↗</button></div>
+      </div>
+    </article>
+
+    <article class="package-card" data-destination="Marrakech, Morocco">
+      <div class="package-image">
+        <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=1000&q=90" alt="Morocco">
+      </div>
+      <span class="package-price">FROM €540 / PERSON</span>
+      <div class="package-info">
+        <div class="package-meta"><span>MOROCCO · 5 DAYS</span><span>✦ 4.8</span></div>
+        <h3>The Red City Escape</h3>
+        <p>Ancient souks, beautiful riads and a night beneath desert skies.</p>
+        <div class="package-bottom"><span>✳ CULTURE · ADVENTURE</span><button class="round-arrow" onclick="openBooking('Marrakech, Morocco')">↗</button></div>
+      </div>
+    </article>
+
+    <article class="package-card" data-destination="Bali, Indonesia">
+      <div class="package-image">
+        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=90" alt="Bali">
+      </div>
+      <span class="package-price">FROM €1,190 / PERSON</span>
+      <div class="package-info">
+        <div class="package-meta"><span>INDONESIA · 8 DAYS</span><span>✦ 5.0</span></div>
+        <h3>Slow Days in Bali</h3>
+        <p>Jungle villas, lush rice terraces and peaceful island rituals.</p>
+        <div class="package-bottom"><span>✳ WELLNESS · NATURE</span><button class="round-arrow" onclick="openBooking('Bali, Indonesia')">↗</button></div>
+      </div>
+    </article>
+  </div>
+  <div id="noResults">No packages found for that destination. Try another destination or send us an inquiry.</div>
+</section>
+
+<section class="quote">
+  <div class="mark">“</div>
+  <blockquote>We travel not to escape life, but for life not to escape us.</blockquote>
+  <small>THE AUREVIA WAY OF SEEING THE WORLD</small>
+</section>
+
+<section class="why-section" id="why">
+  <div class="kicker">03 / THE AUREVIA DIFFERENCE</div>
+  <h2>Thoughtful travel.<br>Beautifully simple.</h2>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="icon">✳</div>
+      <h3>Made with intention</h3>
+      <p>Every itinerary is carefully curated with meaningful experiences and memorable places in mind.</p>
+    </div>
+    <div class="why-item">
+      <div class="icon">⌁</div>
+      <h3>Local connections</h3>
+      <p>Discover destinations through local perspectives, authentic experiences and hidden gems.</p>
+    </div>
+    <div class="why-item">
+      <div class="icon">♡</div>
+      <h3>Here for your journey</h3>
+      <p>From your first idea to the moment you return, we're here to help make the details easier.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div>
+    <h2>Your next story<br>starts somewhere.</h2>
+    <p>Tell us where you've been dreaming of going.</p>
+  </div>
+  <button onclick="openBooking()">LET'S PLAN YOUR TRIP ↗</button>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="logo" href="#">AURE<span>VIA</span></a>
+      <p>For the places you dream about, the stories you collect and the journeys that stay with you.</p>
+    </div>
+    <div class="footer-col">
+      <h4>EXPLORE</h4>
+      <a href="#destinations">Destinations</a>
+      <a href="#packages">Travel packages</a>
+      <a href="#about">Our story</a>
+    </div>
+    <div class="footer-col">
+      <h4>PLAN YOUR TRIP</h4>
+      <a href="#booking">Booking information</a>
+      <a href="#why">Why travel with us</a>
+      <a href="mailto:hello@aurevia.example">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE JOURNEY</h4>
+      <a href="#">Instagram ↗</a>
+      <a href="#">Pinterest ↗</a>
+      <a href="#">Facebook ↗</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 AUREVIA TRAVEL STUDIO</span>
+    <span>GO SOMEWHERE. FEEL EVERYTHING.</span>
+  </div>
+</footer>
+
+<div class="modal" id="bookingModal">
+  <div class="modal-card">
+    <button class="close" onclick="closeBooking()">×</button>
+    <div class="kicker">LET'S MAKE IT HAPPEN</div>
+    <h2>Let's plan your escape.</h2>
+    <p>Tell us a little about the journey you're dreaming of. Our travel team will be in touch.</p>
+    <form id="bookingForm">
+      <input id="modalName" placeholder="Your name" required>
+      <input id="modalEmail" type="email" placeholder="Email address" required>
+      <select id="modalDestination" required>
+        <option value="">Choose your destination</option>
+        <option>Amalfi Coast, Italy</option>
+        <option>Marrakech, Morocco</option>
+        <option>Bali, Indonesia</option>
+        <option>Santorini, Greece</option>
+        <option>Swiss Alps, Switzerland</option>
+        <option>Somewhere else — surprise me!</option>
+      </select>
+      <input id="modalDate" type="date">
+      <button class="submit" type="submit">SEND MY TRAVEL INQUIRY ↗</button>
+    </form>
+    <p id="formMessage" style="display:none;color:#39846d;margin-top:15px">Thank you! Your demo inquiry has been recorded on this page.</p>
+  </div>
+</div>
+
+<script>
+function openBooking(destination){
+  document.getElementById('bookingModal').classList.add('open');
+  if(destination) document.getElementById('modalDestination').value=destination;
+}
+function closeBooking(){
+  document.getElementById('bookingModal').classList.remove('open');
+}
+function chooseDestination(destination){
+  document.getElementById('destination').value=destination;
+}
+function searchTrips(){
+  const destination=document.getElementById('destination').value;
+  const cards=[...document.querySelectorAll('.package-card')];
+
+  if(!destination){
+    cards.forEach(card=>card.style.display='');
+    document.getElementById('noResults').style.display='none';
+    document.getElementById('packages').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+
+  cards.forEach(card=>{
+    card.style.display=card.dataset.destination===destination?'':'none';
+  });
+
+  const visible=cards.some(card=>card.style.display!=='none');
+  document.getElementById('noResults').style.display=visible?'none':'block';
+  document.getElementById('packages').scrollIntoView({behavior:'smooth'});
+}
+
+document.getElementById('bookingForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  document.getElementById('formMessage').style.display='block';
+  this.querySelector('.submit').textContent='INQUIRY RECEIVED ✓';
+});
+
+document.getElementById('travelDate').min=new Date().toISOString().split('T')[0];
+document.getElementById('modalDate').min=new Date().toISOString().split('T')[0];
+
+document.getElementById('bookingModal').addEventListener('click',function(e){
+  if(e.target===this)closeBooking();
+});
+
+document.querySelectorAll('.navlinks a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.querySelector('.navlinks').classList.remove('mobile-open');
+  });
+});
+</script>
+
+</body>
+</html>
