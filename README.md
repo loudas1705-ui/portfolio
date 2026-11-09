@@ -72,46 +72,6 @@ The portfolio showcases different types of website projects:
 - Interactive hover effects
 - Modern typography and visual hierarchy
 
-## Getting Started
-
-### 1. Download or Clone the Project
-
-```bash
-git clone YOUR_REPOSITORY_URL
-```
-
-### 2. Open the Project
-
-Open the project folder in Visual Studio Code or another code editor.
-
-### 3. Run the Website
-
-Open `index.html` in your browser.
-
-For a better development experience, you can use the Live Server extension in Visual Studio Code.
-
-## Contact Form
-
-The contact form uses EmailJS to handle message submissions.
-
-To configure it, add your EmailJS credentials to the appropriate JavaScript configuration:
-
-- Service ID
-- Template ID
-- Public Key
-
-Do not expose private credentials or sensitive account information.
-
-## Customization
-
-You can customize the website by editing:
-
-- `index.html` — Homepage content
-- HTML page files — Individual page content
-- `style.css` — Colors, typography, layouts and responsive styles
-- `main.js` — Interactive functionality
-- `assets/images/` — Project images and visual assets
-
 ## License
 
 This project is a personal portfolio developed by Loudjani Amel Serine.
